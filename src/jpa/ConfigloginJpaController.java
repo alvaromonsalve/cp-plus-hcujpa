@@ -201,6 +201,5 @@ public class ConfigloginJpaController implements Serializable {
         } finally {
             em.close();
         }
-    }
-    
+    }    
 }
