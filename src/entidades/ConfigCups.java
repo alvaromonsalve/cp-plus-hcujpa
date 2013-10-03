@@ -55,6 +55,10 @@ public class ConfigCups implements Serializable {
     @JoinColumn(name = "id_estructura_cups", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private StaticEstructuraCups idEstructuraCups;
+    @Column(name="estado_urg")
+    private int estadoUrg; 
+    @Column(name="estado")
+    private int estado;
 
     public ConfigCups() {
     }
@@ -133,6 +137,22 @@ public class ConfigCups implements Serializable {
 
     public void setIdEstructuraCups(StaticEstructuraCups idEstructuraCups) {
         this.idEstructuraCups = idEstructuraCups;
+    }
+    
+    public int getEstadoUrg() {
+        return estadoUrg;
+    }
+
+    public void setEstadoUrg(int estadoUrg) {
+        this.estadoUrg = estadoUrg;
+    }
+
+    public int getEstado() {
+        return estado;
+    }
+
+    public void setEstado(int estado) {
+        this.estado = estado;
     }
 
     @Override
