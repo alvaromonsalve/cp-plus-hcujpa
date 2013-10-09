@@ -41,6 +41,8 @@ public class Configdecripcionlogin implements Serializable {
     @Lob
     @Column(name = "direccion")
     private String direccion;
+    @Column(name = "email")
+    private String email;
     @JoinColumn(name = "id_login", referencedColumnName = "id")
     @ManyToOne
     private Configlogin idLogin;
@@ -188,6 +190,13 @@ public class Configdecripcionlogin implements Serializable {
 
     public void setDireccion(String direccion) {
         this.direccion = direccion;
+    }
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
     
 }
