@@ -190,7 +190,7 @@ public class InfoPosologiaHcu implements Serializable {
 
     @Override
     public String toString() {
-        return "entidades.InfoPosologiaHcu[ id=" + id + " ]";
+        return getIdSuministro().getIdPricipioactivo().getNombre();
     }
     
 }
