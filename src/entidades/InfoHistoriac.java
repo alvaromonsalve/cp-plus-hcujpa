@@ -34,25 +34,8 @@ import javax.persistence.TemporalType;
 @NamedQueries({
     @NamedQuery(name = "InfoHistoriac.findAll", query = "SELECT i FROM InfoHistoriac i")})
 public class InfoHistoriac implements Serializable {
-    @Column(name = "nivel_triaje")
-    private Integer nivelTriaje;
-    @Column(name = "tipo_hc")
-    private int tipoHc;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idInfoHistoriac")
-    private List<InfoCamas> infoCamasList;
-    @Column(name = "diagnostico")
-    private Integer diagnostico;
-    @Column(name = "diagnostico2")
-    private Integer diagnostico2;
-    @Column(name = "diagnostico3")
-    private Integer diagnostico3;
-    @Column(name = "diagnostico4")
-    private Integer diagnostico4;
-    @Column(name = "diagnostico5")
-    private Integer diagnostico5;
-
-
     private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
@@ -106,6 +89,16 @@ public class InfoHistoriac implements Serializable {
     @Lob
     @Column(name = "hallazgo")
     private String hallazgo;
+    @Column(name = "diagnostico")
+    private Integer diagnostico;
+    @Column(name = "diagnostico2")
+    private Integer diagnostico2;
+    @Column(name = "diagnostico3")
+    private Integer diagnostico3;
+    @Column(name = "diagnostico4")
+    private Integer diagnostico4;
+    @Column(name = "diagnostico5")
+    private Integer diagnostico5;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "idInfohistoriac")
     private InfoHcExpfisica infoHcExpfisica;
     @OneToMany(cascade=CascadeType.ALL, mappedBy = "idInfohistoriac")
@@ -116,14 +109,12 @@ public class InfoHistoriac implements Serializable {
     @JoinColumn(name="id_usuario",referencedColumnName="id")
     @ManyToOne(optional=false)
     private Configdecripcionlogin idConfigdecripcionlogin;
-
-    public Configdecripcionlogin getIdConfigdecripcionlogin() {
-        return idConfigdecripcionlogin;
-    }
-
-    public void setIdConfigdecripcionlogin(Configdecripcionlogin idConfigdecripcionlogin) {
-        this.idConfigdecripcionlogin = idConfigdecripcionlogin;
-    }
+        @Column(name = "nivel_triaje")
+    private Integer nivelTriaje;
+    @Column(name = "tipo_hc")
+    private int tipoHc;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idInfoHistoriac")
+    private List<InfoCamas> infoCamasList;
     
     public InfoHistoriac() {
     }
@@ -421,6 +412,14 @@ public class InfoHistoriac implements Serializable {
 
     public void setInfoCamasList(List<InfoCamas> infoCamasList) {
         this.infoCamasList = infoCamasList;
+    }
+    
+    public Configdecripcionlogin getIdConfigdecripcionlogin() {
+        return idConfigdecripcionlogin;
+    }
+
+    public void setIdConfigdecripcionlogin(Configdecripcionlogin idConfigdecripcionlogin) {
+        this.idConfigdecripcionlogin = idConfigdecripcionlogin;
     }
 
 }
