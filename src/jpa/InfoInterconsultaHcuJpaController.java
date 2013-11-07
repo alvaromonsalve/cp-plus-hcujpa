@@ -143,8 +143,7 @@ public class InfoInterconsultaHcuJpaController implements Serializable {
         try {
             Query q = em.createQuery("SELECT i FROM InfoInterconsultaHcu i WHERE i.idHistoriac = :ih AND i.idEspecialidades = :se");
             q.setParameter("ih", ih.getId());
-            q.setParameter("se", se.getId());
-            
+            q.setParameter("se", se.getId());            
             return (InfoInterconsultaHcu)q.getSingleResult();
         }catch(Exception ex){
             return null;

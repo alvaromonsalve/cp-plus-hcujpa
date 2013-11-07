@@ -1,11 +1,13 @@
 /*
- * To change this template, choose Tools | Templates
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package jpa;
 
-import entidades.InfoHistoriac;
-import entidades.InfoMedidasgHcu;
+import entidades.HcuEvoPosologia;
+import entidades.HcuEvolucion;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -18,11 +20,11 @@ import jpa.exceptions.NonexistentEntityException;
 
 /**
  *
- * @author AlvaroVirtual
+ * @author Administrador
  */
-public class InfoMedidasgHcuJpaController implements Serializable {
+public class HcuEvoPosologiaJpaController implements Serializable {
 
-    public InfoMedidasgHcuJpaController(EntityManagerFactory emf) {
+    public HcuEvoPosologiaJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
     private EntityManagerFactory emf = null;
@@ -31,12 +33,12 @@ public class InfoMedidasgHcuJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(InfoMedidasgHcu infoMedidasgHcu) {
+    public void create(HcuEvoPosologia hcuEvoPosologia) {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            em.persist(infoMedidasgHcu);
+            em.persist(hcuEvoPosologia);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -45,19 +47,19 @@ public class InfoMedidasgHcuJpaController implements Serializable {
         }
     }
 
-    public void edit(InfoMedidasgHcu infoMedidasgHcu) throws NonexistentEntityException, Exception {
+    public void edit(HcuEvoPosologia hcuEvoPosologia) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            infoMedidasgHcu = em.merge(infoMedidasgHcu);
+            hcuEvoPosologia = em.merge(hcuEvoPosologia);
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                Integer id = infoMedidasgHcu.getId();
-                if (findInfoMedidasgHcu(id) == null) {
-                    throw new NonexistentEntityException("The infoMedidasgHcu with id " + id + " no longer exists.");
+                Integer id = hcuEvoPosologia.getId();
+                if (findHcuEvoPosologia(id) == null) {
+                    throw new NonexistentEntityException("The hcuEvoPosologia with id " + id + " no longer exists.");
                 }
             }
             throw ex;
@@ -73,14 +75,14 @@ public class InfoMedidasgHcuJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            InfoMedidasgHcu infoMedidasgHcu;
+            HcuEvoPosologia hcuEvoPosologia;
             try {
-                infoMedidasgHcu = em.getReference(InfoMedidasgHcu.class, id);
-                infoMedidasgHcu.getId();
+                hcuEvoPosologia = em.getReference(HcuEvoPosologia.class, id);
+                hcuEvoPosologia.getId();
             } catch (EntityNotFoundException enfe) {
-                throw new NonexistentEntityException("The infoMedidasgHcu with id " + id + " no longer exists.", enfe);
+                throw new NonexistentEntityException("The hcuEvoPosologia with id " + id + " no longer exists.", enfe);
             }
-            em.remove(infoMedidasgHcu);
+            em.remove(hcuEvoPosologia);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -89,19 +91,19 @@ public class InfoMedidasgHcuJpaController implements Serializable {
         }
     }
 
-    public List<InfoMedidasgHcu> findInfoMedidasgHcuEntities() {
-        return findInfoMedidasgHcuEntities(true, -1, -1);
+    public List<HcuEvoPosologia> findHcuEvoPosologiaEntities() {
+        return findHcuEvoPosologiaEntities(true, -1, -1);
     }
 
-    public List<InfoMedidasgHcu> findInfoMedidasgHcuEntities(int maxResults, int firstResult) {
-        return findInfoMedidasgHcuEntities(false, maxResults, firstResult);
+    public List<HcuEvoPosologia> findHcuEvoPosologiaEntities(int maxResults, int firstResult) {
+        return findHcuEvoPosologiaEntities(false, maxResults, firstResult);
     }
 
-    private List<InfoMedidasgHcu> findInfoMedidasgHcuEntities(boolean all, int maxResults, int firstResult) {
+    private List<HcuEvoPosologia> findHcuEvoPosologiaEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(InfoMedidasgHcu.class));
+            cq.select(cq.from(HcuEvoPosologia.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -113,20 +115,20 @@ public class InfoMedidasgHcuJpaController implements Serializable {
         }
     }
 
-    public InfoMedidasgHcu findInfoMedidasgHcu(Integer id) {
+    public HcuEvoPosologia findHcuEvoPosologia(Integer id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(InfoMedidasgHcu.class, id);
+            return em.find(HcuEvoPosologia.class, id);
         } finally {
             em.close();
         }
     }
 
-    public int getInfoMedidasgHcuCount() {
+    public int getHcuEvoPosologiaCount() {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<InfoMedidasgHcu> rt = cq.from(InfoMedidasgHcu.class);
+            Root<HcuEvoPosologia> rt = cq.from(HcuEvoPosologia.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();
@@ -135,14 +137,14 @@ public class InfoMedidasgHcuJpaController implements Serializable {
         }
     }
     
-   //Codigo no Auto-generado
-    
-   public List<InfoMedidasgHcu> ListFindInfoMedidasGHcu(InfoHistoriac ihc){
+    //Codigo no Auto-generado    
+   public List<HcuEvoPosologia> ListFindInfoPosologia(HcuEvolucion evo){
         EntityManager em = getEntityManager();
         try {
-            Query q = em.createQuery("SELECT i FROM InfoMedidasgHcu i WHERE i.idHistoriac = :hc");
-            q.setParameter("hc", ihc.getId());
-            return q.getResultList();
+            return em.createQuery("SELECT h FROM HcuEvoPosologia h WHERE h.idHcuEvolucion = :evo AND h.estado='1'")
+            .setParameter("evo", evo)
+            .setHint("javax.persistence.cache.storeMode", "REFRESH")
+            .getResultList();
         } finally {
             em.close();
         }

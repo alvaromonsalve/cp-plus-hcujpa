@@ -1,7 +1,9 @@
 /*
- * To change this template, choose Tools | Templates
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package entidades;
 
 import java.io.Serializable;
@@ -23,33 +25,25 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author Administrador
  */
 @Entity
-@Table(name = "hcu_mezclas_medicamentos")
-@XmlRootElement
+@Table(name = "hcu_evo_mezclas_medicamentos")
 @NamedQueries({
-    @NamedQuery(name = "HcuMezclasMedicamentos.findAll", query = "SELECT h FROM HcuMezclasMedicamentos h"),
-    @NamedQuery(name = "HcuMezclasMedicamentos.findById", query = "SELECT h FROM HcuMezclasMedicamentos h WHERE h.id = :id"),
-    @NamedQuery(name = "HcuMezclasMedicamentos.findByIdHistoriac", query = "SELECT h FROM HcuMezclasMedicamentos h WHERE h.idHistoriac = :idHistoriac"),
-    @NamedQuery(name = "HcuMezclasMedicamentos.findByVia", query = "SELECT h FROM HcuMezclasMedicamentos h WHERE h.via = :via"),
-    @NamedQuery(name = "HcuMezclasMedicamentos.findByEstado", query = "SELECT h FROM HcuMezclasMedicamentos h WHERE h.estado = :estado"),
-    @NamedQuery(name = "HcuMezclasMedicamentos.findByUsuario", query = "SELECT h FROM HcuMezclasMedicamentos h WHERE h.usuario = :usuario"),
-    @NamedQuery(name = "HcuMezclasMedicamentos.findByFDigita", query = "SELECT h FROM HcuMezclasMedicamentos h WHERE h.fDigita = :fDigita")})
-public class HcuMezclasMedicamentos implements Serializable {
+    @NamedQuery(name = "HcuEvoMezclasMedicamentos.findAll", query = "SELECT h FROM HcuEvoMezclasMedicamentos h")})
+public class HcuEvoMezclasMedicamentos implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @JoinColumn(name="id_historiac",referencedColumnName = "id")
-    @ManyToOne(optional=false)
-    private InfoHistoriac idHistoriac;
+    @JoinColumn(name = "id_hcu_evolucion",referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private HcuEvolucion idHcuEvolucion;
     @Basic(optional = false)
     @Column(name = "via")
     private String via;
@@ -66,19 +60,19 @@ public class HcuMezclasMedicamentos implements Serializable {
     @Column(name = "f_digita")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fDigita;
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "idHcuMezclasMedicamentos")
-    private List<HcuMezclasMedicamentosDesc> hcuMezclasMedicamentosDescList;
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "idHcuEvoMezclasMedicamentos")
+    private List<HcuEvoMezclasMedicamentosDesc> HcuEvoMezclasMedicamentosDescs;
 
-    public HcuMezclasMedicamentos() {
+    public HcuEvoMezclasMedicamentos() {
     }
 
-    public HcuMezclasMedicamentos(Integer id) {
+    public HcuEvoMezclasMedicamentos(Integer id) {
         this.id = id;
     }
 
-    public HcuMezclasMedicamentos(Integer id, InfoHistoriac idHistoriac, String via, int estado, int usuario, Date fDigita) {
+    public HcuEvoMezclasMedicamentos(Integer id, HcuEvolucion idHcuEvolucion, String via, int estado, int usuario, Date fDigita) {
         this.id = id;
-        this.idHistoriac = idHistoriac;
+        this.idHcuEvolucion = idHcuEvolucion;
         this.via = via;
         this.estado = estado;
         this.usuario = usuario;
@@ -93,12 +87,12 @@ public class HcuMezclasMedicamentos implements Serializable {
         this.id = id;
     }
 
-    public InfoHistoriac getIdHistoriac() {
-        return idHistoriac;
+    public HcuEvolucion getIdHcuEvolucion() {
+        return idHcuEvolucion;
     }
 
-    public void setIdHistoriac(InfoHistoriac idHistoriac) {
-        this.idHistoriac = idHistoriac;
+    public void setIdHcuEvolucion(HcuEvolucion idHcuEvolucion) {
+        this.idHcuEvolucion = idHcuEvolucion;
     }
 
     public String getVia() {
@@ -140,13 +134,13 @@ public class HcuMezclasMedicamentos implements Serializable {
     public void setFDigita(Date fDigita) {
         this.fDigita = fDigita;
     }
-    
-    public List<HcuMezclasMedicamentosDesc> getHcuMezclasMedicamentosDescList() {
-        return hcuMezclasMedicamentosDescList;
+
+    public List<HcuEvoMezclasMedicamentosDesc> getHcuEvoMezclasMedicamentosDescs() {
+        return HcuEvoMezclasMedicamentosDescs;
     }
 
-    public void setHcuMezclasMedicamentosDescList(List<HcuMezclasMedicamentosDesc> hcuMezclasMedicamentosDescList) {
-        this.hcuMezclasMedicamentosDescList = hcuMezclasMedicamentosDescList;
+    public void setHcuEvoMezclasMedicamentosDescs(List<HcuEvoMezclasMedicamentosDesc> HcuEvoMezclasMedicamentosDescs) {
+        this.HcuEvoMezclasMedicamentosDescs = HcuEvoMezclasMedicamentosDescs;
     }
 
     @Override
@@ -159,10 +153,10 @@ public class HcuMezclasMedicamentos implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof HcuMezclasMedicamentos)) {
+        if (!(object instanceof HcuEvoMezclasMedicamentos)) {
             return false;
         }
-        HcuMezclasMedicamentos other = (HcuMezclasMedicamentos) object;
+        HcuEvoMezclasMedicamentos other = (HcuEvoMezclasMedicamentos) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -171,7 +165,7 @@ public class HcuMezclasMedicamentos implements Serializable {
 
     @Override
     public String toString() {
-        return "Mezcla de Medicamentos [ id=" + id + " ]";
+        return "entidades.HcuEvoMezclasMedicamentos[ id=" + id + " ]";
     }
     
 }

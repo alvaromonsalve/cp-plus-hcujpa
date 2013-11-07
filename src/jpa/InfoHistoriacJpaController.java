@@ -9,9 +9,9 @@ import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import entidades.Configdecripcionlogin;
 import entidades.InfoAdmision;
 import entidades.InfoHcExpfisica;
+import entidades.Configdecripcionlogin;
 import entidades.InfoPruebasComplement;
 import java.util.ArrayList;
 import java.util.List;
@@ -48,11 +48,6 @@ public class InfoHistoriacJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Configdecripcionlogin idConfigdecripcionlogin = infoHistoriac.getIdConfigdecripcionlogin();
-            if (idConfigdecripcionlogin != null) {
-                idConfigdecripcionlogin = em.getReference(idConfigdecripcionlogin.getClass(), idConfigdecripcionlogin.getId());
-                infoHistoriac.setIdConfigdecripcionlogin(idConfigdecripcionlogin);
-            }
             InfoAdmision idInfoAdmision = infoHistoriac.getIdInfoAdmision();
             if (idInfoAdmision != null) {
                 idInfoAdmision = em.getReference(idInfoAdmision.getClass(), idInfoAdmision.getId());
@@ -62,6 +57,11 @@ public class InfoHistoriacJpaController implements Serializable {
             if (infoHcExpfisica != null) {
                 infoHcExpfisica = em.getReference(infoHcExpfisica.getClass(), infoHcExpfisica.getId());
                 infoHistoriac.setInfoHcExpfisica(infoHcExpfisica);
+            }
+            Configdecripcionlogin idConfigdecripcionlogin = infoHistoriac.getIdConfigdecripcionlogin();
+            if (idConfigdecripcionlogin != null) {
+                idConfigdecripcionlogin = em.getReference(idConfigdecripcionlogin.getClass(), idConfigdecripcionlogin.getId());
+                infoHistoriac.setIdConfigdecripcionlogin(idConfigdecripcionlogin);
             }
             List<InfoPruebasComplement> attachedInfoPruebasComplements = new ArrayList<InfoPruebasComplement>();
             for (InfoPruebasComplement infoPruebasComplementsInfoPruebasComplementToAttach : infoHistoriac.getInfoPruebasComplements()) {
@@ -76,10 +76,6 @@ public class InfoHistoriacJpaController implements Serializable {
             }
             infoHistoriac.setInfoCamasList(attachedInfoCamasList);
             em.persist(infoHistoriac);
-            if (idConfigdecripcionlogin != null) {
-                idConfigdecripcionlogin.getInfoHistoriac().add(infoHistoriac);
-                idConfigdecripcionlogin = em.merge(idConfigdecripcionlogin);
-            }
             if (idInfoAdmision != null) {
                 idInfoAdmision.getInfoHistoriacList().add(infoHistoriac);
                 idInfoAdmision = em.merge(idInfoAdmision);
@@ -92,6 +88,10 @@ public class InfoHistoriacJpaController implements Serializable {
                 }
                 infoHcExpfisica.setIdInfohistoriac(infoHistoriac);
                 infoHcExpfisica = em.merge(infoHcExpfisica);
+            }
+            if (idConfigdecripcionlogin != null) {
+                idConfigdecripcionlogin.getInfoHistoriac().add(infoHistoriac);
+                idConfigdecripcionlogin = em.merge(idConfigdecripcionlogin);
             }
             for (InfoPruebasComplement infoPruebasComplementsInfoPruebasComplement : infoHistoriac.getInfoPruebasComplements()) {
                 InfoHistoriac oldIdInfohistoriacOfInfoPruebasComplementsInfoPruebasComplement = infoPruebasComplementsInfoPruebasComplement.getIdInfohistoriac();
@@ -125,12 +125,12 @@ public class InfoHistoriacJpaController implements Serializable {
             em = getEntityManager();
             em.getTransaction().begin();
             InfoHistoriac persistentInfoHistoriac = em.find(InfoHistoriac.class, infoHistoriac.getId());
-            Configdecripcionlogin idConfigdecripcionloginOld = persistentInfoHistoriac.getIdConfigdecripcionlogin();
-            Configdecripcionlogin idConfigdecripcionloginNew = infoHistoriac.getIdConfigdecripcionlogin();
             InfoAdmision idInfoAdmisionOld = persistentInfoHistoriac.getIdInfoAdmision();
             InfoAdmision idInfoAdmisionNew = infoHistoriac.getIdInfoAdmision();
             InfoHcExpfisica infoHcExpfisicaOld = persistentInfoHistoriac.getInfoHcExpfisica();
             InfoHcExpfisica infoHcExpfisicaNew = infoHistoriac.getInfoHcExpfisica();
+            Configdecripcionlogin idConfigdecripcionloginOld = persistentInfoHistoriac.getIdConfigdecripcionlogin();
+            Configdecripcionlogin idConfigdecripcionloginNew = infoHistoriac.getIdConfigdecripcionlogin();
             List<InfoPruebasComplement> infoPruebasComplementsOld = persistentInfoHistoriac.getInfoPruebasComplements();
             List<InfoPruebasComplement> infoPruebasComplementsNew = infoHistoriac.getInfoPruebasComplements();
             List<InfoCamas> infoCamasListOld = persistentInfoHistoriac.getInfoCamasList();
@@ -144,12 +144,16 @@ public class InfoHistoriacJpaController implements Serializable {
                     illegalOrphanMessages.add("You must retain InfoPruebasComplement " + infoPruebasComplementsOldInfoPruebasComplement + " since its idInfohistoriac field is not nullable.");
                 }
             }
+            for (InfoCamas infoCamasListOldInfoCamas : infoCamasListOld) {
+                if (!infoCamasListNew.contains(infoCamasListOldInfoCamas)) {
+                    if (illegalOrphanMessages == null) {
+                        illegalOrphanMessages = new ArrayList<String>();
+                    }
+                    illegalOrphanMessages.add("You must retain InfoCamas " + infoCamasListOldInfoCamas + " since its idInfoHistoriac field is not nullable.");
+                }
+            }
             if (illegalOrphanMessages != null) {
                 throw new IllegalOrphanException(illegalOrphanMessages);
-            }
-            if (idConfigdecripcionloginNew != null) {
-                idConfigdecripcionloginNew = em.getReference(idConfigdecripcionloginNew.getClass(), idConfigdecripcionloginNew.getId());
-                infoHistoriac.setIdConfigdecripcionlogin(idConfigdecripcionloginNew);
             }
             if (idInfoAdmisionNew != null) {
                 idInfoAdmisionNew = em.getReference(idInfoAdmisionNew.getClass(), idInfoAdmisionNew.getId());
@@ -158,6 +162,10 @@ public class InfoHistoriacJpaController implements Serializable {
             if (infoHcExpfisicaNew != null) {
                 infoHcExpfisicaNew = em.getReference(infoHcExpfisicaNew.getClass(), infoHcExpfisicaNew.getId());
                 infoHistoriac.setInfoHcExpfisica(infoHcExpfisicaNew);
+            }
+            if (idConfigdecripcionloginNew != null) {
+                idConfigdecripcionloginNew = em.getReference(idConfigdecripcionloginNew.getClass(), idConfigdecripcionloginNew.getId());
+                infoHistoriac.setIdConfigdecripcionlogin(idConfigdecripcionloginNew);
             }
             List<InfoPruebasComplement> attachedInfoPruebasComplementsNew = new ArrayList<InfoPruebasComplement>();
             for (InfoPruebasComplement infoPruebasComplementsNewInfoPruebasComplementToAttach : infoPruebasComplementsNew) {
@@ -174,14 +182,6 @@ public class InfoHistoriacJpaController implements Serializable {
             infoCamasListNew = attachedInfoCamasListNew;
             infoHistoriac.setInfoCamasList(infoCamasListNew);
             infoHistoriac = em.merge(infoHistoriac);
-            if (idConfigdecripcionloginOld != null && !idConfigdecripcionloginOld.equals(idConfigdecripcionloginNew)) {
-                idConfigdecripcionloginOld.getInfoHistoriac().remove(infoHistoriac);
-                idConfigdecripcionloginOld = em.merge(idConfigdecripcionloginOld);
-            }
-            if (idConfigdecripcionloginNew != null && !idConfigdecripcionloginNew.equals(idConfigdecripcionloginOld)) {
-                idConfigdecripcionloginNew.getInfoHistoriac().add(infoHistoriac);
-                idConfigdecripcionloginNew = em.merge(idConfigdecripcionloginNew);
-            }
             if (idInfoAdmisionOld != null && !idInfoAdmisionOld.equals(idInfoAdmisionNew)) {
                 idInfoAdmisionOld.getInfoHistoriacList().remove(infoHistoriac);
                 idInfoAdmisionOld = em.merge(idInfoAdmisionOld);
@@ -203,6 +203,14 @@ public class InfoHistoriacJpaController implements Serializable {
                 infoHcExpfisicaNew.setIdInfohistoriac(infoHistoriac);
                 infoHcExpfisicaNew = em.merge(infoHcExpfisicaNew);
             }
+            if (idConfigdecripcionloginOld != null && !idConfigdecripcionloginOld.equals(idConfigdecripcionloginNew)) {
+                idConfigdecripcionloginOld.getInfoHistoriac().remove(infoHistoriac);
+                idConfigdecripcionloginOld = em.merge(idConfigdecripcionloginOld);
+            }
+            if (idConfigdecripcionloginNew != null && !idConfigdecripcionloginNew.equals(idConfigdecripcionloginOld)) {
+                idConfigdecripcionloginNew.getInfoHistoriac().add(infoHistoriac);
+                idConfigdecripcionloginNew = em.merge(idConfigdecripcionloginNew);
+            }
             for (InfoPruebasComplement infoPruebasComplementsNewInfoPruebasComplement : infoPruebasComplementsNew) {
                 if (!infoPruebasComplementsOld.contains(infoPruebasComplementsNewInfoPruebasComplement)) {
                     InfoHistoriac oldIdInfohistoriacOfInfoPruebasComplementsNewInfoPruebasComplement = infoPruebasComplementsNewInfoPruebasComplement.getIdInfohistoriac();
@@ -212,12 +220,6 @@ public class InfoHistoriacJpaController implements Serializable {
                         oldIdInfohistoriacOfInfoPruebasComplementsNewInfoPruebasComplement.getInfoPruebasComplements().remove(infoPruebasComplementsNewInfoPruebasComplement);
                         oldIdInfohistoriacOfInfoPruebasComplementsNewInfoPruebasComplement = em.merge(oldIdInfohistoriacOfInfoPruebasComplementsNewInfoPruebasComplement);
                     }
-                }
-            }
-            for (InfoCamas infoCamasListOldInfoCamas : infoCamasListOld) {
-                if (!infoCamasListNew.contains(infoCamasListOldInfoCamas)) {
-                    infoCamasListOldInfoCamas.setIdInfoHistoriac(null);
-                    infoCamasListOldInfoCamas = em.merge(infoCamasListOldInfoCamas);
                 }
             }
             for (InfoCamas infoCamasListNewInfoCamas : infoCamasListNew) {
@@ -268,13 +270,15 @@ public class InfoHistoriacJpaController implements Serializable {
                 }
                 illegalOrphanMessages.add("This InfoHistoriac (" + infoHistoriac + ") cannot be destroyed since the InfoPruebasComplement " + infoPruebasComplementsOrphanCheckInfoPruebasComplement + " in its infoPruebasComplements field has a non-nullable idInfohistoriac field.");
             }
+            List<InfoCamas> infoCamasListOrphanCheck = infoHistoriac.getInfoCamasList();
+            for (InfoCamas infoCamasListOrphanCheckInfoCamas : infoCamasListOrphanCheck) {
+                if (illegalOrphanMessages == null) {
+                    illegalOrphanMessages = new ArrayList<String>();
+                }
+                illegalOrphanMessages.add("This InfoHistoriac (" + infoHistoriac + ") cannot be destroyed since the InfoCamas " + infoCamasListOrphanCheckInfoCamas + " in its infoCamasList field has a non-nullable idInfoHistoriac field.");
+            }
             if (illegalOrphanMessages != null) {
                 throw new IllegalOrphanException(illegalOrphanMessages);
-            }
-            Configdecripcionlogin idConfigdecripcionlogin = infoHistoriac.getIdConfigdecripcionlogin();
-            if (idConfigdecripcionlogin != null) {
-                idConfigdecripcionlogin.getInfoHistoriac().remove(infoHistoriac);
-                idConfigdecripcionlogin = em.merge(idConfigdecripcionlogin);
             }
             InfoAdmision idInfoAdmision = infoHistoriac.getIdInfoAdmision();
             if (idInfoAdmision != null) {
@@ -286,10 +290,10 @@ public class InfoHistoriacJpaController implements Serializable {
                 infoHcExpfisica.setIdInfohistoriac(null);
                 infoHcExpfisica = em.merge(infoHcExpfisica);
             }
-            List<InfoCamas> infoCamasList = infoHistoriac.getInfoCamasList();
-            for (InfoCamas infoCamasListInfoCamas : infoCamasList) {
-                infoCamasListInfoCamas.setIdInfoHistoriac(null);
-                infoCamasListInfoCamas = em.merge(infoCamasListInfoCamas);
+            Configdecripcionlogin idConfigdecripcionlogin = infoHistoriac.getIdConfigdecripcionlogin();
+            if (idConfigdecripcionlogin != null) {
+                idConfigdecripcionlogin.getInfoHistoriac().remove(infoHistoriac);
+                idConfigdecripcionlogin = em.merge(idConfigdecripcionlogin);
             }
             em.remove(infoHistoriac);
             em.getTransaction().commit();
@@ -350,12 +354,13 @@ public class InfoHistoriacJpaController implements Serializable {
     public List<InfoHistoriac> findinfoHistoriacs(int estado){
         EntityManager em = getEntityManager();
         try {
-            Query q = em.createQuery("SELECT i FROM InfoHistoriac i WHERE i.estado = :estado");
-            q.setParameter("estado", estado);
-            return q.getResultList();
+            return em.createQuery("SELECT i FROM InfoHistoriac i WHERE i.estado = :estado")
+                    .setParameter("estado", estado)
+                    .setHint("javax.persistence.cache.storeMode", "REFRESH")
+                    .getResultList();
         } finally {
             em.close();
         }
-    }   
+    }  
     
 }
