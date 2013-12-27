@@ -286,7 +286,7 @@ public class ConfigCupsJpaController implements Serializable {
     public List<ConfigCups> listConfigCups(StaticEstructuraCups idCups){
         EntityManager em = getEntityManager();
         try {
-            return em.createQuery("SELECT c FROM ConfigCups c WHERE c.idEstructuraCups = :idCups AND c.estadoUrg=1 AND c.estado=1" )
+            return em.createQuery("SELECT c FROM ConfigCups c WHERE c.idEstructuraCups = :idCups AND c.estadoUrg=1 AND c.estado='1'" )
                     .setParameter("idCups", idCups)
                     .setHint("javax.persistence.cache.storeMode", "REFRESH")
                     .getResultList();

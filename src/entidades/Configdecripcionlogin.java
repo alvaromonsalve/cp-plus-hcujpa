@@ -1,7 +1,7 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this template, choose Tools | Templates
+* and open the template in the editor.
+*/
 package entidades;
 
 import java.io.Serializable;
@@ -22,9 +22,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
- *
- * @author Alvaro Monsalve
- */
+*
+* @author Alvaro Monsalve
+*/
 @Entity
 @Table(name = "Config_decripcion_login")
 @NamedQueries({
@@ -194,9 +194,9 @@ public class Configdecripcionlogin implements Serializable {
     public String getEmail() {
         return email;
     }
-
+    
     public void setEmail(String email) {
         this.email = email;
-    }
+}
     
 }

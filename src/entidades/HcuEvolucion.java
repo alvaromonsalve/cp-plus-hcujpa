@@ -64,15 +64,30 @@ public class HcuEvolucion implements Serializable {
     private Short respuestaMotora;
     @Column(name = "conciencia")
     private Short conciencia;
-    @Basic(optional = false)
     @Lob
     @Column(name = "otrossignos")
     private String otrossignos;
-    @Basic(optional = false)
     @Lob
     @Column(name = "subjetivo")
     private String subjetivo;
-    @Basic(optional = false)
+    @JoinColumn(name="dx",referencedColumnName = "id")
+    @ManyToOne(optional=false)
+    private StaticCie10 dx;
+    @JoinColumn(name="dx1",referencedColumnName = "id")
+    @ManyToOne(optional=false)
+    private StaticCie10 dx1;
+    @JoinColumn(name="dx2",referencedColumnName = "id")
+    @ManyToOne(optional=false)
+    private StaticCie10 dx2;
+    @JoinColumn(name="dx3",referencedColumnName = "id")
+    @ManyToOne(optional=false)
+    private StaticCie10 dx3;
+    @JoinColumn(name="dx4",referencedColumnName = "id")
+    @ManyToOne(optional=false)
+    private StaticCie10 dx4;
+    @Lob
+    @Column(name = "analisis")
+    private String analisis;
     @Lob
     @Column(name = "objetivo")
     private String objetivo;
@@ -80,6 +95,12 @@ public class HcuEvolucion implements Serializable {
     @Column(name = "fecha_evo")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaEvo;
+    @Basic(optional = false)
+    @Column(name = "tipo")
+    private int tipo;
+    @JoinColumn(name="id_static_especialidades",referencedColumnName = "id")
+    @ManyToOne(optional=false)
+    private StaticEspecialidades idStaticEspecialidades;
     @Basic(optional = false)
     @Column(name = "estado")
     private int estado;
@@ -100,6 +121,8 @@ public class HcuEvolucion implements Serializable {
     private List<HcuEvoMezclasMedicamentos> hcuEvoMezclasMedicamentoses;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idHcuEvolucion")
     private List<HcuEvoProcedimiento> hcuEvoProcedimientos;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idHcuEvolucion")
+    private List<HcuEvoEgreso> hcuEvoEgreso;
 
     public HcuEvolucion() {
     }
@@ -232,6 +255,54 @@ public class HcuEvolucion implements Serializable {
         this.subjetivo = subjetivo;
     }
 
+    public StaticCie10 getDx() {
+        return dx;
+    }
+
+    public void setDx(StaticCie10 dx) {
+        this.dx = dx;
+    }
+
+    public StaticCie10 getDx1() {
+        return dx1;
+    }
+
+    public void setDx1(StaticCie10 dx1) {
+        this.dx1 = dx1;
+    }
+
+    public StaticCie10 getDx2() {
+        return dx2;
+    }
+
+    public void setDx2(StaticCie10 dx2) {
+        this.dx2 = dx2;
+    }
+
+    public StaticCie10 getDx3() {
+        return dx3;
+    }
+
+    public void setDx3(StaticCie10 dx3) {
+        this.dx3 = dx3;
+    }
+
+    public StaticCie10 getDx4() {
+        return dx4;
+    }
+
+    public void setDx4(StaticCie10 dx4) {
+        this.dx4 = dx4;
+    }
+
+    public String getAnalisis() {
+        return analisis;
+    }
+
+    public void setAnalisis(String analisis) {
+        this.analisis = analisis;
+    }
+
     public String getObjetivo() {
         return objetivo;
     }
@@ -246,6 +317,22 @@ public class HcuEvolucion implements Serializable {
 
     public void setFechaEvo(Date fechaEvo) {
         this.fechaEvo = fechaEvo;
+    }
+
+    public int getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(int tipo) {
+        this.tipo = tipo;
+    }
+
+    public StaticEspecialidades getIdStaticEspecialidades() {
+        return idStaticEspecialidades;
+    }
+
+    public void setIdStaticEspecialidades(StaticEspecialidades idStaticEspecialidades) {
+        this.idStaticEspecialidades = idStaticEspecialidades;
     }
 
     public int getEstado() {
@@ -310,6 +397,14 @@ public class HcuEvolucion implements Serializable {
 
     public void setHcuEvoProcedimientos(List<HcuEvoProcedimiento> hcuEvoProcedimientos) {
         this.hcuEvoProcedimientos = hcuEvoProcedimientos;
+    }
+
+    public List<HcuEvoEgreso> getHcuEvoEgreso() {
+        return hcuEvoEgreso;
+    }
+
+    public void setHcuEvoEgreso(List<HcuEvoEgreso> hcuEvoEgreso) {
+        this.hcuEvoEgreso = hcuEvoEgreso;
     }
     
     

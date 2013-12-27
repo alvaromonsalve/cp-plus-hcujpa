@@ -176,4 +176,18 @@ public class InfoInterconsultaHcuJpaController implements Serializable {
         }
     }
     
+   public Long CountInterconsultas(InfoHistoriac ih, StaticEspecialidades se){
+        EntityManager em = getEntityManager();
+        em.clear();
+        try {
+            return (Long) em.createQuery("SELECT COUNT(i) FROM InfoInterconsultaHcu i WHERE i.idHistoriac = :ih AND i.idEspecialidades = :se")
+            .setParameter("ih", ih.getId())
+            .setParameter("se", se.getId())
+            .setHint("javax.persistence.cache.storeMode", "REFRESH")
+            .getSingleResult();
+        } finally {
+            em.close();
+        }
+   }
+    
 }

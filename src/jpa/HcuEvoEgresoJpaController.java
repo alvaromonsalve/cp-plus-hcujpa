@@ -6,7 +6,7 @@
 
 package jpa;
 
-import entidades.HcuEvoProcedimiento;
+import entidades.HcuEvoEgreso;
 import java.io.Serializable;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
@@ -22,9 +22,9 @@ import jpa.exceptions.NonexistentEntityException;
  *
  * @author Administrador
  */
-public class HcuEvoProcedimientoJpaController implements Serializable {
+public class HcuEvoEgresoJpaController implements Serializable {
 
-    public HcuEvoProcedimientoJpaController(EntityManagerFactory emf) {
+    public HcuEvoEgresoJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
     private EntityManagerFactory emf = null;
@@ -33,19 +33,19 @@ public class HcuEvoProcedimientoJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(HcuEvoProcedimiento hcuEvoProcedimiento) {
+    public void create(HcuEvoEgreso hcuEvoEgreso) {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            HcuEvolucion idHcuEvolucion = hcuEvoProcedimiento.getIdHcuEvolucion();
+            HcuEvolucion idHcuEvolucion = hcuEvoEgreso.getIdHcuEvolucion();
             if (idHcuEvolucion != null) {
                 idHcuEvolucion = em.getReference(idHcuEvolucion.getClass(), idHcuEvolucion.getId());
-                hcuEvoProcedimiento.setIdHcuEvolucion(idHcuEvolucion);
+                hcuEvoEgreso.setIdHcuEvolucion(idHcuEvolucion);
             }
-            em.persist(hcuEvoProcedimiento);
+            em.persist(hcuEvoEgreso);
             if (idHcuEvolucion != null) {
-                idHcuEvolucion.getHcuEvoProcedimientos().add(hcuEvoProcedimiento);
+                idHcuEvolucion.getHcuEvoEgreso().add(hcuEvoEgreso);
                 idHcuEvolucion = em.merge(idHcuEvolucion);
             }
             em.getTransaction().commit();
@@ -56,34 +56,34 @@ public class HcuEvoProcedimientoJpaController implements Serializable {
         }
     }
 
-    public void edit(HcuEvoProcedimiento hcuEvoProcedimiento) throws NonexistentEntityException, Exception {
+    public void edit(HcuEvoEgreso hcuEvoEgreso) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            HcuEvoProcedimiento persistentHcuEvoProcedimiento = em.find(HcuEvoProcedimiento.class, hcuEvoProcedimiento.getId());
-            HcuEvolucion idHcuEvolucionOld = persistentHcuEvoProcedimiento.getIdHcuEvolucion();
-            HcuEvolucion idHcuEvolucionNew = hcuEvoProcedimiento.getIdHcuEvolucion();
+            HcuEvoEgreso persistentHcuEvoEgreso = em.find(HcuEvoEgreso.class, hcuEvoEgreso.getId());
+            HcuEvolucion idHcuEvolucionOld = persistentHcuEvoEgreso.getIdHcuEvolucion();
+            HcuEvolucion idHcuEvolucionNew = hcuEvoEgreso.getIdHcuEvolucion();
             if (idHcuEvolucionNew != null) {
                 idHcuEvolucionNew = em.getReference(idHcuEvolucionNew.getClass(), idHcuEvolucionNew.getId());
-                hcuEvoProcedimiento.setIdHcuEvolucion(idHcuEvolucionNew);
+                hcuEvoEgreso.setIdHcuEvolucion(idHcuEvolucionNew);
             }
-            hcuEvoProcedimiento = em.merge(hcuEvoProcedimiento);
+            hcuEvoEgreso = em.merge(hcuEvoEgreso);
             if (idHcuEvolucionOld != null && !idHcuEvolucionOld.equals(idHcuEvolucionNew)) {
-                idHcuEvolucionOld.getHcuEvoProcedimientos().remove(hcuEvoProcedimiento);
+                idHcuEvolucionOld.getHcuEvoEgreso().remove(hcuEvoEgreso);
                 idHcuEvolucionOld = em.merge(idHcuEvolucionOld);
             }
             if (idHcuEvolucionNew != null && !idHcuEvolucionNew.equals(idHcuEvolucionOld)) {
-                idHcuEvolucionNew.getHcuEvoProcedimientos().add(hcuEvoProcedimiento);
+                idHcuEvolucionNew.getHcuEvoEgreso().add(hcuEvoEgreso);
                 idHcuEvolucionNew = em.merge(idHcuEvolucionNew);
             }
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                Integer id = hcuEvoProcedimiento.getId();
-                if (findHcuEvoProcedimiento(id) == null) {
-                    throw new NonexistentEntityException("The hcuEvoProcedimiento with id " + id + " no longer exists.");
+                Integer id = hcuEvoEgreso.getId();
+                if (findHcuEvoEgreso(id) == null) {
+                    throw new NonexistentEntityException("The hcuEvoEgreso with id " + id + " no longer exists.");
                 }
             }
             throw ex;
@@ -99,19 +99,19 @@ public class HcuEvoProcedimientoJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            HcuEvoProcedimiento hcuEvoProcedimiento;
+            HcuEvoEgreso hcuEvoEgreso;
             try {
-                hcuEvoProcedimiento = em.getReference(HcuEvoProcedimiento.class, id);
-                hcuEvoProcedimiento.getId();
+                hcuEvoEgreso = em.getReference(HcuEvoEgreso.class, id);
+                hcuEvoEgreso.getId();
             } catch (EntityNotFoundException enfe) {
-                throw new NonexistentEntityException("The hcuEvoProcedimiento with id " + id + " no longer exists.", enfe);
+                throw new NonexistentEntityException("The hcuEvoEgreso with id " + id + " no longer exists.", enfe);
             }
-            HcuEvolucion idHcuEvolucion = hcuEvoProcedimiento.getIdHcuEvolucion();
+            HcuEvolucion idHcuEvolucion = hcuEvoEgreso.getIdHcuEvolucion();
             if (idHcuEvolucion != null) {
-                idHcuEvolucion.getHcuEvoProcedimientos().remove(hcuEvoProcedimiento);
+                idHcuEvolucion.getHcuEvoEgreso().remove(hcuEvoEgreso);
                 idHcuEvolucion = em.merge(idHcuEvolucion);
             }
-            em.remove(hcuEvoProcedimiento);
+            em.remove(hcuEvoEgreso);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -120,19 +120,19 @@ public class HcuEvoProcedimientoJpaController implements Serializable {
         }
     }
 
-    public List<HcuEvoProcedimiento> findHcuEvoProcedimientoEntities() {
-        return findHcuEvoProcedimientoEntities(true, -1, -1);
+    public List<HcuEvoEgreso> findHcuEvoEgresoEntities() {
+        return findHcuEvoEgresoEntities(true, -1, -1);
     }
 
-    public List<HcuEvoProcedimiento> findHcuEvoProcedimientoEntities(int maxResults, int firstResult) {
-        return findHcuEvoProcedimientoEntities(false, maxResults, firstResult);
+    public List<HcuEvoEgreso> findHcuEvoEgresoEntities(int maxResults, int firstResult) {
+        return findHcuEvoEgresoEntities(false, maxResults, firstResult);
     }
 
-    private List<HcuEvoProcedimiento> findHcuEvoProcedimientoEntities(boolean all, int maxResults, int firstResult) {
+    private List<HcuEvoEgreso> findHcuEvoEgresoEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(HcuEvoProcedimiento.class));
+            cq.select(cq.from(HcuEvoEgreso.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -144,20 +144,20 @@ public class HcuEvoProcedimientoJpaController implements Serializable {
         }
     }
 
-    public HcuEvoProcedimiento findHcuEvoProcedimiento(Integer id) {
+    public HcuEvoEgreso findHcuEvoEgreso(Integer id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(HcuEvoProcedimiento.class, id);
+            return em.find(HcuEvoEgreso.class, id);
         } finally {
             em.close();
         }
     }
 
-    public int getHcuEvoProcedimientoCount() {
+    public int getHcuEvoEgresoCount() {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<HcuEvoProcedimiento> rt = cq.from(HcuEvoProcedimiento.class);
+            Root<HcuEvoEgreso> rt = cq.from(HcuEvoEgreso.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();
@@ -165,19 +165,5 @@ public class HcuEvoProcedimientoJpaController implements Serializable {
             em.close();
         }
     }
-    
-   //Codigo no Auto-generado
-   public List<HcuEvoProcedimiento> ListFindInfoProcedimientoEvo(HcuEvolucion evo){
-        EntityManager em = getEntityManager();
-        em.clear();
-        try {
-            return em.createQuery("SELECT h FROM HcuEvoProcedimiento h WHERE h.idHcuEvolucion = :evo AND h.estado = '1'")
-            .setParameter("evo", evo)
-            .setHint("javax.persistence.cache.storeMode", "REFRESH")
-            .getResultList();
-        } finally {
-            em.close();
-        }
-   }
     
 }

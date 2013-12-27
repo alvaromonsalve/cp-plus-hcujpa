@@ -183,6 +183,36 @@ public class HcuEvoInterconsultaJpaController implements Serializable {
         }
     }
     
+        public List<HcuEvoInterconsulta> listInterconsultaOtrasEvo(HcuEvolucion evo){
+        EntityManager em = getEntityManager();
+        try {
+            return em.createQuery("SELECT h FROM HcuEvoInterconsulta h WHERE h.idHcuEvolucion = :evo "
+                    + "AND h.idStaticEspecialidades.id <> 28 AND h.idStaticEspecialidades.id <> 22 "
+                    + "AND h.idStaticEspecialidades.id <> 14 AND h.idStaticEspecialidades.id <> 10 "
+                    + "AND h.idStaticEspecialidades.id <> 39 "
+                    + "AND h.idStaticEspecialidades.id <> 3 AND h.estado = '1'")
+                    .setParameter("evo", evo)
+                    .setHint("javax.persistence.cache.storeMode", "REFRESH")
+                    .getResultList();
+        } finally {
+            em.close();
+        }
+    }
+        
+    public Long CountInterconsultas(HcuEvolucion evo, StaticEspecialidades se){
+        EntityManager em = getEntityManager();
+        em.clear();
+        try {
+            return (Long) em.createQuery("SELECT COUNT(h) FROM HcuEvoInterconsulta h WHERE h.idHcuEvolucion = :evo AND h.idStaticEspecialidades = :se AND h.estado='1'")
+            .setParameter("evo", evo)
+            .setParameter("se", se)
+            .setHint("javax.persistence.cache.storeMode", "REFRESH")
+            .getSingleResult();
+        } finally {
+            em.close();
+        }
+   }
+    
     
     
 }

@@ -25,43 +25,46 @@ import javax.persistence.Table;
  * @author Administrador
  */
 @Entity
-@Table(name = "hcu_evo_procedimiento")
+@Table(name = "access_roles")
 @NamedQueries({
-    @NamedQuery(name = "HcuEvoProcedimiento.findAll", query = "SELECT h FROM HcuEvoProcedimiento h")})
-public class HcuEvoProcedimiento implements Serializable {
+    @NamedQuery(name = "AccessRoles.findAll", query = "SELECT a FROM AccessRoles a")})
+public class AccessRoles implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @JoinColumn(name = "id_hcu_evolucion",referencedColumnName = "id")
-    @ManyToOne(optional=false)
-    private HcuEvolucion idHcuEvolucion;
-    @JoinColumn(name = "id_config_cups",referencedColumnName = "id")
-    @ManyToOne(optional=false)
-    private ConfigCups idConfigCups;
+    @Basic(optional = false)
+    @Column(name = "ruta")
+    private Integer ruta;
+    @Basic(optional = false)
     @Lob
-    @Column(name = "observacion")
-    private String observacion;
+    @Column(name = "descripcion")
+    private String descripcion;
+    @Basic(optional = false)
+    @Column(name = "acceso")
+    private Integer acceso;
+    @Basic(optional = false)
     @Column(name = "estado")
     private Integer estado;
-    @Basic(optional = false)
-    @Column(name = "id_usuario")
-    private int idUsuario;
+    @JoinColumn(name = "id_perfil", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private AccessPerfiles idPerfil;
 
-    public HcuEvoProcedimiento() {
+    public AccessRoles() {
     }
 
-    public HcuEvoProcedimiento(Integer id) {
+    public AccessRoles(Integer id) {
         this.id = id;
     }
 
-    public HcuEvoProcedimiento(Integer id, HcuEvolucion idHcuEvolucion, ConfigCups idConfigCups, int idUsuario) {
+    public AccessRoles(Integer id, Integer ruta, String descripcion, Integer acceso, Integer estado) {
         this.id = id;
-        this.idHcuEvolucion = idHcuEvolucion;
-        this.idConfigCups = idConfigCups;
-        this.idUsuario = idUsuario;
+        this.ruta = ruta;
+        this.descripcion = descripcion;
+        this.acceso = acceso;
+        this.estado = estado;
     }
 
     public Integer getId() {
@@ -72,28 +75,28 @@ public class HcuEvoProcedimiento implements Serializable {
         this.id = id;
     }
 
-    public HcuEvolucion getIdHcuEvolucion() {
-        return idHcuEvolucion;
+    public Integer getRuta() {
+        return ruta;
     }
 
-    public void setIdHcuEvolucion(HcuEvolucion idHcuEvolucion) {
-        this.idHcuEvolucion = idHcuEvolucion;
+    public void setRuta(Integer ruta) {
+        this.ruta = ruta;
     }
 
-    public ConfigCups getIdConfigCups() {
-        return idConfigCups;
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    public void setIdConfigCups(ConfigCups idConfigCups) {
-        this.idConfigCups = idConfigCups;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
-    public String getObservacion() {
-        return observacion;
+    public Integer getAcceso() {
+        return acceso;
     }
 
-    public void setObservacion(String observacion) {
-        this.observacion = observacion;
+    public void setAcceso(Integer acceso) {
+        this.acceso = acceso;
     }
 
     public Integer getEstado() {
@@ -104,12 +107,12 @@ public class HcuEvoProcedimiento implements Serializable {
         this.estado = estado;
     }
 
-    public int getIdUsuario() {
-        return idUsuario;
+    public AccessPerfiles getIdPerfil() {
+        return idPerfil;
     }
 
-    public void setIdUsuario(int idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setIdPerfil(AccessPerfiles idPerfil) {
+        this.idPerfil = idPerfil;
     }
 
     @Override
@@ -122,10 +125,10 @@ public class HcuEvoProcedimiento implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof HcuEvoProcedimiento)) {
+        if (!(object instanceof AccessRoles)) {
             return false;
         }
-        HcuEvoProcedimiento other = (HcuEvoProcedimiento) object;
+        AccessRoles other = (AccessRoles) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -134,7 +137,7 @@ public class HcuEvoProcedimiento implements Serializable {
 
     @Override
     public String toString() {
-        return "entidades.HcuEvoProcedimiento[ id=" + id + " ]";
+        return "entidades.AccessRoles[ id=" + id + " ]";
     }
     
 }

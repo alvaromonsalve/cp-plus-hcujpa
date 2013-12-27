@@ -7,6 +7,7 @@
 package entidades;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,49 +20,54 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
  * @author Administrador
  */
 @Entity
-@Table(name = "hcu_evo_procedimiento")
+@Table(name = "hcu_evo_egreso")
 @NamedQueries({
-    @NamedQuery(name = "HcuEvoProcedimiento.findAll", query = "SELECT h FROM HcuEvoProcedimiento h")})
-public class HcuEvoProcedimiento implements Serializable {
+    @NamedQuery(name = "HcuEvoEgreso.findAll", query = "SELECT h FROM HcuEvoEgreso h")})
+public class HcuEvoEgreso implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @JoinColumn(name = "id_hcu_evolucion",referencedColumnName = "id")
-    @ManyToOne(optional=false)
+    @JoinColumn(name = "id_hcu_evolucion", referencedColumnName = "id")
+    @ManyToOne
     private HcuEvolucion idHcuEvolucion;
-    @JoinColumn(name = "id_config_cups",referencedColumnName = "id")
-    @ManyToOne(optional=false)
-    private ConfigCups idConfigCups;
     @Lob
-    @Column(name = "observacion")
-    private String observacion;
+    @Column(name = "observaciones")
+    private String observaciones;
+    @Column(name = "destino")
+    private Integer destino;
     @Column(name = "estado")
     private Integer estado;
     @Basic(optional = false)
-    @Column(name = "id_usuario")
-    private int idUsuario;
+    @Column(name = "usuario")
+    private int usuario;
+    @Basic(optional = false)
+    @Column(name = "f_digita")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date fDigita;
 
-    public HcuEvoProcedimiento() {
+    public HcuEvoEgreso() {
     }
 
-    public HcuEvoProcedimiento(Integer id) {
+    public HcuEvoEgreso(Integer id) {
         this.id = id;
     }
 
-    public HcuEvoProcedimiento(Integer id, HcuEvolucion idHcuEvolucion, ConfigCups idConfigCups, int idUsuario) {
+    public HcuEvoEgreso(Integer id, HcuEvolucion idHcuEvolucion, int usuario, Date fDigita) {
         this.id = id;
         this.idHcuEvolucion = idHcuEvolucion;
-        this.idConfigCups = idConfigCups;
-        this.idUsuario = idUsuario;
+        this.usuario = usuario;
+        this.fDigita = fDigita;
     }
 
     public Integer getId() {
@@ -80,20 +86,20 @@ public class HcuEvoProcedimiento implements Serializable {
         this.idHcuEvolucion = idHcuEvolucion;
     }
 
-    public ConfigCups getIdConfigCups() {
-        return idConfigCups;
+    public String getObservaciones() {
+        return observaciones;
     }
 
-    public void setIdConfigCups(ConfigCups idConfigCups) {
-        this.idConfigCups = idConfigCups;
+    public void setObservaciones(String observaciones) {
+        this.observaciones = observaciones;
     }
 
-    public String getObservacion() {
-        return observacion;
+    public Integer getDestino() {
+        return destino;
     }
 
-    public void setObservacion(String observacion) {
-        this.observacion = observacion;
+    public void setDestino(Integer destino) {
+        this.destino = destino;
     }
 
     public Integer getEstado() {
@@ -104,12 +110,20 @@ public class HcuEvoProcedimiento implements Serializable {
         this.estado = estado;
     }
 
-    public int getIdUsuario() {
-        return idUsuario;
+    public int getUsuario() {
+        return usuario;
     }
 
-    public void setIdUsuario(int idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setUsuario(int usuario) {
+        this.usuario = usuario;
+    }
+
+    public Date getFDigita() {
+        return fDigita;
+    }
+
+    public void setFDigita(Date fDigita) {
+        this.fDigita = fDigita;
     }
 
     @Override
@@ -122,10 +136,10 @@ public class HcuEvoProcedimiento implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof HcuEvoProcedimiento)) {
+        if (!(object instanceof HcuEvoEgreso)) {
             return false;
         }
-        HcuEvoProcedimiento other = (HcuEvoProcedimiento) object;
+        HcuEvoEgreso other = (HcuEvoEgreso) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -134,7 +148,7 @@ public class HcuEvoProcedimiento implements Serializable {
 
     @Override
     public String toString() {
-        return "entidades.HcuEvoProcedimiento[ id=" + id + " ]";
+        return "entidades.HcuEvoEgreso[ id=" + id + " ]";
     }
     
 }

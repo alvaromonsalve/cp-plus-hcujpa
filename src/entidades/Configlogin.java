@@ -1,7 +1,7 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this template, choose Tools | Templates
+* and open the template in the editor.
+*/
 package entidades;
 
 import java.io.Serializable;
@@ -19,9 +19,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
- *
- * @author Alvaro Monsalve
- */
+*
+* @author Alvaro Monsalve
+*/
 @Entity
 @Table(name = "Config_login")
 @NamedQueries({

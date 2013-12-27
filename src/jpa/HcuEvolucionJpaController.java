@@ -18,8 +18,10 @@ import entidades.HcuEvoInterconsulta;
 import entidades.HcuEvoPosologia;
 import entidades.HcuEvoMezclasMedicamentos;
 import entidades.HcuEvoProcedimiento;
+import entidades.HcuEvoEgreso;
 import entidades.HcuEvolucion;
 import entidades.InfoHistoriac;
+import entidades.StaticEspecialidades;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import jpa.exceptions.IllegalOrphanException;
@@ -56,6 +58,9 @@ public class HcuEvolucionJpaController implements Serializable {
         if (hcuEvolucion.getHcuEvoProcedimientos() == null) {
             hcuEvolucion.setHcuEvoProcedimientos(new ArrayList<HcuEvoProcedimiento>());
         }
+        if (hcuEvolucion.getHcuEvoEgreso() == null) {
+            hcuEvolucion.setHcuEvoEgreso(new ArrayList<HcuEvoEgreso>());
+        }
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -90,6 +95,12 @@ public class HcuEvolucionJpaController implements Serializable {
                 attachedHcuEvoProcedimientos.add(hcuEvoProcedimientosHcuEvoProcedimientoToAttach);
             }
             hcuEvolucion.setHcuEvoProcedimientos(attachedHcuEvoProcedimientos);
+            List<HcuEvoEgreso> attachedHcuEvoEgreso = new ArrayList<HcuEvoEgreso>();
+            for (HcuEvoEgreso hcuEvoEgresoHcuEvoEgresoToAttach : hcuEvolucion.getHcuEvoEgreso()) {
+                hcuEvoEgresoHcuEvoEgresoToAttach = em.getReference(hcuEvoEgresoHcuEvoEgresoToAttach.getClass(), hcuEvoEgresoHcuEvoEgresoToAttach.getId());
+                attachedHcuEvoEgreso.add(hcuEvoEgresoHcuEvoEgresoToAttach);
+            }
+            hcuEvolucion.setHcuEvoEgreso(attachedHcuEvoEgreso);
             em.persist(hcuEvolucion);
             for (HcuEvoMedidasg hcuEvoMedidasgsHcuEvoMedidasg : hcuEvolucion.getHcuEvoMedidasgs()) {
                 HcuEvolucion oldIdHcuEvolucionOfHcuEvoMedidasgsHcuEvoMedidasg = hcuEvoMedidasgsHcuEvoMedidasg.getIdHcuEvolucion();
@@ -136,6 +147,15 @@ public class HcuEvolucionJpaController implements Serializable {
                     oldIdHcuEvolucionOfHcuEvoProcedimientosHcuEvoProcedimiento = em.merge(oldIdHcuEvolucionOfHcuEvoProcedimientosHcuEvoProcedimiento);
                 }
             }
+            for (HcuEvoEgreso hcuEvoEgresoHcuEvoEgreso : hcuEvolucion.getHcuEvoEgreso()) {
+                HcuEvolucion oldIdHcuEvolucionOfHcuEvoEgresoHcuEvoEgreso = hcuEvoEgresoHcuEvoEgreso.getIdHcuEvolucion();
+                hcuEvoEgresoHcuEvoEgreso.setIdHcuEvolucion(hcuEvolucion);
+                hcuEvoEgresoHcuEvoEgreso = em.merge(hcuEvoEgresoHcuEvoEgreso);
+                if (oldIdHcuEvolucionOfHcuEvoEgresoHcuEvoEgreso != null) {
+                    oldIdHcuEvolucionOfHcuEvoEgresoHcuEvoEgreso.getHcuEvoEgreso().remove(hcuEvoEgresoHcuEvoEgreso);
+                    oldIdHcuEvolucionOfHcuEvoEgresoHcuEvoEgreso = em.merge(oldIdHcuEvolucionOfHcuEvoEgresoHcuEvoEgreso);
+                }
+            }
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -160,6 +180,8 @@ public class HcuEvolucionJpaController implements Serializable {
             List<HcuEvoMezclasMedicamentos> hcuEvoMezclasMedicamentosesNew = hcuEvolucion.getHcuEvoMezclasMedicamentoses();
             List<HcuEvoProcedimiento> hcuEvoProcedimientosOld = persistentHcuEvolucion.getHcuEvoProcedimientos();
             List<HcuEvoProcedimiento> hcuEvoProcedimientosNew = hcuEvolucion.getHcuEvoProcedimientos();
+            List<HcuEvoEgreso> hcuEvoEgresoOld = persistentHcuEvolucion.getHcuEvoEgreso();
+            List<HcuEvoEgreso> hcuEvoEgresoNew = hcuEvolucion.getHcuEvoEgreso();
             List<String> illegalOrphanMessages = null;
             for (HcuEvoMedidasg hcuEvoMedidasgsOldHcuEvoMedidasg : hcuEvoMedidasgsOld) {
                 if (!hcuEvoMedidasgsNew.contains(hcuEvoMedidasgsOldHcuEvoMedidasg)) {
@@ -239,6 +261,13 @@ public class HcuEvolucionJpaController implements Serializable {
             }
             hcuEvoProcedimientosNew = attachedHcuEvoProcedimientosNew;
             hcuEvolucion.setHcuEvoProcedimientos(hcuEvoProcedimientosNew);
+            List<HcuEvoEgreso> attachedHcuEvoEgresoNew = new ArrayList<HcuEvoEgreso>();
+            for (HcuEvoEgreso hcuEvoEgresoNewHcuEvoEgresoToAttach : hcuEvoEgresoNew) {
+                hcuEvoEgresoNewHcuEvoEgresoToAttach = em.getReference(hcuEvoEgresoNewHcuEvoEgresoToAttach.getClass(), hcuEvoEgresoNewHcuEvoEgresoToAttach.getId());
+                attachedHcuEvoEgresoNew.add(hcuEvoEgresoNewHcuEvoEgresoToAttach);
+            }
+            hcuEvoEgresoNew = attachedHcuEvoEgresoNew;
+            hcuEvolucion.setHcuEvoEgreso(hcuEvoEgresoNew);
             hcuEvolucion = em.merge(hcuEvolucion);
             for (HcuEvoMedidasg hcuEvoMedidasgsNewHcuEvoMedidasg : hcuEvoMedidasgsNew) {
                 if (!hcuEvoMedidasgsOld.contains(hcuEvoMedidasgsNewHcuEvoMedidasg)) {
@@ -292,6 +321,23 @@ public class HcuEvolucionJpaController implements Serializable {
                     if (oldIdHcuEvolucionOfHcuEvoProcedimientosNewHcuEvoProcedimiento != null && !oldIdHcuEvolucionOfHcuEvoProcedimientosNewHcuEvoProcedimiento.equals(hcuEvolucion)) {
                         oldIdHcuEvolucionOfHcuEvoProcedimientosNewHcuEvoProcedimiento.getHcuEvoProcedimientos().remove(hcuEvoProcedimientosNewHcuEvoProcedimiento);
                         oldIdHcuEvolucionOfHcuEvoProcedimientosNewHcuEvoProcedimiento = em.merge(oldIdHcuEvolucionOfHcuEvoProcedimientosNewHcuEvoProcedimiento);
+                    }
+                }
+            }
+            for (HcuEvoEgreso hcuEvoEgresoOldHcuEvoEgreso : hcuEvoEgresoOld) {
+                if (!hcuEvoEgresoNew.contains(hcuEvoEgresoOldHcuEvoEgreso)) {
+                    hcuEvoEgresoOldHcuEvoEgreso.setIdHcuEvolucion(null);
+                    hcuEvoEgresoOldHcuEvoEgreso = em.merge(hcuEvoEgresoOldHcuEvoEgreso);
+                }
+            }
+            for (HcuEvoEgreso hcuEvoEgresoNewHcuEvoEgreso : hcuEvoEgresoNew) {
+                if (!hcuEvoEgresoOld.contains(hcuEvoEgresoNewHcuEvoEgreso)) {
+                    HcuEvolucion oldIdHcuEvolucionOfHcuEvoEgresoNewHcuEvoEgreso = hcuEvoEgresoNewHcuEvoEgreso.getIdHcuEvolucion();
+                    hcuEvoEgresoNewHcuEvoEgreso.setIdHcuEvolucion(hcuEvolucion);
+                    hcuEvoEgresoNewHcuEvoEgreso = em.merge(hcuEvoEgresoNewHcuEvoEgreso);
+                    if (oldIdHcuEvolucionOfHcuEvoEgresoNewHcuEvoEgreso != null && !oldIdHcuEvolucionOfHcuEvoEgresoNewHcuEvoEgreso.equals(hcuEvolucion)) {
+                        oldIdHcuEvolucionOfHcuEvoEgresoNewHcuEvoEgreso.getHcuEvoEgreso().remove(hcuEvoEgresoNewHcuEvoEgreso);
+                        oldIdHcuEvolucionOfHcuEvoEgresoNewHcuEvoEgreso = em.merge(oldIdHcuEvolucionOfHcuEvoEgresoNewHcuEvoEgreso);
                     }
                 }
             }
@@ -363,6 +409,11 @@ public class HcuEvolucionJpaController implements Serializable {
             if (illegalOrphanMessages != null) {
                 throw new IllegalOrphanException(illegalOrphanMessages);
             }
+            List<HcuEvoEgreso> hcuEvoEgreso = hcuEvolucion.getHcuEvoEgreso();
+            for (HcuEvoEgreso hcuEvoEgresoHcuEvoEgreso : hcuEvoEgreso) {
+                hcuEvoEgresoHcuEvoEgreso.setIdHcuEvolucion(null);
+                hcuEvoEgresoHcuEvoEgreso = em.merge(hcuEvoEgresoHcuEvoEgreso);
+            }
             em.remove(hcuEvolucion);
             em.getTransaction().commit();
         } finally {
@@ -418,7 +469,7 @@ public class HcuEvolucionJpaController implements Serializable {
         }
     }
     
-    //Codigo no Auto-generado    
+        //Codigo no Auto-generado    
     public List<HcuEvolucion> FindHcuEvolucions(InfoHistoriac ihc){
         EntityManager em = getEntityManager();
         try {
@@ -431,4 +482,33 @@ public class HcuEvolucionJpaController implements Serializable {
         }
    }
     
+    public Long CountInterconsultas(InfoHistoriac ihc, StaticEspecialidades se){
+        EntityManager em = getEntityManager();
+        em.clear();
+        try {
+            return (Long) em.createQuery("SELECT COUNT(h) FROM HcuEvolucion h WHERE h.idInfoHistoriac = :ih AND h.idStaticEspecialidades = :se AND h.estado='1'")
+            .setParameter("ih", ihc)
+            .setParameter("se", se)
+            .setHint("javax.persistence.cache.storeMode", "REFRESH")
+            .getSingleResult();
+        } finally {
+            em.close();
+        }
+   }    
+    
+    public Long CountInterconsultasGeneradas(InfoHistoriac ihc, StaticEspecialidades se){
+        EntityManager em = getEntityManager();
+        em.clear();
+        try {
+            return (Long) em.createQuery("SELECT COUNT(h) FROM HcuEvolucion h WHERE h.idInfoHistoriac = :ih AND h.idStaticEspecialidades = :se AND h.estado='1' AND h.tipo = '1'")
+            .setParameter("ih", ihc)
+            .setParameter("se", se)
+            .setHint("javax.persistence.cache.storeMode", "REFRESH")
+            .getSingleResult();
+        } finally {
+            em.close();
+        }
+   }   
+    
 }
+
