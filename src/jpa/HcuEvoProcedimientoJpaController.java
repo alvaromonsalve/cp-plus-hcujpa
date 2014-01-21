@@ -179,5 +179,19 @@ public class HcuEvoProcedimientoJpaController implements Serializable {
             em.close();
         }
    }
+   
+      public List<HcuEvoProcedimiento> ListFindInfoProcedimientoEvo(HcuEvolucion evo, Integer ConfigCups){
+        EntityManager em = getEntityManager();
+        em.clear();
+        try {
+            return em.createQuery("SELECT h FROM HcuEvoProcedimiento h WHERE h.idHcuEvolucion = :evo AND h.estado = '1' AND h.idConfigCups.idEstructuraCups.id = :cc")
+            .setParameter("evo", evo)
+            .setParameter("cc", ConfigCups)
+            .setHint("javax.persistence.cache.storeMode", "REFRESH")
+            .getResultList();
+        } finally {
+            em.close();
+        }
+   }
     
 }
