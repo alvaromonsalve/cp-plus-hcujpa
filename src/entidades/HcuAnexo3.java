@@ -13,7 +13,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -34,8 +36,9 @@ public class HcuAnexo3 implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Column(name="id_info_historiac")
-    private Integer idInfoHistoriac;
+    @JoinColumn(name = "id_info_historiac", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private InfoHistoriac idInfoHistoriac;
     @Lob
     @Column(name = "justificacion")
     private String justificacion;
@@ -63,11 +66,11 @@ public class HcuAnexo3 implements Serializable {
         this.id = id;
     }
 
-    public Integer getIdInfoHistoriac() {
+    public InfoHistoriac getIdInfoHistoriac() {
         return idInfoHistoriac;
     }
 
-    public void setIdInfoHistoriac(Integer idInfoHistoriac) {
+    public void setIdInfoHistoriac(InfoHistoriac idInfoHistoriac) {
         this.idInfoHistoriac = idInfoHistoriac;
     }
 

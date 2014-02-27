@@ -35,9 +35,9 @@ public class HcuAnexo3Det implements Serializable {
     private Integer id;
     @Column(name = "cantidad")
     private Short cantidad;
-    @Basic(optional = false)
-    @Column(name = "codigo_cup")
-    private int codigoCup;
+    @JoinColumn(name = "codigo_cup", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private ConfigCups codigoCup;
     @Lob
     @Column(name = "descripcion")
     private String descripcion;
@@ -53,7 +53,7 @@ public class HcuAnexo3Det implements Serializable {
         this.id = id;
     }
 
-    public HcuAnexo3Det(Integer id, int codigoCup) {
+    public HcuAnexo3Det(Integer id, ConfigCups codigoCup) {
         this.id = id;
         this.codigoCup = codigoCup;
     }
@@ -74,11 +74,11 @@ public class HcuAnexo3Det implements Serializable {
         this.cantidad = cantidad;
     }
 
-    public int getCodigoCup() {
+    public ConfigCups getCodigoCup() {
         return codigoCup;
     }
 
-    public void setCodigoCup(int codigoCup) {
+    public void setCodigoCup(ConfigCups codigoCup) {
         this.codigoCup = codigoCup;
     }
 
