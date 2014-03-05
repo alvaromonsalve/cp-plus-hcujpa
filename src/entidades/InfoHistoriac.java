@@ -266,7 +266,7 @@ public class InfoHistoriac implements Serializable {
 
     @Override
     public String toString() {
-        return "INGRESO[ id=" + id + " ]";
+        return "INGRESO";
     }
 
     public Boolean getDm() {
