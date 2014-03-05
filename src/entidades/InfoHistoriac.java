@@ -266,7 +266,7 @@ public class InfoHistoriac implements Serializable {
 
     @Override
     public String toString() {
-        return "entidades.InfoHistoriac[ id=" + id + " ]";
+        return "INGRESO[ id=" + id + " ]";
     }
 
     public Boolean getDm() {
