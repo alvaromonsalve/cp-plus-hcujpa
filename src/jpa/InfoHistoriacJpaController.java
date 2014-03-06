@@ -19,12 +19,14 @@ import entidades.InfoCamas;
 import entidades.InfoHistoriac;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.NonUniqueResultException;
+import javax.swing.JOptionPane;
 import jpa.exceptions.IllegalOrphanException;
 import jpa.exceptions.NonexistentEntityException;
 
 /**
  *
- * @author Administrador
+ * @author Alvaro Monsalve
  */
 public class InfoHistoriacJpaController implements Serializable {
 
@@ -361,6 +363,27 @@ public class InfoHistoriacJpaController implements Serializable {
         } finally {
             em.close();
         }
-    }  
+    }
     
+    public InfoHistoriac findinfoHistoriac(String numDoc, int estado) {
+        EntityManager em = getEntityManager();
+        try {
+            List results = em.createQuery("SELECT i FROM InfoHistoriac i WHERE i.estado <= :estado AND i.idInfoAdmision.idDatosPersonales.numDoc = :doc")
+                    .setParameter("estado", estado)
+                    .setParameter("doc", numDoc)
+                    .setHint("javax.persistence.cache.storeMode", "REFRESH")
+                    .getResultList();
+            if (results.isEmpty()) {
+                return null;
+            } else if (results.size() == 1) {
+                return (InfoHistoriac) results.get(0);
+            } else {
+                JOptionPane.showMessageDialog(null, "Informe al administrador del sistema de este error:\n"
+                        + "Es posible que existan varias HC activas.\n", InfoHistoriacJpaController.class.getName(), JOptionPane.INFORMATION_MESSAGE);
+                return null;
+            }
+        } finally {
+            em.close();
+        }
+    }
 }
