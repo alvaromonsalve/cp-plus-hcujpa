@@ -19,8 +19,8 @@ import javax.swing.JTable;
 public class numericKeypad extends JPanel{
 
     
-    public numericKeypad(final JTable Tabla, final int row, final JPopupMenu pop){
-        Tabla.setValueAt("",row,2);
+    public numericKeypad(final JTable Tabla, final int row, final JPopupMenu pop, final int column){
+        Tabla.setValueAt("",row,column);
         setLayout(new GridLayout(4,3,0,0));
         ActionListener accion=new ActionListener() {
             
@@ -28,14 +28,14 @@ public class numericKeypad extends JPanel{
             public void actionPerformed(ActionEvent e) {
                JButton b=(JButton)e.getSource();
                if(b.getText().equals("X")){
-                   if(((String)Tabla.getValueAt(row, 2)).equals("")||((String)Tabla.getValueAt(row, 2)).equals("0")||
-                           ((String)Tabla.getValueAt(row, 2)).equals("00")||((String)Tabla.getValueAt(row, 2)).equals("000")){
-                       Tabla.setValueAt("1", row, 2);
+                   if(((String)Tabla.getValueAt(row, column)).equals("")||((String)Tabla.getValueAt(row, column)).equals("0")||
+                           ((String)Tabla.getValueAt(row, column)).equals("00")||((String)Tabla.getValueAt(row, column)).equals("000")){
+                       Tabla.setValueAt("1", row, column);
                    }
                    pop.setVisible(false);
                }else{
-                   Tabla.setValueAt(((String)Tabla.getValueAt(row, 2))+b.getText(), row, 2);
-                   if(((String)Tabla.getValueAt(row, 2)).length()==3){
+                   Tabla.setValueAt(((String)Tabla.getValueAt(row, column))+b.getText(), row, column);
+                   if(((String)Tabla.getValueAt(row, column)).length()==3){
                        pop.setVisible(false);
                    }
                }

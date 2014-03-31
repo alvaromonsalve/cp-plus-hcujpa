@@ -149,5 +149,19 @@ public class InfoProcedimientoHcuJpaController implements Serializable {
             em.close();
         }
    }
+   
+      public List<InfoProcedimientoHcu> ListFindInfoProcedimientoHcu(InfoHistoriac ihc, int tipo){
+        EntityManager em = getEntityManager();
+        em.clear();
+        try {
+            Query q = em.createQuery("SELECT i FROM InfoProcedimientoHcu i WHERE i.idHistoriac = :hc AND i.idCups= :tipo");
+            q.setParameter("hc", ihc.getId());
+            q.setParameter("tipo", tipo);
+            q.setHint("javax.persistence.cache.storeMode", "REFRESH");
+            return q.getResultList();
+        } finally {
+            em.close();
+        }
+   }
     
 }

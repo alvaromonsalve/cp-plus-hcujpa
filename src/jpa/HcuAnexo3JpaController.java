@@ -16,6 +16,7 @@ import javax.persistence.EntityNotFoundException;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import javax.swing.JOptionPane;
 import jpa.exceptions.IllegalOrphanException;
 import jpa.exceptions.NonexistentEntityException;
 
@@ -200,28 +201,36 @@ public class HcuAnexo3JpaController implements Serializable {
         }
     }
     
-    //Codigo no Auto-generado
-    
+    //Codigo no Auto-generado    
     public HcuAnexo3 findHcuAnexo3(InfoHistoriac ih){
-        EntityManager em = getEntityManager();
-        
+        EntityManager em = getEntityManager();        
         try {
-            Query q = em.createQuery("SELECT h FROM HcuAnexo3 h WHERE h.idInfoHistoriac = :ih");
-            q.setParameter("ih", ih.getId());
-            em.refresh((HcuAnexo3)q.getSingleResult());
-            return (HcuAnexo3)q.getSingleResult();
-        }catch(Exception ex){
-            return null;
+            List results = em.createQuery("SELECT h FROM HcuAnexo3 h WHERE h.idInfoHistoriac = :ih AND h.estado = 1")
+            .setParameter("ih", ih)
+            .setHint("javax.persistence.cache.storeMode", "REFRESH")
+            .getResultList();
+            if (results.isEmpty()) return null;
+            else if (results.size() == 1) return (HcuAnexo3) results.get(0);
+            else {
+                JOptionPane.showMessageDialog(null, "Informe al administrador del sistema de este error:\n"
+                        + "Es posible que existan varios Anexo3 activos.\n", HcuAnexo3JpaController.class.getName(), JOptionPane.INFORMATION_MESSAGE);
+                return null;
+            }
         } finally {
             em.close();
-}
+        }
     }
     
+    /**
+     * 
+     * @param ih entidad de la historia clinica 
+     * @return Int cantidad de anexos3 con estado 1: sin finalizar
+     */
     public int getHcuAnexo3Count(InfoHistoriac ih){
          EntityManager em = getEntityManager();
         try {
-            Query q = em.createQuery("SELECT COUNT(h) FROM HcuAnexo3 h WHERE h.idInfoHistoriac = :ih");
-            q.setParameter("ih", ih.getId());
+            Query q = em.createQuery("SELECT COUNT(h) FROM HcuAnexo3 h WHERE h.idInfoHistoriac = :ih AND h.estado = 1");
+            q.setParameter("ih", ih);
             return ((Long)q.getSingleResult()).intValue();
         }catch(Exception ex){
             return 0;
