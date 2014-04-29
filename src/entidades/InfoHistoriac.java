@@ -67,8 +67,8 @@ public class InfoHistoriac implements Serializable {
     private Long tiempoConsulta;
     @Column(name = "estado")
     private int estado;
-    @Column(name = "fecha_dato")
-    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "tiempo_consulta")
+    @Temporal(TemporalType.DATE)
     private Date fechaDato;
     @Column(name = "dm")
     private Boolean dm;
