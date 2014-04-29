@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package entidades;
 
 import java.io.Serializable;
@@ -34,8 +30,9 @@ import javax.persistence.TemporalType;
 @NamedQueries({
     @NamedQuery(name = "InfoHistoriac.findAll", query = "SELECT i FROM InfoHistoriac i")})
 public class InfoHistoriac implements Serializable {
+
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
@@ -44,7 +41,7 @@ public class InfoHistoriac implements Serializable {
     @Lob
     @Column(name = "motivo_consulta")
     private String motivoConsulta;
-    @Column(name="causa_externa")
+    @Column(name = "causa_externa")
     private String causaExterna;
     @Column(name = "alergias")
     private String alergias;
@@ -61,7 +58,7 @@ public class InfoHistoriac implements Serializable {
     @Column(name = "situacion_basal")
     private String situacionBasal;
     @Lob
-    @Column(name="ant_familiares")
+    @Column(name = "ant_familiares")
     private String antFamiliar;
     @Lob
     @Column(name = "enfermedad_actual")
@@ -72,8 +69,7 @@ public class InfoHistoriac implements Serializable {
     @Column(name = "estado")
     private int estado;
     @Column(name = "fecha_dato")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date fechaDato;
+    private Integer fechaDato;
     @Column(name = "dm")
     private Boolean dm;
     @Column(name = "hta")
@@ -101,21 +97,21 @@ public class InfoHistoriac implements Serializable {
     private Integer diagnostico5;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "idInfohistoriac")
     private InfoHcExpfisica infoHcExpfisica;
-    @OneToMany(cascade=CascadeType.ALL, mappedBy = "idInfohistoriac")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idInfohistoriac")
     private List<InfoPruebasComplement> infoPruebasComplements;
-    @JoinColumn(name="id_infoadmision",referencedColumnName="id")
+    @JoinColumn(name = "id_infoadmision", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private InfoAdmision idInfoAdmision;
-    @JoinColumn(name="id_usuario",referencedColumnName="id")
-    @ManyToOne(optional=false)
+    @JoinColumn(name = "id_usuario", referencedColumnName = "id")
+    @ManyToOne(optional = false)
     private Configdecripcionlogin idConfigdecripcionlogin;
-        @Column(name = "nivel_triaje")
+    @Column(name = "nivel_triaje")
     private Integer nivelTriaje;
     @Column(name = "tipo_hc")
     private int tipoHc;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idInfoHistoriac")
     private List<InfoCamas> infoCamasList;
-    
+
     public InfoHistoriac() {
     }
 
@@ -130,7 +126,7 @@ public class InfoHistoriac implements Serializable {
     public void setId(Integer id) {
         this.id = id;
     }
-    
+
     public String getHallazgo() {
         return hallazgo;
     }
@@ -146,7 +142,7 @@ public class InfoHistoriac implements Serializable {
     public void setMotivoConsulta(String motivoConsulta) {
         this.motivoConsulta = motivoConsulta;
     }
-    
+
     public String getCausaExterna() {
         return causaExterna;
     }
@@ -218,8 +214,7 @@ public class InfoHistoriac implements Serializable {
     public void setSituacionBasal(String situacionBasal) {
         this.situacionBasal = situacionBasal;
     }
-    
-    
+
     public String getAntFamiliar() {
         return antFamiliar;
     }
@@ -235,7 +230,7 @@ public class InfoHistoriac implements Serializable {
     public void setEnfermedadActual(String enfermedadActual) {
         this.enfermedadActual = enfermedadActual;
     }
-    
+
     public InfoAdmision getIdInfoAdmision() {
         return idInfoAdmision;
     }
@@ -324,8 +319,7 @@ public class InfoHistoriac implements Serializable {
     public void setTiempoConsulta(Date tiempoConsulta) {
         this.tiempoConsulta = tiempoConsulta;
     }
-    
-    
+
     public int getTipoHc() {
         return tipoHc;
     }
@@ -342,11 +336,11 @@ public class InfoHistoriac implements Serializable {
         this.estado = estado;
     }
 
-    public Date getFechaDato() {
+    public Integer getFechaDato() {
         return fechaDato;
     }
 
-    public void setFechaDato(Date fechaDato) {
+    public void setFechaDato(Integer fechaDato) {
         this.fechaDato = fechaDato;
     }
 
@@ -397,7 +391,7 @@ public class InfoHistoriac implements Serializable {
     public void setDiagnostico5(Integer diagnostico5) {
         this.diagnostico5 = diagnostico5;
     }
-    
+
     public List<InfoPruebasComplement> getInfoPruebasComplements() {
         return infoPruebasComplements;
     }
@@ -413,7 +407,7 @@ public class InfoHistoriac implements Serializable {
     public void setInfoCamasList(List<InfoCamas> infoCamasList) {
         this.infoCamasList = infoCamasList;
     }
-    
+
     public Configdecripcionlogin getIdConfigdecripcionlogin() {
         return idConfigdecripcionlogin;
     }
