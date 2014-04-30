@@ -4,17 +4,18 @@
  */
 package jpa;
 
-import java.io.Serializable;
-import javax.persistence.Query;
-import javax.persistence.EntityNotFoundException;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
 import entidades.ConfigCamas;
 import entidades.InfoCamas;
 import entidades.InfoHistoriac;
+import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityNotFoundException;
+import javax.persistence.Query;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+import javax.swing.JOptionPane;
 import jpa.exceptions.NonexistentEntityException;
 
 /**
@@ -205,4 +206,24 @@ public class InfoCamasJpaController implements Serializable {
             em.close();
         }
     }    
+    
+    public InfoCamas findCamasHcu(InfoHistoriac ih){
+        EntityManager em = getEntityManager();        
+        try {
+            List results = em.createQuery("SELECT i FROM InfoCamas i WHERE i.idInfoHistoriac = :ih AND i.estado = 1")
+            .setParameter("ih", ih)
+            .setHint("javax.persistence.cache.storeMode", "REFRESH")
+            .getResultList();
+            if (results.isEmpty()) return null;
+            else if (results.size() == 1) return (InfoCamas) results.get(0);
+            else {
+                JOptionPane.showMessageDialog(null, "Informe al administrador del sistema de este error:\n"
+                        + "Es posible que existan varias camas asignadas a esta historia clinica activas.\n", InfoCamasJpaController.class.getName(), JOptionPane.INFORMATION_MESSAGE);
+                return null;
+            }
+        } finally {
+            em.close();
+        }
+    }
+    
 }

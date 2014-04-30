@@ -220,7 +220,7 @@ public class InfoEntidades implements Serializable {
 
     @Override
     public String toString() {
-        return "entidades.InfoEntidades[ id=" + id + " ]";
+        return getNombreEntidad();
     }
     
 }

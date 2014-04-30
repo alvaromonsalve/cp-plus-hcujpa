@@ -67,5 +67,7 @@
     <class>entidades.CmProfesionales</class>
     <class>entidades.CmEspPprofesional</class>
     <class>entidades.HcuEvoEgreso</class>
+    <class>entidades.AclEmpleados</class>
+    <class>entidades.AclReporte</class>
   </persistence-unit>
 </persistence>
