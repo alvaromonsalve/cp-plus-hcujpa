@@ -136,7 +136,7 @@ public class AclReporteJpaController implements Serializable {
         }
     }
     //Codigo no Auto-generado    
-    public List<AclReporte> findAclReportesEstadoA(){
+    public List<AclReporte> findpersonasAct(){
         EntityManager em = getEntityManager();        
         try {
             return em.createQuery("SELECT acl FROM AclReporte acl WHERE acl.estado = 1")
