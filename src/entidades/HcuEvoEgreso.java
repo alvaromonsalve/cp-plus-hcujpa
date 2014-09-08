@@ -45,7 +45,15 @@ public class HcuEvoEgreso implements Serializable {
     @Column(name = "observaciones")
     private String observaciones;
     @Column(name = "destino")
-    private Integer destino;
+    private Integer destino;//incapacidad_init
+    @Column(name = "incapacidad")
+    private Integer incapacidad;
+    @Column(name = "incapacidad_init")
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date incapacidadInit;
+    @Column(name = "incapacidad_end")
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date incapacidadEnd;
     @Column(name = "estado")
     private Integer estado;
     @Basic(optional = false)
@@ -100,6 +108,30 @@ public class HcuEvoEgreso implements Serializable {
 
     public void setDestino(Integer destino) {
         this.destino = destino;
+    }
+
+    public Integer getIncapacidad() {
+        return incapacidad;
+    }
+
+    public void setIncapacidad(Integer incapacidad) {
+        this.incapacidad = incapacidad;
+    }
+    
+    public Date getIncapacidadInit() {
+        return incapacidadInit;
+    }
+
+    public void setIncapacidadInit(Date incapacidadInit) {
+        this.incapacidadInit = incapacidadInit;
+    }
+
+    public Date getIncapacidadEnd() {
+        return incapacidadEnd;
+    }
+
+    public void setIncapacidadEnd(Date incapacidadEnd) {
+        this.incapacidadEnd = incapacidadEnd;
     }
 
     public Integer getEstado() {
