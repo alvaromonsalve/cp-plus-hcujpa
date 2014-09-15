@@ -109,6 +109,8 @@ public class InfoHistoriac implements Serializable {
     private Integer nivelTriaje;
     @Column(name = "tipo_hc")
     private int tipoHc;
+    @Column(name = "destino")
+    private String destino;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idInfoHistoriac")
     private List<InfoCamas> infoCamasList;
 
@@ -229,6 +231,14 @@ public class InfoHistoriac implements Serializable {
 
     public void setEnfermedadActual(String enfermedadActual) {
         this.enfermedadActual = enfermedadActual;
+    }
+
+    public String getDestino() {
+        return destino;
+    }
+
+    public void setDestino(String destino) {
+        this.destino = destino;
     }
 
     public InfoAdmision getIdInfoAdmision() {
