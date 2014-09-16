@@ -203,7 +203,7 @@ public class HcuEvoInterconsultaJpaController implements Serializable {
         EntityManager em = getEntityManager();
         em.clear();
         try {
-            return (Long) em.createQuery("SELECT COUNT(h) FROM HcuEvoInterconsulta h WHERE h.idHcuEvolucion = :evo AND h.idStaticEspecialidades = :se AND h.estado='1'")
+            return (Long) em.createQuery("SELECT COUNT(h) FROM HcuEvoInterconsulta h WHERE h.idHcuEvolucion = :evo AND h.idStaticEspecialidades = :se AND h.estado='2'")
             .setParameter("evo", evo)
             .setParameter("se", se)
             .setHint("javax.persistence.cache.storeMode", "REFRESH")
