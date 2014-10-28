@@ -50,7 +50,7 @@ public class AccessRoles implements Serializable {
     @Column(name = "estado")
     private Integer estado;
     @JoinColumn(name = "id_perfil", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false)
     private AccessPerfiles idPerfil;
 
     public AccessRoles() {

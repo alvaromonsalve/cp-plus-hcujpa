@@ -43,7 +43,7 @@ public class ConfigSoat2 implements Serializable {
     @Column(name = "puntos")
     private Double puntos;
     @JoinColumn(name = "codigo_cups", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false)
     private ConfigCups codigoCups;
 
     public ConfigSoat2() {

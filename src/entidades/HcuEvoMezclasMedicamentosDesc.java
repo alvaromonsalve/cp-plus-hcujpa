@@ -11,7 +11,6 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -39,10 +38,10 @@ public class HcuEvoMezclasMedicamentosDesc implements Serializable {
     @Column(name = "id")
     private Integer id;
     @JoinColumn(name = "id_hcu_evo_mezclas_medicamentos",referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false)
     private HcuEvoMezclasMedicamentos idHcuEvoMezclasMedicamentos;
     @JoinColumn(name = "id_suministro",referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false)
     private SumSuministro idSuministro;
     @Basic(optional = false)
     @Column(name = "dosis_n")

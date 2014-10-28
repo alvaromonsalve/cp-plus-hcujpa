@@ -8,7 +8,6 @@ import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -37,14 +36,14 @@ public class HcuAnexo3Det implements Serializable {
     @Column(name = "cantidad")
     private Short cantidad;
     @JoinColumn(name = "codigo_cup", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false)
     private ConfigCups codigoCup;
     @Lob
     @Column(name = "descripcion")
     private String descripcion;
 
     @JoinColumn(name = "id_hcu_anexo3", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false)
     private HcuAnexo3 idHcuAnexo3;
 
     public HcuAnexo3Det() {

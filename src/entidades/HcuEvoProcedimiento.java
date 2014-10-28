@@ -37,10 +37,10 @@ public class HcuEvoProcedimiento implements Serializable {
     @Column(name = "id")
     private Integer id;
     @JoinColumn(name = "id_hcu_evolucion",referencedColumnName = "id")
-    @ManyToOne(optional=false, fetch = FetchType.LAZY)
+    @ManyToOne(optional=false)
     private HcuEvolucion idHcuEvolucion;
     @JoinColumn(name = "id_config_cups",referencedColumnName = "id")
-    @ManyToOne(optional=false, fetch = FetchType.LAZY)
+    @ManyToOne(optional=false)
     private ConfigCups idConfigCups;
     @Lob
     @Column(name = "observacion")

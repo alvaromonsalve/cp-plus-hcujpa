@@ -45,7 +45,7 @@ public class ConfigCamas implements Serializable {
     @Column(name = "estado")
     private int estado;
     @JoinColumn(name = "servicio", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false)
     private ConfigServicio servicio;
 
     public ConfigCamas() {

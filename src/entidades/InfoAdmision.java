@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package entidades;
 
 import java.io.Serializable;
@@ -92,10 +89,10 @@ public class InfoAdmision implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaIngresoDatos;
     @JoinColumn(name = "id_entidad_admision", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false)
     private InfoEntidades idEntidadAdmision;
     @JoinColumn(name = "id_datos_personales", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false)
     private InfoPaciente idDatosPersonales;
     @OneToMany(cascade= CascadeType.ALL,mappedBy="idInfoAdmision", fetch = FetchType.LAZY)
     private List<InfoHistoriac> infoHistoriacList;

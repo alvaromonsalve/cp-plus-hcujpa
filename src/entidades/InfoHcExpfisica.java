@@ -1,14 +1,10 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package entidades;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -85,7 +81,7 @@ public class InfoHcExpfisica implements Serializable {
     @Column(name = "osteo")
     private String osteo;
     @JoinColumn(name = "id_infohistoriac", referencedColumnName = "id")
-    @OneToOne(optional = true, fetch = FetchType.LAZY)
+    @OneToOne(optional = true)
     private InfoHistoriac idInfohistoriac;
 
     public InfoHcExpfisica() {

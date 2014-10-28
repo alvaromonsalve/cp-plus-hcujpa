@@ -38,7 +38,7 @@ public class HcuAnexo3 implements Serializable {
     @Column(name = "id")
     private Integer id;
     @JoinColumn(name = "id_info_historiac", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false)
     private InfoHistoriac idInfoHistoriac;
     @Lob
     @Column(name = "justificacion")

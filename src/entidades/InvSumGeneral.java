@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package entidades;
 
 import java.io.Serializable;
@@ -68,7 +65,7 @@ public class InvSumGeneral implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date fdigita;
     @JoinColumn(name = "id_suministro", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false)
     private SumSuministro idSuministro;
 
     public InvSumGeneral() {

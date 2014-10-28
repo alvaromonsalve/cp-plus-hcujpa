@@ -42,7 +42,7 @@ public class HcuEvolucion implements Serializable {
     @Column(name = "id")
     private Integer id;
     @JoinColumn(name="id_info_historiac",referencedColumnName = "id")
-    @ManyToOne(optional=false, fetch = FetchType.LAZY)
+    @ManyToOne(optional=false)
     private InfoHistoriac idInfoHistoriac;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "temperatura")
@@ -72,19 +72,19 @@ public class HcuEvolucion implements Serializable {
     @Column(name = "subjetivo")
     private String subjetivo;
     @JoinColumn(name="dx",referencedColumnName = "id")
-    @ManyToOne(optional=false, fetch = FetchType.LAZY)
+    @ManyToOne(optional=false)
     private StaticCie10 dx;
     @JoinColumn(name="dx1",referencedColumnName = "id")
-    @ManyToOne(optional=false, fetch = FetchType.LAZY)
+    @ManyToOne(optional=false)
     private StaticCie10 dx1;
     @JoinColumn(name="dx2",referencedColumnName = "id")
-    @ManyToOne(optional=false, fetch = FetchType.LAZY)
+    @ManyToOne(optional=false)
     private StaticCie10 dx2;
     @JoinColumn(name="dx3",referencedColumnName = "id")
-    @ManyToOne(optional=false, fetch = FetchType.LAZY)
+    @ManyToOne(optional=false)
     private StaticCie10 dx3;
     @JoinColumn(name="dx4",referencedColumnName = "id")
-    @ManyToOne(optional=false, fetch = FetchType.LAZY)
+    @ManyToOne(optional=false)
     private StaticCie10 dx4;
     @Lob
     @Column(name = "analisis")

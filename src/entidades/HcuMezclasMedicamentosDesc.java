@@ -48,10 +48,10 @@ public class HcuMezclasMedicamentosDesc implements Serializable {
     @Column(name = "id")
     private Integer id;
     @JoinColumn(name = "id_hcu_mezclas_medicamentos",referencedColumnName = "id")
-    @ManyToOne(optional=false, fetch = FetchType.LAZY)
+    @ManyToOne(optional=false)
     private HcuMezclasMedicamentos idHcuMezclasMedicamentos;    
     @JoinColumn(name = "id_suministro",referencedColumnName = "id")
-    @ManyToOne(optional=false, fetch = FetchType.LAZY)
+    @ManyToOne(optional=false)
     private SumSuministro idSuministro;
     @Basic(optional = false)
     @Column(name = "dosis_n")

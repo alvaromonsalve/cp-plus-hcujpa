@@ -36,7 +36,7 @@ public class AclEmpleados implements Serializable {
     @Column(name = "id")
     private Integer id;
     @JoinColumn(name = "id_config_decripcion", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false)
     private Configdecripcionlogin idDescripcionLogin;    
     @Column(name = "area")
     private String area;

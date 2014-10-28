@@ -11,7 +11,6 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -40,7 +39,7 @@ public class HcuEvoMedidasg implements Serializable {
     @Column(name = "id")
     private Integer id;
     @JoinColumn(name = "id_hcu_evolucion",referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false)
     private HcuEvolucion idHcuEvolucion;
     @Column(name = "medidag")
     private String medidag;

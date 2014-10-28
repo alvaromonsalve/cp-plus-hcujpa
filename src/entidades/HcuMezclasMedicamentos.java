@@ -49,7 +49,7 @@ public class HcuMezclasMedicamentos implements Serializable {
     @Column(name = "id")
     private Integer id;
     @JoinColumn(name="id_historiac",referencedColumnName = "id")
-    @ManyToOne(optional=false, fetch = FetchType.LAZY)
+    @ManyToOne(optional=false)
     private InfoHistoriac idHistoriac;
     @Basic(optional = false)
     @Column(name = "via")

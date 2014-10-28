@@ -1,14 +1,10 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package entidades;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -44,7 +40,7 @@ public class InfoPruebasComplement implements Serializable {
     @Column(name = "estado")
     private Short estado;
     @JoinColumn(name="id_info_historiac",referencedColumnName="id")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false)
     private InfoHistoriac idInfohistoriac;
 
     public InfoHistoriac getIdInfohistoriac() {

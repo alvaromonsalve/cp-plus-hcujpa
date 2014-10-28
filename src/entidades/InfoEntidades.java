@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package entidades;
 
 import java.io.Serializable;
@@ -62,7 +59,7 @@ public class InfoEntidades implements Serializable {
     private String email;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idEntidadAdmision", fetch = FetchType.LAZY)
     private List<InfoAdmision> infoAdmisionList;
-    @OneToMany(mappedBy = "contratante", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "contratante")
     private List<InfoPaciente> infoPacienteList;
 
     public InfoEntidades() {

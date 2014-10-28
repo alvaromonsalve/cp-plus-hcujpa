@@ -54,7 +54,7 @@ public class ConfigCups implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "codigoCups", fetch = FetchType.LAZY)
     private List<ConfigSoat1> configSoat1List;
     @JoinColumn(name = "id_estructura_cups", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false)
     private StaticEstructuraCups idEstructuraCups;
     @Column(name="estado_urg")
     private int estadoUrg; 

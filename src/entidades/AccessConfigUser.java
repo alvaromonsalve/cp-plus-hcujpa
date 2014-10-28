@@ -38,10 +38,10 @@ public class AccessConfigUser implements Serializable {
     @Column(name = "estado")
     private Integer estado;
     @JoinColumn(name = "id_perfiles", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false)
     private AccessPerfiles idPerfiles;
     @JoinColumn(name = "id_usuario", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false)
     private Configdecripcionlogin configdecripcionlogin;
 
     public AccessConfigUser() {

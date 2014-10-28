@@ -38,10 +38,10 @@ public class CmEspPprofesional implements Serializable {
     @Column(name = "estado")
     private Character estado;
     @JoinColumn(name = "id_profesional", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false)
     private CmProfesionales idProfesional;
     @JoinColumn(name = "id_especialidad", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false)
     private StaticEspecialidades idEspecialidad;
 
     public CmEspPprofesional() {

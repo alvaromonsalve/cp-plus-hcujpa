@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package entidades;
 
 import java.io.Serializable;
@@ -103,10 +100,10 @@ public class InfoPaciente implements Serializable {
     @Column(name = "estado")
     private Character estado;
     @JoinColumn(name = "id_mun_nac", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false)
     private InfoMunicipios idMunNac;
     @JoinColumn(name = "id_mun_res", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false)
     private InfoMunicipios idMunRes;
     
     

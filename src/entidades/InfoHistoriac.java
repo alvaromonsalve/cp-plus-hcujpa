@@ -96,15 +96,15 @@ public class InfoHistoriac implements Serializable {
     private Integer diagnostico4;
     @Column(name = "diagnostico5")
     private Integer diagnostico5;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "idInfohistoriac", fetch = FetchType.LAZY)
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "idInfohistoriac")
     private InfoHcExpfisica infoHcExpfisica;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idInfohistoriac", fetch = FetchType.LAZY)
     private List<InfoPruebasComplement> infoPruebasComplements;
     @JoinColumn(name = "id_infoadmision", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false)
     private InfoAdmision idInfoAdmision;
     @JoinColumn(name = "id_usuario", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false)
     private Configdecripcionlogin idConfigdecripcionlogin;
     @Column(name = "nivel_triaje")
     private Integer nivelTriaje;

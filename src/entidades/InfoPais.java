@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package entidades;
 
 import java.io.Serializable;
@@ -28,6 +25,7 @@ import javax.persistence.Table;
 @NamedQueries({
     @NamedQuery(name = "InfoPais.findAll", query = "SELECT i FROM InfoPais i")})
 public class InfoPais implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -104,5 +102,5 @@ public class InfoPais implements Serializable {
     public String toString() {
         return "entidades.InfoPais[ id=" + id + " ]";
     }
-    
+
 }

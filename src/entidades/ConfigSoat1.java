@@ -42,7 +42,7 @@ public class ConfigSoat1 implements Serializable {
     @Column(name = "grupo")
     private Integer grupo;
     @JoinColumn(name = "codigo_cups", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false)
     private ConfigCups codigoCups;
 
     public ConfigSoat1() {

@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package entidades;
 
 import java.io.Serializable;
@@ -45,10 +42,10 @@ public class InfoCamas implements Serializable {
     @Column(name = "id_usuario")
     private int idUsuario;
     @JoinColumn(name = "id_config_camas", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false)
     private ConfigCamas idConfigCamas;
     @JoinColumn(name = "id_info_historiac", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false)
     private InfoHistoriac idInfoHistoriac;
 
     public InfoCamas() {

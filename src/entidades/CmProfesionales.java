@@ -39,7 +39,7 @@ public class CmProfesionales implements Serializable {
     @Column(name = "id")
     private Integer id;
     @JoinColumn(name = "id_descripcion_login", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false)
     private Configdecripcionlogin idDescripcionLogin;
     @Column(name = "tarjeta_profesional")
     private String tarjetaProfesional;
