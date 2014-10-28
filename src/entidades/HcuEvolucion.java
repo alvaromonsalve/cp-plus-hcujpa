@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package entidades;
 
 import java.io.Serializable;
@@ -28,7 +25,7 @@ import tools.MyDate_IN_ejb;
 
 /**
  *
- * @author Administrador
+ * @author Alvaro Monsalve
  */
 @Entity
 @Table(name = "hcu_evolucion")
@@ -100,7 +97,7 @@ public class HcuEvolucion implements Serializable {
     @Column(name = "tipo")
     private int tipo;
     @JoinColumn(name="id_static_especialidades",referencedColumnName = "id")
-    @ManyToOne(optional=false, fetch = FetchType.LAZY)
+    @ManyToOne(optional=false)
     private StaticEspecialidades idStaticEspecialidades;
     @Basic(optional = false)
     @Column(name = "estado")

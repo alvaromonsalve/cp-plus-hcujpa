@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package entidades;
 
 import java.io.Serializable;
@@ -10,7 +7,6 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -43,12 +39,12 @@ public class SumSuministro implements Serializable {
     @Column(name = "suministro")
     private String suministro;
     @JoinColumn(name =  "id_pricipioactivo", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false)
     private SumAtcPrincipioactivo idPricipioactivo;
     @Column(name = "unidadmedida")
     private String unidadmedida;
     @JoinColumn(name = "id_presentacionfarmaceutica", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false)
     private SumAtcPresentacionfarmaceutica idPresentacionfarmaceutica;
     @Column(name = "viaadministracion")
     private String viaadministracion;
@@ -57,7 +53,7 @@ public class SumSuministro implements Serializable {
     @Column(name = "concentracion")
     private String concentracion;
     @JoinColumn(name = "id_laboratorio", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false)
     private SumAtcLaboratorio idLaboratorio;
     @Column(name = "registro_invima")
     private String registroInvima;

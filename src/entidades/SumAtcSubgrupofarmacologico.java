@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package entidades;
 
 import java.io.Serializable;
@@ -43,7 +40,7 @@ public class SumAtcSubgrupofarmacologico implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idSubgrupofarmacologico", fetch = FetchType.LAZY)
     private List<SumAtcSubgrupoquimico> sumAtcSubgrupoquimicoList;
     @JoinColumn(name = "id_grupofarmacologico", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false)
     private SumAtcGrupofarmacologico idGrupofarmacologico;
 
     public SumAtcSubgrupofarmacologico() {
