@@ -10,6 +10,7 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -40,9 +41,9 @@ public class SumAtcSubgrupoquimico implements Serializable {
     @Column(name = "estado")
     private Short estado;
     @JoinColumn(name = "id_subgrupofarmacologico", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private SumAtcSubgrupofarmacologico idSubgrupofarmacologico;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idSubgrupoquimico")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idSubgrupoquimico", fetch = FetchType.LAZY)
     private List<SumAtcPrincipioactivo> sumAtcPrincipioactivoList;
 
     public SumAtcSubgrupoquimico() {

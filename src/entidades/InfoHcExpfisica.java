@@ -8,12 +8,12 @@ import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
@@ -85,7 +85,7 @@ public class InfoHcExpfisica implements Serializable {
     @Column(name = "osteo")
     private String osteo;
     @JoinColumn(name = "id_infohistoriac", referencedColumnName = "id")
-    @OneToOne(optional = true)
+    @OneToOne(optional = true, fetch = FetchType.LAZY)
     private InfoHistoriac idInfohistoriac;
 
     public InfoHcExpfisica() {

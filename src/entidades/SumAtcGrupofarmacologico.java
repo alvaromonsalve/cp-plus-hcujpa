@@ -10,6 +10,7 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -39,10 +40,10 @@ public class SumAtcGrupofarmacologico implements Serializable {
     private String nombre;
     @Column(name = "estado")
     private Short estado;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idGrupofarmacologico")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idGrupofarmacologico", fetch = FetchType.LAZY)
     private List<SumAtcSubgrupofarmacologico> sumAtcSubgrupofarmacologicoList;
     @JoinColumn(name = "id_sistemaorganico", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private SumAtcSistemasorganicos idSistemaorganico;
 
     public SumAtcGrupofarmacologico() {

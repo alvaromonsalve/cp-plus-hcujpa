@@ -10,6 +10,7 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -37,7 +38,7 @@ public class SumAtcLaboratorio implements Serializable {
     private String nombre;
     @Column(name = "Estado")
     private Short estado;
-    @OneToMany(cascade= CascadeType.ALL,mappedBy="idLaboratorio")
+    @OneToMany(cascade= CascadeType.ALL,mappedBy="idLaboratorio", fetch = FetchType.LAZY)
     private List<SumSuministro> SumSuministroList;
 
     public List<SumSuministro> getSumSuministroList() {

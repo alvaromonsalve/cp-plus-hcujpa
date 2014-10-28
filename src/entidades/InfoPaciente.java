@@ -103,10 +103,10 @@ public class InfoPaciente implements Serializable {
     @Column(name = "estado")
     private Character estado;
     @JoinColumn(name = "id_mun_nac", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private InfoMunicipios idMunNac;
     @JoinColumn(name = "id_mun_res", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private InfoMunicipios idMunRes;
     
     

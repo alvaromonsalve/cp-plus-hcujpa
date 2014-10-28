@@ -11,6 +11,7 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -48,7 +49,7 @@ public class HcuMezclasMedicamentos implements Serializable {
     @Column(name = "id")
     private Integer id;
     @JoinColumn(name="id_historiac",referencedColumnName = "id")
-    @ManyToOne(optional=false)
+    @ManyToOne(optional=false, fetch = FetchType.LAZY)
     private InfoHistoriac idHistoriac;
     @Basic(optional = false)
     @Column(name = "via")
@@ -66,7 +67,7 @@ public class HcuMezclasMedicamentos implements Serializable {
     @Column(name = "f_digita")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fDigita;
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "idHcuMezclasMedicamentos")
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "idHcuMezclasMedicamentos", fetch = FetchType.LAZY)
     private List<HcuMezclasMedicamentosDesc> hcuMezclasMedicamentosDescList;
 
     public HcuMezclasMedicamentos() {

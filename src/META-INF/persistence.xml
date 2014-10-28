@@ -69,5 +69,6 @@
     <class>entidades.HcuEvoEgreso</class>
     <class>entidades.AclEmpleados</class>
     <class>entidades.AclReporte</class>
+    <class>entidades.HcuHistoriac2</class>
   </persistence-unit>
 </persistence>

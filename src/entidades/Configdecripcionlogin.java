@@ -10,6 +10,7 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -61,7 +62,7 @@ public class Configdecripcionlogin implements Serializable {
     @Column(name = "ruta_firma")
     private String ruta_firma;
 
-    @OneToMany(cascade=CascadeType.ALL, mappedBy="idConfigdecripcionlogin")
+    @OneToMany(cascade=CascadeType.ALL, mappedBy="idConfigdecripcionlogin", fetch = FetchType.LAZY)
     private List<InfoHistoriac> infoHistoriac;
 
     public List<InfoHistoriac> getInfoHistoriac() {

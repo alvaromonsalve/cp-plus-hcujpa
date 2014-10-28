@@ -60,9 +60,9 @@ public class InfoEntidades implements Serializable {
     private String sitioWeb;
     @Column(name = "email")
     private String email;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idEntidadAdmision", fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idEntidadAdmision", fetch = FetchType.LAZY)
     private List<InfoAdmision> infoAdmisionList;
-    @OneToMany(mappedBy = "contratante", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "contratante", fetch = FetchType.LAZY)
     private List<InfoPaciente> infoPacienteList;
 
     public InfoEntidades() {

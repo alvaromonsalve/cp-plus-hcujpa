@@ -11,6 +11,7 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -41,7 +42,7 @@ public class HcuEvolucion implements Serializable {
     @Column(name = "id")
     private Integer id;
     @JoinColumn(name="id_info_historiac",referencedColumnName = "id")
-    @ManyToOne(optional=false)
+    @ManyToOne(optional=false, fetch = FetchType.LAZY)
     private InfoHistoriac idInfoHistoriac;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "temperatura")
@@ -71,19 +72,19 @@ public class HcuEvolucion implements Serializable {
     @Column(name = "subjetivo")
     private String subjetivo;
     @JoinColumn(name="dx",referencedColumnName = "id")
-    @ManyToOne(optional=false)
+    @ManyToOne(optional=false, fetch = FetchType.LAZY)
     private StaticCie10 dx;
     @JoinColumn(name="dx1",referencedColumnName = "id")
-    @ManyToOne(optional=false)
+    @ManyToOne(optional=false, fetch = FetchType.LAZY)
     private StaticCie10 dx1;
     @JoinColumn(name="dx2",referencedColumnName = "id")
-    @ManyToOne(optional=false)
+    @ManyToOne(optional=false, fetch = FetchType.LAZY)
     private StaticCie10 dx2;
     @JoinColumn(name="dx3",referencedColumnName = "id")
-    @ManyToOne(optional=false)
+    @ManyToOne(optional=false, fetch = FetchType.LAZY)
     private StaticCie10 dx3;
     @JoinColumn(name="dx4",referencedColumnName = "id")
-    @ManyToOne(optional=false)
+    @ManyToOne(optional=false, fetch = FetchType.LAZY)
     private StaticCie10 dx4;
     @Lob
     @Column(name = "analisis")
@@ -99,7 +100,7 @@ public class HcuEvolucion implements Serializable {
     @Column(name = "tipo")
     private int tipo;
     @JoinColumn(name="id_static_especialidades",referencedColumnName = "id")
-    @ManyToOne(optional=false)
+    @ManyToOne(optional=false, fetch = FetchType.LAZY)
     private StaticEspecialidades idStaticEspecialidades;
     @Basic(optional = false)
     @Column(name = "estado")
@@ -111,17 +112,17 @@ public class HcuEvolucion implements Serializable {
     @Column(name = "f_digita")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fDigita;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idHcuEvolucion")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idHcuEvolucion", fetch = FetchType.LAZY)
     private List<HcuEvoMedidasg> hcuEvoMedidasgs;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idHcuEvolucion")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idHcuEvolucion", fetch = FetchType.LAZY)
     private List<HcuEvoInterconsulta> hcuEvoInterconsultas;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idHcuEvolucion")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idHcuEvolucion", fetch = FetchType.LAZY)
     private List<HcuEvoPosologia> hcuEvoPosologias;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idHcuEvolucion")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idHcuEvolucion", fetch = FetchType.LAZY)
     private List<HcuEvoMezclasMedicamentos> hcuEvoMezclasMedicamentoses;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idHcuEvolucion")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idHcuEvolucion", fetch = FetchType.LAZY)
     private List<HcuEvoProcedimiento> hcuEvoProcedimientos;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idHcuEvolucion")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idHcuEvolucion", fetch = FetchType.LAZY)
     private List<HcuEvoEgreso> hcuEvoEgreso;
 
     public HcuEvolucion() {

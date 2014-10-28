@@ -10,6 +10,7 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -37,7 +38,7 @@ public class HcuAnexo3 implements Serializable {
     @Column(name = "id")
     private Integer id;
     @JoinColumn(name = "id_info_historiac", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private InfoHistoriac idInfoHistoriac;
     @Lob
     @Column(name = "justificacion")
@@ -46,7 +47,7 @@ public class HcuAnexo3 implements Serializable {
     private String nombreMedico;
     @Column(name="idusuario")
     private int idusuario;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idHcuAnexo3")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idHcuAnexo3", fetch = FetchType.LAZY)
     private List<HcuAnexo3Det> hcuAnexo3DetList;
     @Column(name = "estado")
     private Integer estado;

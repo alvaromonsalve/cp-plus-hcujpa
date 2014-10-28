@@ -10,6 +10,7 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -48,12 +49,12 @@ public class ConfigCups implements Serializable {
     private Integer nivelPos;
     @Column(name = "mapipos")
     private Boolean mapipos;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codigoCups")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codigoCups", fetch = FetchType.LAZY)
     private List<ConfigSoat2> configSoat2List;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codigoCups")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codigoCups", fetch = FetchType.LAZY)
     private List<ConfigSoat1> configSoat1List;
     @JoinColumn(name = "id_estructura_cups", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private StaticEstructuraCups idEstructuraCups;
     @Column(name="estado_urg")
     private int estadoUrg; 

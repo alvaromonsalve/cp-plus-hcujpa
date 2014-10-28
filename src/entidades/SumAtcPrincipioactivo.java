@@ -8,6 +8,7 @@ import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -37,7 +38,7 @@ public class SumAtcPrincipioactivo implements Serializable {
     @Column(name = "estado")
     private Short estado;
     @JoinColumn(name = "id_subgrupoquimico", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private SumAtcSubgrupoquimico idSubgrupoquimico;
 
     public SumAtcPrincipioactivo() {

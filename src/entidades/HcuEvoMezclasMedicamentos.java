@@ -13,6 +13,7 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -42,7 +43,7 @@ public class HcuEvoMezclasMedicamentos implements Serializable {
     @Column(name = "id")
     private Integer id;
     @JoinColumn(name = "id_hcu_evolucion",referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private HcuEvolucion idHcuEvolucion;
     @Basic(optional = false)
     @Column(name = "via")
@@ -60,7 +61,7 @@ public class HcuEvoMezclasMedicamentos implements Serializable {
     @Column(name = "f_digita")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fDigita;
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "idHcuEvoMezclasMedicamentos")
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "idHcuEvoMezclasMedicamentos", fetch = FetchType.LAZY)
     private List<HcuEvoMezclasMedicamentosDesc> HcuEvoMezclasMedicamentosDescs;
 
     public HcuEvoMezclasMedicamentos() {

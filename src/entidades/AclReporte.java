@@ -11,6 +11,7 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -39,12 +40,12 @@ public class AclReporte implements Serializable {
     @Column(name = "id")
     private Integer id;
     @JoinColumn(name = "id_acl_emple", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private AclEmpleados idAclEmple;
     @Column(name = "arl")
     private Integer arl;
     @JoinColumn(name = "eps", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private InfoEntidades infoEntidades;
     @Column(name = "fecha_acl")
     @Temporal(TemporalType.TIMESTAMP)

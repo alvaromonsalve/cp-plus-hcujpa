@@ -7,6 +7,7 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -95,15 +96,15 @@ public class InfoHistoriac implements Serializable {
     private Integer diagnostico4;
     @Column(name = "diagnostico5")
     private Integer diagnostico5;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "idInfohistoriac")
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "idInfohistoriac", fetch = FetchType.LAZY)
     private InfoHcExpfisica infoHcExpfisica;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idInfohistoriac")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idInfohistoriac", fetch = FetchType.LAZY)
     private List<InfoPruebasComplement> infoPruebasComplements;
     @JoinColumn(name = "id_infoadmision", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private InfoAdmision idInfoAdmision;
     @JoinColumn(name = "id_usuario", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Configdecripcionlogin idConfigdecripcionlogin;
     @Column(name = "nivel_triaje")
     private Integer nivelTriaje;
@@ -111,7 +112,7 @@ public class InfoHistoriac implements Serializable {
     private int tipoHc;
     @Column(name = "destino")
     private String destino;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idInfoHistoriac")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idInfoHistoriac", fetch = FetchType.LAZY)
     private List<InfoCamas> infoCamasList;
 
     public InfoHistoriac() {
@@ -425,5 +426,4 @@ public class InfoHistoriac implements Serializable {
     public void setIdConfigdecripcionlogin(Configdecripcionlogin idConfigdecripcionlogin) {
         this.idConfigdecripcionlogin = idConfigdecripcionlogin;
     }
-
 }

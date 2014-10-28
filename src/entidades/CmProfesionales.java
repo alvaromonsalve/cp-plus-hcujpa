@@ -12,6 +12,7 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -38,7 +39,7 @@ public class CmProfesionales implements Serializable {
     @Column(name = "id")
     private Integer id;
     @JoinColumn(name = "id_descripcion_login", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Configdecripcionlogin idDescripcionLogin;
     @Column(name = "tarjeta_profesional")
     private String tarjetaProfesional;
@@ -46,7 +47,7 @@ public class CmProfesionales implements Serializable {
     private Character tVinculacion;
     @Column(name = "estado")
     private Character estado;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProfesional")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProfesional", fetch = FetchType.LAZY)
     private List<CmEspPprofesional> cmEspPprofesionalList;
 
     public CmProfesionales() {

@@ -7,48 +7,50 @@
 package entidades;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
  * @author Alvaro Monsalve
  */
 @Entity
-@Table(name = "acl_empleados")
+@Table(name = "hcu_historiac_2")
 @NamedQueries({
-    @NamedQuery(name = "AclEmpleados.findAll", query = "SELECT a FROM AclEmpleados a")})
-public class AclEmpleados implements Serializable {
+    @NamedQuery(name = "HcuHistoriac2.findAll", query = "SELECT h FROM HcuHistoriac2 h")})
+public class HcuHistoriac2 implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @JoinColumn(name = "id_config_decripcion", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private Configdecripcionlogin idDescripcionLogin;    
-    @Column(name = "area")
-    private String area;
-    @Column(name = "profesion")
-    private String profesion;    
-    @Column(name = "estado")
-    private Integer estado;
+    @Basic(optional = false)
+    @Column(name = "id_info_historiac")
+    @OneToOne
+    private InfoHistoriac idInfoHistoriac;
+    @Basic(optional = false)
+    @Column(name = "tiempo_consulta")
+    private int tiempoConsulta;
+    @Column(name = "f_ingreso")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date fIngreso;
 
-    public AclEmpleados() {
+    public HcuHistoriac2() {
     }
 
-    public AclEmpleados(Integer id) {
+    public HcuHistoriac2(Integer id) {
         this.id = id;
     }
 
@@ -59,37 +61,29 @@ public class AclEmpleados implements Serializable {
     public void setId(Integer id) {
         this.id = id;
     }
-    
-    public Configdecripcionlogin getIdDescripcionLogin() {
-        return idDescripcionLogin;
+
+    public InfoHistoriac getIdInfoHistoriac() {
+        return idInfoHistoriac;
     }
 
-    public void setIdDescripcionLogin(Configdecripcionlogin idDescripcionLogin) {
-        this.idDescripcionLogin = idDescripcionLogin;
+    public void setIdInfoHistoriac(InfoHistoriac idInfoHistoriac) {
+        this.idInfoHistoriac = idInfoHistoriac;
     }
 
-    public String getArea() {
-        return area;
+    public int getTiempoConsulta() {
+        return tiempoConsulta;
     }
 
-    public void setArea(String area) {
-        this.area = area;
+    public void setTiempoConsulta(int tiempoConsulta) {
+        this.tiempoConsulta = tiempoConsulta;
     }
 
-    public String getProfesion() {
-        return profesion;
+    public Date getFIngreso() {
+        return fIngreso;
     }
 
-    public void setProfesion(String profesion) {
-        this.profesion = profesion;
-    }
-    
-    public Integer getEstado() {
-        return estado;
-    }
-
-    public void setEstado(Integer estado) {
-        this.estado = estado;
+    public void setFIngreso(Date fIngreso) {
+        this.fIngreso = fIngreso;
     }
 
     @Override
@@ -102,10 +96,10 @@ public class AclEmpleados implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof AclEmpleados)) {
+        if (!(object instanceof HcuHistoriac2)) {
             return false;
         }
-        AclEmpleados other = (AclEmpleados) object;
+        HcuHistoriac2 other = (HcuHistoriac2) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -114,7 +108,7 @@ public class AclEmpleados implements Serializable {
 
     @Override
     public String toString() {
-        return "entidades.AclEmpleados[ id=" + id + " ]";
+        return "entidades.HcuHistoriac2[ id=" + id + " ]";
     }
 
 }

@@ -38,7 +38,7 @@ public class InfoPais implements Serializable {
     private String codigoDian;
     @Column(name = "nombre")
     private String nombre;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "infoPais", fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "infoPais", fetch = FetchType.LAZY)
     private List<InfoDepartamentos> infoDepartamentosList;
 
     public InfoPais() {

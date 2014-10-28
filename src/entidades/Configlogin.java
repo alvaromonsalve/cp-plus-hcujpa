@@ -10,6 +10,7 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -27,7 +28,7 @@ import javax.persistence.Table;
 @NamedQueries({
     @NamedQuery(name = "Configlogin.findAll", query = "SELECT c FROM Configlogin c")})
 public class Configlogin implements Serializable {
-    @OneToMany(mappedBy = "idLogin")
+    @OneToMany(mappedBy = "idLogin", fetch = FetchType.LAZY)
     private List<Configdecripcionlogin> configdecripcionloginList;
     private static final long serialVersionUID = 1L;
     @Id

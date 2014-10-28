@@ -92,12 +92,12 @@ public class InfoAdmision implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaIngresoDatos;
     @JoinColumn(name = "id_entidad_admision", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private InfoEntidades idEntidadAdmision;
     @JoinColumn(name = "id_datos_personales", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private InfoPaciente idDatosPersonales;
-    @OneToMany(cascade= CascadeType.ALL,mappedBy="idInfoAdmision")
+    @OneToMany(cascade= CascadeType.ALL,mappedBy="idInfoAdmision", fetch = FetchType.LAZY)
     private List<InfoHistoriac> infoHistoriacList;
 
     public List<InfoHistoriac> getInfoHistoriacList() {

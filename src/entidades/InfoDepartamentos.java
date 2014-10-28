@@ -42,7 +42,7 @@ public class InfoDepartamentos implements Serializable {
     
 
     @JoinColumn(name = "id_pais", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private InfoPais infoPais;
 
     public InfoDepartamentos() {

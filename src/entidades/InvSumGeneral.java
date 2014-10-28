@@ -12,6 +12,7 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -36,7 +37,7 @@ public class InvSumGeneral implements Serializable {
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "cantidad")
     private Float cantidad;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idSumgeneral")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idSumgeneral", fetch = FetchType.LAZY)
     private List<InvDatosCompra> invDatosCompraList;
     private static final long serialVersionUID = 1L;
     @Id
@@ -67,7 +68,7 @@ public class InvSumGeneral implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date fdigita;
     @JoinColumn(name = "id_suministro", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private SumSuministro idSuministro;
 
     public InvSumGeneral() {
