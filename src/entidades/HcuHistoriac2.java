@@ -39,7 +39,7 @@ public class HcuHistoriac2 implements Serializable {
     @Basic(optional = false)
     @Column(name = "id_info_historiac")
     @OneToOne
-    private InfoHistoriac idInfoHistoriac;
+    private int idInfoHistoriac;
     @Basic(optional = false)
     @Column(name = "tiempo_consulta")
     private int tiempoConsulta;
@@ -62,11 +62,11 @@ public class HcuHistoriac2 implements Serializable {
         this.id = id;
     }
 
-    public InfoHistoriac getIdInfoHistoriac() {
+    public int getIdInfoHistoriac() {
         return idInfoHistoriac;
     }
 
-    public void setIdInfoHistoriac(InfoHistoriac idInfoHistoriac) {
+    public void setIdInfoHistoriac(int idInfoHistoriac) {
         this.idInfoHistoriac = idInfoHistoriac;
     }
 
