@@ -69,7 +69,7 @@ public class InfoHistoriac implements Serializable {
     @Column(name = "estado")
     private int estado;
     @Column(name = "fecha_dato")
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date fechaDato;
     @Column(name = "dm")
     private Boolean dm;
