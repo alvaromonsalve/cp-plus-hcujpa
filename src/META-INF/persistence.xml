@@ -70,5 +70,6 @@
     <class>entidades.AclEmpleados</class>
     <class>entidades.AclReporte</class>
     <class>entidades.HcuHistoriac2</class>
+    <class>entidades.ReportVersion</class>
   </persistence-unit>
 </persistence>
