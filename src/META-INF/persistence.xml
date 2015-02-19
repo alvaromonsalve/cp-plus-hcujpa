@@ -71,5 +71,6 @@
     <class>entidades.AclReporte</class>
     <class>entidades.HcuHistoriac2</class>
     <class>entidades.ReportVersion</class>
+    <class>entidades.PypInfoAntecedentesg</class>
   </persistence-unit>
 </persistence>
