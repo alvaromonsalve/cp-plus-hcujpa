@@ -205,7 +205,7 @@ public class SumSuministroJpaController implements Serializable {
         try {
 
             Query q = em.createQuery("SELECT s FROM SumSuministro s "
-                    + "WHERE (s.idPricipioactivo.nombre LIKE :suministro OR s.suministro LIKE :suministro ) AND s.estado = '1' "
+                    + "WHERE (s.idPricipioactivo.nombre LIKE :suministro OR s.suministro LIKE :suministro ) "
                     + "ORDER BY s.idPricipioactivo.nombre");
             q.setParameter("suministro", "%"+like+"%");
             return q.getResultList();
