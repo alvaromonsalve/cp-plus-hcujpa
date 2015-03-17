@@ -72,5 +72,22 @@
     <class>entidades.HcuHistoriac2</class>
     <class>entidades.ReportVersion</class>
     <class>entidades.PypInfoAntecedentesg</class>
+    <class>entidades.HospHistoriac</class>
+    <class>entidades.HospHcExpfisica</class>
+    <class>entidades.HospPruebasComplement</class>
+    <class>entidades.HospProcedimiento</class>
+    <class>entidades.HospInterconsulta</class>
+    <class>entidades.HospMedidasg</class>
+    <class>entidades.HospPosologia</class>
+    <class>entidades.HospEvolucion</class>
+    <class>entidades.HospEvoMedidasg</class>
+    <class>entidades.HospEvoProcedimiento</class>
+    <class>entidades.HospEvoInterconsulta</class>
+    <class>entidades.HospEvoPosologia</class>
+    <class>entidades.HospEvoMezclasMedicamentos</class>
+    <class>entidades.HospEvoMezclasMedicamentosDesc</class>
+    <class>entidades.HospEvoEgreso</class>
+    <class>entidades.HospHistoriac2</class>
+    <class>entidades.HospCamas</class>
   </persistence-unit>
 </persistence>
