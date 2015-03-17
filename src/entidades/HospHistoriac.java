@@ -415,7 +415,7 @@ public class HospHistoriac implements Serializable {
         return hospCamasList;
     }
 
-    public void setInfoCamasList(List<HospCamas> hospCamasList) {
+    public void setHospCamasList(List<HospCamas> hospCamasList) {
         this.hospCamasList = hospCamasList;
     }
 

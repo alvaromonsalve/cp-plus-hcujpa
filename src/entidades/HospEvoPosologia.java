@@ -101,7 +101,7 @@ public class HospEvoPosologia implements Serializable {
         return idHospEvolucion;
     }
 
-    public void setIdHospEvolucion(HcuEvolucion idHcuEvolucion) {
+    public void setIdHospEvolucion(HospEvolucion idHospEvolucion) {
         this.idHospEvolucion = idHospEvolucion;
     }
 

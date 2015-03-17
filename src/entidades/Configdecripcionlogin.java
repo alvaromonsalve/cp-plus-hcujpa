@@ -72,6 +72,17 @@ public class Configdecripcionlogin implements Serializable {
     public void setInfoHistoriac(List<InfoHistoriac> infoHistoriac) {
         this.infoHistoriac = infoHistoriac;
     }
+    
+    @OneToMany(cascade=CascadeType.ALL, mappedBy="idConfigdecripcionlogin", fetch = FetchType.LAZY)
+    private List<HospHistoriac> hospHistoriac;
+
+    public List<HospHistoriac> getHospHistoriac() {
+        return hospHistoriac;
+    }
+
+    public void setHospHistoriac(List<HospHistoriac> hospHistoriac) {
+        this.hospHistoriac = hospHistoriac;
+    }
 
     public Configdecripcionlogin() {
     }

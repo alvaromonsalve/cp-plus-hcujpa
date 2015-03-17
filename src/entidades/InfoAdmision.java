@@ -104,6 +104,16 @@ public class InfoAdmision implements Serializable {
     public void setInfoHistoriacList(List<InfoHistoriac> infoHistoriacList) {
         this.infoHistoriacList = infoHistoriacList;
     }
+    @OneToMany(cascade= CascadeType.ALL,mappedBy="idInfoAdmision", fetch = FetchType.LAZY)
+    private List<HospHistoriac> hospHistoriacList;
+
+    public List<HospHistoriac> getHospHistoriacList() {
+        return hospHistoriacList;
+    }
+
+    public void setHospHistoriacList(List<HospHistoriac> HospHistoriacList) {
+        this.hospHistoriacList = HospHistoriacList;
+    }
 
 
     public InfoAdmision(Integer id) {

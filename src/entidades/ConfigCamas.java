@@ -32,6 +32,8 @@ import javax.persistence.Table;
 public class ConfigCamas implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idConfigCamas")
     private List<InfoCamas> infoCamasList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idConfigCamas")
+    private List<HospCamas> hospCamasList;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -126,6 +128,14 @@ public class ConfigCamas implements Serializable {
 
     public void setInfoCamasList(List<InfoCamas> infoCamasList) {
         this.infoCamasList = infoCamasList;
+    }
+    
+    public List<HospCamas> getHospCamasList() {
+        return hospCamasList;
+    }
+
+    public void setHospCamasList(List<HospCamas> hospCamasList) {
+        this.hospCamasList = hospCamasList;
     }
     
 }
