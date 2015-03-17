@@ -74,7 +74,7 @@ public class HospHistoriac2 implements Serializable {
         return idHospHistoriac;
     }
 
-    public void setIdHopsHistoriac(int idHospHistoriac) {
+    public void setIdHospHistoriac(int idHospHistoriac) {
         this.idHospHistoriac = idHospHistoriac;
     }
 
