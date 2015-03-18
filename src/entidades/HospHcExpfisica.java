@@ -80,7 +80,7 @@ public class HospHcExpfisica implements Serializable {
     @Lob
     @Column(name = "osteo")
     private String osteo;
-    @JoinColumn(name = "id_Hosphistoriac", referencedColumnName = "id")
+    @JoinColumn(name = "id_infohistoriac", referencedColumnName = "id")
     @OneToOne(optional = true)
     private HospHistoriac idHosphistoriac;
 

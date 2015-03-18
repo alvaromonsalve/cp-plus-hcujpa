@@ -32,7 +32,7 @@ public class HospHistoriac2 implements Serializable {
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
-    @Column(name = "id_hosp_historiac")
+    @Column(name = "id_info_historiac")
     @OneToOne
     private int idHospHistoriac;
     @Basic(optional = false)
