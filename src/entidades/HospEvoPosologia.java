@@ -37,7 +37,7 @@ public class HospEvoPosologia implements Serializable {
     @JoinColumn(name = "id_suministro", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private SumSuministro idSuministro;
-    @JoinColumn(name = "id_hosp_evolucion",referencedColumnName = "id")
+    @JoinColumn(name = "id_hcu_evolucion",referencedColumnName = "id")
     @ManyToOne(optional = false)
     private HospEvolucion idHospEvolucion;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation

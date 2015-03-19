@@ -32,7 +32,7 @@ public class HospEvoMedidasg implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @JoinColumn(name = "id_hosp_evolucion",referencedColumnName = "id")
+    @JoinColumn(name = "id_hcu_evolucion",referencedColumnName = "id")
     @ManyToOne(optional = false)
     private HospEvolucion idHospEvolucion;
     @Column(name = "medidag")

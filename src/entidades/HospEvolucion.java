@@ -38,7 +38,7 @@ public class HospEvolucion implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @JoinColumn(name="id_hosp_historiac",referencedColumnName = "id")
+    @JoinColumn(name="id_info_historiac",referencedColumnName = "id")
     @ManyToOne(optional=false)
     private HospHistoriac idHospHistoriac;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation

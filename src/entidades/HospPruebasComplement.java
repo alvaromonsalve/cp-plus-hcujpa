@@ -39,7 +39,7 @@ public class HospPruebasComplement implements Serializable {
     private String tipo;
     @Column(name = "estado")
     private Short estado;
-    @JoinColumn(name="id_hosp_historiac",referencedColumnName="id")
+    @JoinColumn(name="id_info_historiac",referencedColumnName="id")
     @ManyToOne(optional = false)
     private HospHistoriac idHosphistoriac;
 
