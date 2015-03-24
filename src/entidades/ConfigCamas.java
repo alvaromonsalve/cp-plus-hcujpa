@@ -34,6 +34,10 @@ public class ConfigCamas implements Serializable {
     private List<InfoCamas> infoCamasList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idConfigCamas")
     private List<HospCamas> hospCamasList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idConfigCamas")
+    private List<UciCamas> uciCamasList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idConfigCamas")
+    private List<UceCamas> uceCamasList;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -138,4 +142,19 @@ public class ConfigCamas implements Serializable {
         this.hospCamasList = hospCamasList;
     }
     
+    public List<UciCamas> getUciCamasList() {
+        return uciCamasList;
+    }
+
+    public void setUciCamasList(List<UciCamas> uciCamasList) {
+        this.uciCamasList = uciCamasList;
+    }
+    
+    public List<UceCamas> getUceCamasList() {
+        return uceCamasList;
+    }
+
+    public void setUceCamasList(List<UceCamas> uceCamasList) {
+        this.uceCamasList = uceCamasList;
+    }
 }

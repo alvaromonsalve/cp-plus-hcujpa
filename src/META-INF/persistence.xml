@@ -54,7 +54,7 @@
     <class>entidades.InfoPosologiaHcu</class>
     <class>entidades.HcuMezclasMedicamentos</class>
     <class>entidades.HcuMezclasMedicamentosDesc</class>
-    <class>entidades.HcuEvolucion</class>
+    <class>entidades.HcuEvolUceon</class>
     <class>entidades.HcuEvoMedidasg</class>
     <class>entidades.HcuEvoProcedimiento</class>
     <class>entidades.HcuEvoInterconsulta</class>
@@ -79,7 +79,7 @@
     <class>entidades.HospInterconsulta</class>
     <class>entidades.HospMedidasg</class>
     <class>entidades.HospPosologia</class>
-    <class>entidades.HospEvolucion</class>
+    <class>entidades.HospEvolUceon</class>
     <class>entidades.HospEvoMedidasg</class>
     <class>entidades.HospEvoProcedimiento</class>
     <class>entidades.HospEvoInterconsulta</class>
@@ -89,5 +89,39 @@
     <class>entidades.HospEvoEgreso</class>
     <class>entidades.HospHistoriac2</class>
     <class>entidades.HospCamas</class>
+    <class>entidades.UciHistoriac</class>
+    <class>entidades.UciHcExpfisica</class>
+    <class>entidades.UciPruebasComplement</class>
+    <class>entidades.UciProcedimiento</class>
+    <class>entidades.UciInterconsulta</class>
+    <class>entidades.UciMedidasg</class>
+    <class>entidades.UciPosologia</class>
+    <class>entidades.UciEvolucion</class>
+    <class>entidades.UciEvoMedidasg</class>
+    <class>entidades.UciEvoProcedimiento</class>
+    <class>entidades.UciEvoInterconsulta</class>
+    <class>entidades.UciEvoPosologia</class>
+    <class>entidades.UciEvoMezclasMedicamentos</class>
+    <class>entidades.UciEvoMezclasMedicamentosDesc</class>
+    <class>entidades.UciEvoEgreso</class>
+    <class>entidades.UciHistoriac2</class>
+    <class>entidades.UciCamas</class>
+    <class>entidades.UceHistoriac</class>
+    <class>entidades.UceHcExpfisica</class>
+    <class>entidades.UcePruebasComplement</class>
+    <class>entidades.UceProcedimiento</class>
+    <class>entidades.UceInterconsulta</class>
+    <class>entidades.UceMedidasg</class>
+    <class>entidades.UcePosologia</class>
+    <class>entidades.UceEvolUceon</class>
+    <class>entidades.UceEvoMedidasg</class>
+    <class>entidades.UceEvoProcedimiento</class>
+    <class>entidades.UceEvoInterconsulta</class>
+    <class>entidades.UceEvoPosologia</class>
+    <class>entidades.UceEvoMezclasMedicamentos</class>
+    <class>entidades.UceEvoMezclasMedicamentosDesc</class>
+    <class>entidades.UceEvoEgreso</class>
+    <class>entidades.UceHistoriac2</class>
+    <class>entidades.UceCamas</class>    
   </persistence-unit>
 </persistence>
