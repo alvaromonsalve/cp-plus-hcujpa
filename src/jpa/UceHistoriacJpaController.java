@@ -16,7 +16,6 @@ import entidades.UceCamas;
 import entidades.UceHistoriac;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.NonUniqueResultException;
 import javax.swing.JOptionPane;
 import jpa.exceptions.IllegalOrphanException;
 import jpa.exceptions.NonexistentEntityException;
