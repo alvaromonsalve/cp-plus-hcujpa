@@ -349,7 +349,7 @@ public class UceHistoriacJpaController implements Serializable {
     }
 
     //Codifo no Auto-Generado
-    public List<UceHistoriac> finduciHistoriacs(int estado){
+    public List<UceHistoriac> finduceHistoriacs(int estado){
         EntityManager em = getEntityManager();
         try {
             return em.createQuery("SELECT i FROM UceHistoriac i WHERE i.estado = :estado")

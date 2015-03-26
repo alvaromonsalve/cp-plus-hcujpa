@@ -54,7 +54,7 @@
     <class>entidades.InfoPosologiaHcu</class>
     <class>entidades.HcuMezclasMedicamentos</class>
     <class>entidades.HcuMezclasMedicamentosDesc</class>
-    <class>entidades.HcuEvolUceon</class>
+    <class>entidades.HcuEvolucion</class>
     <class>entidades.HcuEvoMedidasg</class>
     <class>entidades.HcuEvoProcedimiento</class>
     <class>entidades.HcuEvoInterconsulta</class>
@@ -79,7 +79,7 @@
     <class>entidades.HospInterconsulta</class>
     <class>entidades.HospMedidasg</class>
     <class>entidades.HospPosologia</class>
-    <class>entidades.HospEvolUceon</class>
+    <class>entidades.HospEvolucion</class>
     <class>entidades.HospEvoMedidasg</class>
     <class>entidades.HospEvoProcedimiento</class>
     <class>entidades.HospEvoInterconsulta</class>
@@ -113,7 +113,7 @@
     <class>entidades.UceInterconsulta</class>
     <class>entidades.UceMedidasg</class>
     <class>entidades.UcePosologia</class>
-    <class>entidades.UceEvolUceon</class>
+    <class>entidades.UceEvolucion</class>
     <class>entidades.UceEvoMedidasg</class>
     <class>entidades.UceEvoProcedimiento</class>
     <class>entidades.UceEvoInterconsulta</class>

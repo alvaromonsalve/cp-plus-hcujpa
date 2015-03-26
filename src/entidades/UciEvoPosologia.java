@@ -26,7 +26,7 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "uci_evo_posologia")
 @NamedQueries({
-    @NamedQuery(name = "UciEvoPosologia.findAll", query = "SELECT h FROM UcipEvoPosologia h")})
+    @NamedQuery(name = "UciEvoPosologia.findAll", query = "SELECT h FROM UciEvoPosologia h")})
 public class UciEvoPosologia implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id

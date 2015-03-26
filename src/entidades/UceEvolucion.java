@@ -30,7 +30,7 @@ import tools.MyDate_IN_ejb;
 @Entity
 @Table(name = "uce_evolucion")
 @NamedQueries({
-    @NamedQuery(name = "HospEvolucion.findAll", query = "SELECT h FROM UceEvolucion h")})
+    @NamedQuery(name = "UceEvolucion.findAll", query = "SELECT h FROM UceEvolucion h")})
 public class UceEvolucion implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
