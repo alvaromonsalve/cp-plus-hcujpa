@@ -4,7 +4,7 @@
  */
 package jpa;
 
-import entidades.SumAtcLaboratorio;
+import entidades_EJB.SumAtcLaboratorio;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;

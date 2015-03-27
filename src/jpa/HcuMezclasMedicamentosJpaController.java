@@ -4,14 +4,14 @@
  */
 package jpa;
 
-import entidades.HcuMezclasMedicamentos;
+import entidades_EJB.HcuMezclasMedicamentos;
 import java.io.Serializable;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import entidades.HcuMezclasMedicamentosDesc;
-import entidades.InfoHistoriac;
+import entidades_EJB.HcuMezclasMedicamentosDesc;
+import entidades_EJB.InfoHistoriac;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;

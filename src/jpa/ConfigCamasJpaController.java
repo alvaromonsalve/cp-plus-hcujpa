@@ -4,14 +4,14 @@
  */
 package jpa;
 
-import entidades.ConfigCamas;
+import entidades_EJB.ConfigCamas;
 import java.io.Serializable;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import entidades.ConfigServicio;
-import entidades.InfoCamas;
+import entidades_EJB.ConfigServicio;
+import entidades_EJB.InfoCamas;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;

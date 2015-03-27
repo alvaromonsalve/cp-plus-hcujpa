@@ -6,14 +6,14 @@
 
 package jpa;
 
-import entidades.AccessConfigUser;
+import entidades_EJB.AccessConfigUser;
 import java.io.Serializable;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import entidades.AccessPerfiles;
-import entidades.Configdecripcionlogin;
+import entidades_EJB.AccessPerfiles;
+import entidades_EJB.Configdecripcionlogin;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

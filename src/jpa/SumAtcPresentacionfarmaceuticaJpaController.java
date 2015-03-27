@@ -4,7 +4,7 @@
  */
 package jpa;
 
-import entidades.SumAtcPresentacionfarmaceutica;
+import entidades_EJB.SumAtcPresentacionfarmaceutica;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;

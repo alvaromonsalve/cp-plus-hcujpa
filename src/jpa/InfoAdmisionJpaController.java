@@ -4,15 +4,15 @@
  */
 package jpa;
 
-import entidades.InfoAdmision;
+import entidades_EJB.InfoAdmision;
 import java.io.Serializable;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import entidades.InfoEntidades;
-import entidades.InfoPaciente;
-import entidades.InfoHistoriac;
+import entidades_EJB.InfoEntidades;
+import entidades_EJB.InfoPaciente;
+import entidades_EJB.InfoHistoriac;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;

@@ -4,13 +4,13 @@
  */
 package jpa;
 
-import entidades.InfoDepartamentos;
+import entidades_EJB.InfoDepartamentos;
 import java.io.Serializable;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import entidades.InfoPais;
+import entidades_EJB.InfoPais;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

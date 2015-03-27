@@ -4,7 +4,7 @@
  */
 package jpa;
 
-import entidades.InfoOtrosdatosAdmision;
+import entidades_EJB.InfoOtrosdatosAdmision;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;

@@ -4,8 +4,8 @@
  */
 package jpa;
 
-import entidades.InfoHistoriac;
-import entidades.InfoPosologiaHcu;
+import entidades_EJB.InfoHistoriac;
+import entidades_EJB.InfoPosologiaHcu;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;

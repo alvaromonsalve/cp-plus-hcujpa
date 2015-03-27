@@ -1,8 +1,8 @@
 
 package jpa;
 
-import entidades.UciHistoriac;
-import entidades.UciPruebasComplement;
+import entidades_EJB.UciHistoriac;
+import entidades_EJB.UciPruebasComplement;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;

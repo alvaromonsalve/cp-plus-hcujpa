@@ -1,8 +1,8 @@
 
 package jpa;
 
-import entidades.HospEvoPosologia;
-import entidades.HospEvolucion;
+import entidades_EJB.HospEvoPosologia;
+import entidades_EJB.HospEvolucion;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;

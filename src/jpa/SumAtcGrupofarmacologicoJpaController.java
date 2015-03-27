@@ -4,14 +4,14 @@
  */
 package jpa;
 
-import entidades.SumAtcGrupofarmacologico;
+import entidades_EJB.SumAtcGrupofarmacologico;
 import java.io.Serializable;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import entidades.SumAtcSistemasorganicos;
-import entidades.SumAtcSubgrupofarmacologico;
+import entidades_EJB.SumAtcSistemasorganicos;
+import entidades_EJB.SumAtcSubgrupofarmacologico;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;

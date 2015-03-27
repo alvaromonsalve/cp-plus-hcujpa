@@ -4,8 +4,8 @@
  */
 package jpa;
 
-import entidades.ConfigCups;
-import entidades.StaticEstructuraCups;
+import entidades_EJB.ConfigCups;
+import entidades_EJB.StaticEstructuraCups;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;

@@ -1,13 +1,13 @@
 
 package jpa;
 
-import entidades.HospEvoProcedimiento;
+import entidades_EJB.HospEvoProcedimiento;
 import java.io.Serializable;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import entidades.HospEvolucion;
+import entidades_EJB.HospEvolucion;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

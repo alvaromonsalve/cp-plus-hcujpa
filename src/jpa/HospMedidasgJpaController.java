@@ -4,8 +4,8 @@
  */
 package jpa;
 
-import entidades.HospHistoriac;
-import entidades.HospMedidasg;
+import entidades_EJB.HospHistoriac;
+import entidades_EJB.HospMedidasg;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;

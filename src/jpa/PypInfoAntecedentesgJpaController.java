@@ -6,7 +6,7 @@
 
 package jpa;
 
-import entidades.PypInfoAntecedentesg;
+import entidades_EJB.PypInfoAntecedentesg;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;

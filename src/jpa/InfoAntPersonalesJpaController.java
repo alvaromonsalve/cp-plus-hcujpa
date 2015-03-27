@@ -4,8 +4,8 @@
  */
 package jpa;
 
-import entidades.InfoAntPersonales;
-import entidades.InfoPaciente;
+import entidades_EJB.InfoAntPersonales;
+import entidades_EJB.InfoPaciente;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;

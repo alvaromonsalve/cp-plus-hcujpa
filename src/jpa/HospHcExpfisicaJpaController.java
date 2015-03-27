@@ -1,12 +1,12 @@
 package jpa;
 
-import entidades.HospHcExpfisica;
+import entidades_EJB.HospHcExpfisica;
 import java.io.Serializable;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import entidades.HospHistoriac;
+import entidades_EJB.HospHistoriac;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

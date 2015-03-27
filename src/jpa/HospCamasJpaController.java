@@ -1,8 +1,8 @@
 package jpa;
 
-import entidades.ConfigCamas;
-import entidades.HospCamas;
-import entidades.HospHistoriac;
+import entidades_EJB.ConfigCamas;
+import entidades_EJB.HospCamas;
+import entidades_EJB.HospHistoriac;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;

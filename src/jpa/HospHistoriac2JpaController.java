@@ -1,7 +1,7 @@
 
 package jpa;
 
-import entidades.HospHistoriac2;
+import entidades_EJB.HospHistoriac2;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;

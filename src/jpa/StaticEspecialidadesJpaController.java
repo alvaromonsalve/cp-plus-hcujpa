@@ -4,7 +4,7 @@
  */
 package jpa;
 
-import entidades.StaticEspecialidades;
+import entidades_EJB.StaticEspecialidades;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;

@@ -4,7 +4,7 @@
  */
 package jpa;
 
-import entidades.InfoMunicipios;
+import entidades_EJB.InfoMunicipios;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;

@@ -6,8 +6,8 @@
 
 package jpa;
 
-import entidades.HcuEvoPosologia;
-import entidades.HcuEvolucion;
+import entidades_EJB.HcuEvoPosologia;
+import entidades_EJB.HcuEvolucion;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;

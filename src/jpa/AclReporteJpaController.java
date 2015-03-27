@@ -6,7 +6,7 @@
 
 package jpa;
 
-import entidades.AclReporte;
+import entidades_EJB.AclReporte;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;

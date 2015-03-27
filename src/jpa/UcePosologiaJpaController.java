@@ -1,8 +1,8 @@
 
 package jpa;
 
-import entidades.UceHistoriac;
-import entidades.UcePosologia;
+import entidades_EJB.UceHistoriac;
+import entidades_EJB.UcePosologia;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;

@@ -2,11 +2,11 @@ package tools;
 
 import com.itextpdf.text.pdf.PdfCopyFields;
 import com.itextpdf.text.pdf.PdfReader;
-import entidades.ConfigCups;
-import entidades.InfoHistoriac;
-import entidades.InfoInterconsultaHcu;
-import entidades.InfoPosologiaHcu;
-import entidades.InfoProcedimientoHcu;
+import entidades_EJB.ConfigCups;
+import entidades_EJB.InfoHistoriac;
+import entidades_EJB.InfoInterconsultaHcu;
+import entidades_EJB.InfoPosologiaHcu;
+import entidades_EJB.InfoProcedimientoHcu;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.FileOutputStream;

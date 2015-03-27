@@ -4,7 +4,7 @@
  */
 package jpa;
 
-import entidades.StaticCie10;
+import entidades_EJB.StaticCie10;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;

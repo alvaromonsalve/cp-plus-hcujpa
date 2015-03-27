@@ -4,9 +4,9 @@
  */
 package jpa;
 
-import entidades.HcuAnexo3;
-import entidades.HcuAnexo3Det;
-import entidades.InfoHistoriac;
+import entidades_EJB.HcuAnexo3;
+import entidades_EJB.HcuAnexo3Det;
+import entidades_EJB.InfoHistoriac;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;

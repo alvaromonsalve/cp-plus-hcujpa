@@ -4,9 +4,9 @@
  */
 package jpa;
 
-import entidades.ConfigCamas;
-import entidades.InfoCamas;
-import entidades.InfoHistoriac;
+import entidades_EJB.ConfigCamas;
+import entidades_EJB.InfoCamas;
+import entidades_EJB.InfoHistoriac;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;

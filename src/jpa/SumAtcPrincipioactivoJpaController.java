@@ -4,13 +4,13 @@
  */
 package jpa;
 
-import entidades.SumAtcPrincipioactivo;
+import entidades_EJB.SumAtcPrincipioactivo;
 import java.io.Serializable;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import entidades.SumAtcSubgrupoquimico;
+import entidades_EJB.SumAtcSubgrupoquimico;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

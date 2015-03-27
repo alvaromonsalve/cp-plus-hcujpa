@@ -1,14 +1,14 @@
 
 package jpa;
 
-import entidades.HospEvoInterconsulta;
+import entidades_EJB.HospEvoInterconsulta;
 import java.io.Serializable;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import entidades.HospEvolucion;
-import entidades.StaticEspecialidades;
+import entidades_EJB.HospEvolucion;
+import entidades_EJB.StaticEspecialidades;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

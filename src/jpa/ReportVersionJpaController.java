@@ -6,7 +6,7 @@
 
 package jpa;
 
-import entidades.ReportVersion;
+import entidades_EJB.ReportVersion;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;

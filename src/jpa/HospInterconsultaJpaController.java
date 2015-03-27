@@ -1,8 +1,8 @@
 package jpa;
 
-import entidades.HospHistoriac;
-import entidades.HospInterconsulta;
-import entidades.StaticEspecialidades;
+import entidades_EJB.HospHistoriac;
+import entidades_EJB.HospInterconsulta;
+import entidades_EJB.StaticEspecialidades;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;

@@ -1,7 +1,7 @@
 
 package jpa;
 
-import entidades.UceHistoriac2;
+import entidades_EJB.UceHistoriac2;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;
