@@ -127,5 +127,9 @@
     <class>entidades_EJB.HcuOrdenProcedimiento</class>
     <class>entidades_EJB.RxListadoProced</class>
     <class>entidades_EJB.HcuCommentproced</class>
+    <class>entidades_EJB.HospEvoOrdenProcedimientoDesc</class>
+    <class>entidades_EJB.HospEvoOrdenProcedimiento</class>
+    <class>entidades_EJB.HcuEvoOrdenProcedimientoDesc</class>
+    <class>entidades_EJB.HcuEvoOrdenProcedimiento</class>
   </persistence-unit>
 </persistence>
