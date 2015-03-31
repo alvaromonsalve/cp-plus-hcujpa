@@ -123,5 +123,9 @@
     <class>entidades_EJB.HospInterconsulta</class>
     <class>entidades_EJB.UciProcedimiento</class>
     <class>entidades_EJB.SumSuministro</class>
+    <class>entidades_EJB.HcuOrdenProcedimientoDesc</class>
+    <class>entidades_EJB.HcuOrdenProcedimiento</class>
+    <class>entidades_EJB.RxListadoProced</class>
+    <class>entidades_EJB.HcuCommentproced</class>
   </persistence-unit>
 </persistence>
