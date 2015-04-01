@@ -153,7 +153,7 @@ public class InfoProcedimientoHcuJpaController implements Serializable {
       public List<InfoProcedimientoHcu> ListFindInfoProcedimientoHcu(InfoHistoriac ihc){
         EntityManager em = getEntityManager();
         try {
-            List results = em.createQuery("SELECT i FROM InfoProcedimientoHcu i WHERE i.idHistoriac = :hc")
+            List results = em.createQuery("SELECT i FROM InfoProcedimientoHcu i WHERE i.idHistoriac = :hc and i.estado <> 1")//1 es inactivo
             .setParameter("hc", ihc.getId())
             .setHint("javax.persistence.cache.storeMode", "REFRESH")
             .getResultList();return results;
