@@ -9,10 +9,13 @@ import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -26,15 +29,16 @@ import javax.persistence.Table;
 @NamedQueries({
     @NamedQuery(name = "HospEvoOrdenProcedimientoDesc.findAll", query = "SELECT h FROM HospEvoOrdenProcedimientoDesc h")})
 public class HospEvoOrdenProcedimientoDesc implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Basic(optional = false)
-    @Column(name = "id_evu_orden_procedimiento")
-    private int idEvuOrdenProcedimiento;
+//    @Basic(optional = false)
+//    @Column(name = "id_evu_orden_procedimiento")
+//    private int idEvuOrdenProcedimiento;
     @Basic(optional = false)
     @Column(name = "id_config_cups")
     private int idConfigCups;
@@ -44,6 +48,9 @@ public class HospEvoOrdenProcedimientoDesc implements Serializable {
     @Basic(optional = false)
     @Column(name = "estado")
     private int estado;
+    @JoinColumn(name = "id_evu_orden_procedimiento", referencedColumnName = "id")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private HospEvoOrdenProcedimiento idEvuOrdenProcedimiento;
 
     public HospEvoOrdenProcedimientoDesc() {
     }
@@ -52,9 +59,8 @@ public class HospEvoOrdenProcedimientoDesc implements Serializable {
         this.id = id;
     }
 
-    public HospEvoOrdenProcedimientoDesc(Integer id, int idEvuOrdenProcedimiento, int idConfigCups, int estado) {
+    public HospEvoOrdenProcedimientoDesc(Integer id, int idConfigCups, int estado) {
         this.id = id;
-        this.idEvuOrdenProcedimiento = idEvuOrdenProcedimiento;
         this.idConfigCups = idConfigCups;
         this.estado = estado;
     }
@@ -67,11 +73,11 @@ public class HospEvoOrdenProcedimientoDesc implements Serializable {
         this.id = id;
     }
 
-    public int getIdEvuOrdenProcedimiento() {
+    public HospEvoOrdenProcedimiento getIdEvuOrdenProcedimiento() {
         return idEvuOrdenProcedimiento;
     }
 
-    public void setIdEvuOrdenProcedimiento(int idEvuOrdenProcedimiento) {
+    public void setIdEvuOrdenProcedimiento(HospEvoOrdenProcedimiento idEvuOrdenProcedimiento) {
         this.idEvuOrdenProcedimiento = idEvuOrdenProcedimiento;
     }
 
@@ -123,5 +129,5 @@ public class HospEvoOrdenProcedimientoDesc implements Serializable {
     public String toString() {
         return "entidades_EJB.HospEvoOrdenProcedimientoDesc[ id=" + id + " ]";
     }
-    
+
 }

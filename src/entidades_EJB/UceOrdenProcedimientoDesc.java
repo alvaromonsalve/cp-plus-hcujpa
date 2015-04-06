@@ -12,7 +12,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -32,9 +34,9 @@ public class UceOrdenProcedimientoDesc implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Basic(optional = false)
-    @Column(name = "id_orden_procedimiento")
-    private int idOrdenProcedimiento;
+    @JoinColumn(name = "id_orden_procedimiento", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private UceOrdenProcedimiento idOrdenProcedimiento;
     @Basic(optional = false)
     @Column(name = "id_config_cups")
     private int idConfigCups;
@@ -52,9 +54,8 @@ public class UceOrdenProcedimientoDesc implements Serializable {
         this.id = id;
     }
 
-    public UceOrdenProcedimientoDesc(Integer id, int idOrdenProcedimiento, int idConfigCups, int estado) {
+    public UceOrdenProcedimientoDesc(Integer id, int idConfigCups, int estado) {
         this.id = id;
-        this.idOrdenProcedimiento = idOrdenProcedimiento;
         this.idConfigCups = idConfigCups;
         this.estado = estado;
     }
@@ -67,11 +68,11 @@ public class UceOrdenProcedimientoDesc implements Serializable {
         this.id = id;
     }
 
-    public int getIdOrdenProcedimiento() {
+    public UceOrdenProcedimiento getIdOrdenProcedimiento() {
         return idOrdenProcedimiento;
     }
 
-    public void setIdOrdenProcedimiento(int idOrdenProcedimiento) {
+    public void setIdOrdenProcedimiento(UceOrdenProcedimiento idOrdenProcedimiento) {
         this.idOrdenProcedimiento = idOrdenProcedimiento;
     }
 

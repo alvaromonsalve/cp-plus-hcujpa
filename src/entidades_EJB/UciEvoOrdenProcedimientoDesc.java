@@ -35,6 +35,9 @@ public class UciEvoOrdenProcedimientoDesc implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
+    @JoinColumn(name = "id_evu_orden_procedimiento", referencedColumnName = "id")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private UciEvoOrdenProcedimiento idEvuOrdenProcedimiento;
     @Basic(optional = false)
     @Column(name = "id_config_cups")
     private int idConfigCups;
@@ -44,9 +47,6 @@ public class UciEvoOrdenProcedimientoDesc implements Serializable {
     @Basic(optional = false)
     @Column(name = "estado")
     private int estado;
-    @JoinColumn(name = "id_evu_orden_procedimiento", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private UciEvoOrdenProcedimiento idEvuOrdenProcedimiento;
 
     public UciEvoOrdenProcedimientoDesc() {
     }
@@ -67,6 +67,14 @@ public class UciEvoOrdenProcedimientoDesc implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public UciEvoOrdenProcedimiento getIdEvuOrdenProcedimiento() {
+        return idEvuOrdenProcedimiento;
+    }
+
+    public void setIdEvuOrdenProcedimiento(UciEvoOrdenProcedimiento idEvuOrdenProcedimiento) {
+        this.idEvuOrdenProcedimiento = idEvuOrdenProcedimiento;
     }
 
     public int getIdConfigCups() {
@@ -91,14 +99,6 @@ public class UciEvoOrdenProcedimientoDesc implements Serializable {
 
     public void setEstado(int estado) {
         this.estado = estado;
-    }
-
-    public UciEvoOrdenProcedimiento getIdEvuOrdenProcedimiento() {
-        return idEvuOrdenProcedimiento;
-    }
-
-    public void setIdEvuOrdenProcedimiento(UciEvoOrdenProcedimiento idEvuOrdenProcedimiento) {
-        this.idEvuOrdenProcedimiento = idEvuOrdenProcedimiento;
     }
 
     @Override

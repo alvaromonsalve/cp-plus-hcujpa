@@ -9,10 +9,13 @@ import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -32,9 +35,9 @@ public class UceEvoOrdenProcedimientoDesc implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Basic(optional = false)
-    @Column(name = "id_evu_orden_procedimiento")
-    private int idEvuOrdenProcedimiento;
+    @JoinColumn(name = "id_evu_orden_procedimiento", referencedColumnName = "id")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private UceEvoOrdenProcedimiento idEvuOrdenProcedimiento;
     @Basic(optional = false)
     @Column(name = "id_config_cups")
     private int idConfigCups;
@@ -52,9 +55,8 @@ public class UceEvoOrdenProcedimientoDesc implements Serializable {
         this.id = id;
     }
 
-    public UceEvoOrdenProcedimientoDesc(Integer id, int idEvuOrdenProcedimiento, int idConfigCups, int estado) {
+    public UceEvoOrdenProcedimientoDesc(Integer id, int idConfigCups, int estado) {
         this.id = id;
-        this.idEvuOrdenProcedimiento = idEvuOrdenProcedimiento;
         this.idConfigCups = idConfigCups;
         this.estado = estado;
     }
@@ -67,11 +69,11 @@ public class UceEvoOrdenProcedimientoDesc implements Serializable {
         this.id = id;
     }
 
-    public int getIdEvuOrdenProcedimiento() {
+    public UceEvoOrdenProcedimiento getIdEvuOrdenProcedimiento() {
         return idEvuOrdenProcedimiento;
     }
 
-    public void setIdEvuOrdenProcedimiento(int idEvuOrdenProcedimiento) {
+    public void setIdEvuOrdenProcedimiento(UceEvoOrdenProcedimiento idEvuOrdenProcedimiento) {
         this.idEvuOrdenProcedimiento = idEvuOrdenProcedimiento;
     }
 
