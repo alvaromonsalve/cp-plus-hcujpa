@@ -131,5 +131,8 @@
     <class>entidades_EJB.HospEvoOrdenProcedimiento</class>
     <class>entidades_EJB.HcuEvoOrdenProcedimientoDesc</class>
     <class>entidades_EJB.HcuEvoOrdenProcedimiento</class>
+    <class>entidades_EJB.HospCommentproce</class>
+    <class>entidades_EJB.UceCommentproced</class>
+    <class>entidades_EJB.UciCommentproce</class>
   </persistence-unit>
 </persistence>
