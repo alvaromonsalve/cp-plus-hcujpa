@@ -36,7 +36,7 @@ public class UceEvoOrdenProcedimientoDesc implements Serializable {
     @Column(name = "id")
     private Integer id;
     @JoinColumn(name = "id_evu_orden_procedimiento", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false)
     private UceEvoOrdenProcedimiento idEvuOrdenProcedimiento;
     @Basic(optional = false)
     @Column(name = "id_config_cups")

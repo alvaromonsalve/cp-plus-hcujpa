@@ -45,7 +45,7 @@ public class HcuEvoOrdenProcedimientoDesc implements Serializable {
     @Column(name = "estado")
     private int estado;
     @JoinColumn(name = "id_evu_orden_procedimiento", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false)
     private HcuEvoOrdenProcedimiento idEvuOrdenProcedimiento;
 
     public HcuEvoOrdenProcedimientoDesc() {
