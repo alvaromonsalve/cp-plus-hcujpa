@@ -144,5 +144,9 @@
     <class>entidades_EJB.UceEvoOrdenProcedimiento</class>
     <class>entidades_EJB.HospOrdenProcedimiento</class>
     <class>entidades_EJB.UceEvoOrdenProcedimientoDesc</class>
+    <class>entidades_EJB.UrgEnfuFactsLiquidos</class>
+    <class>entidades_EJB.UciFactsLiquidosH</class>
+    <class>entidades_EJB.HospFactsLiquidosH</class>
+    <class>entidades_EJB.UceFactsLiquidosH</class>
   </persistence-unit>
 </persistence>
