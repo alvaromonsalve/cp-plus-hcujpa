@@ -12,6 +12,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -27,6 +29,7 @@ import javax.persistence.TemporalType;
 @NamedQueries({
     @NamedQuery(name = "UrgEnfuFactsLiquidos.findAll", query = "SELECT u FROM UrgEnfuFactsLiquidos u")})
 public class UrgEnfuFactsLiquidos implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,8 +41,23 @@ public class UrgEnfuFactsLiquidos implements Serializable {
     private Date hora;
     private Integer usr;
     private Character estado;
+    @JoinColumn(name = "id_historia", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private InfoHistoriac idInfoHistoriac;
 
     public UrgEnfuFactsLiquidos() {
+    }
+
+    public UrgEnfuFactsLiquidos(InfoHistoriac idInfoHistoriac) {
+        this.idInfoHistoriac = idInfoHistoriac;
+    }
+
+    public InfoHistoriac getIdInfoHistoriac() {
+        return idInfoHistoriac;
+    }
+
+    public void setIdInfoHistoriac(InfoHistoriac idInfoHistoriac) {
+        this.idInfoHistoriac = idInfoHistoriac;
     }
 
     public UrgEnfuFactsLiquidos(Integer id) {
@@ -110,5 +128,5 @@ public class UrgEnfuFactsLiquidos implements Serializable {
     public String toString() {
         return "entidades_EJB.UrgEnfuFactsLiquidos[ id=" + id + " ]";
     }
-    
+
 }
