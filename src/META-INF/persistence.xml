@@ -150,5 +150,11 @@
     <class>entidades_EJB.UceFactsLiquidosH</class>
     <class>entidades_EJB.UrgEnfuControlDiableticos</class>
     <class>entidades_EJB.UrgEnfuHojaTratamientos</class>
+    <class>entidades_EJB.UciControlDiableticosH</class>
+    <class>entidades_EJB.HospControlDiableticosH</class>
+    <class>entidades_EJB.UceControlDiableticosH</class>
+    <class>entidades_EJB.UceHojaTratamientosH</class>
+    <class>entidades_EJB.HospHojaTratamientosH</class>
+    <class>entidades_EJB.UciHojaTratamientosH</class>
   </persistence-unit>
 </persistence>
