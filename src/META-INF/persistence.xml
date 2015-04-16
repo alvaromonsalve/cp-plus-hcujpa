@@ -156,5 +156,9 @@
     <class>entidades_EJB.UceHojaTratamientosH</class>
     <class>entidades_EJB.HospHojaTratamientosH</class>
     <class>entidades_EJB.UciHojaTratamientosH</class>
+    <class>entidades_EJB.UceAplicacionesOxigenoH</class>
+    <class>entidades_EJB.HospAplicacionesOxigenoH</class>
+    <class>entidades_EJB.UrgEnfuAplicacionesOxigeno</class>
+    <class>entidades_EJB.UciAplicacionesOxigenoH</class>
   </persistence-unit>
 </persistence>
