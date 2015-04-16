@@ -148,5 +148,7 @@
     <class>entidades_EJB.UciFactsLiquidosH</class>
     <class>entidades_EJB.HospFactsLiquidosH</class>
     <class>entidades_EJB.UceFactsLiquidosH</class>
+    <class>entidades_EJB.UrgEnfuControlDiableticos</class>
+    <class>entidades_EJB.UrgEnfuHojaTratamientos</class>
   </persistence-unit>
 </persistence>
