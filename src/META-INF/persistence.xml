@@ -160,5 +160,6 @@
     <class>entidades_EJB.HospAplicacionesOxigenoH</class>
     <class>entidades_EJB.UrgEnfuAplicacionesOxigeno</class>
     <class>entidades_EJB.UciAplicacionesOxigenoH</class>
+    <class>entidades_EJB.SegServicios</class>
   </persistence-unit>
 </persistence>
