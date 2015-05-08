@@ -59,6 +59,16 @@ public class HcuHistoriac2 implements Serializable {
     @Column(name = "f_ingreso")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fIngreso;
+    @Column(name = "analisis")
+    private String Analisis;
+
+    public String getAnalisis() {
+        return Analisis;
+    }
+
+    public void setAnalisis(String Analisis) {
+        this.Analisis = Analisis;
+    }
 
     public HcuHistoriac2() {
     }
