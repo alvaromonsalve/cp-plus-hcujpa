@@ -136,7 +136,7 @@ public class UceEvoPosologiaJpaController implements Serializable {
    public List<UceEvoPosologia> ListFindUcePosologia(UceEvolucion evo){
         EntityManager em = getEntityManager();
         try {
-            return em.createQuery("SELECT h FROM UceEvoPosologia h WHERE h.idUceEvolucion = :evo AND h.estado='1'")
+            return em.createQuery("SELECT h FROM UceEvoPosologia h WHERE h.idUceEvolucion = :evo")
             .setParameter("evo", evo)
             .setHint("javax.persistence.cache.storeMode", "REFRESH")
             .getResultList();
