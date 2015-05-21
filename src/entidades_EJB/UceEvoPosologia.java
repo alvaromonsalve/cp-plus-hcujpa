@@ -6,7 +6,6 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -65,6 +64,10 @@ public class UceEvoPosologia implements Serializable {
     @Column(name = "fdigita")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fdigita;
+    @Basic(optional = false)
+    @Column(name = "hora")
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    private Date hora;
 
     public UceEvoPosologia() {
     }
@@ -73,12 +76,21 @@ public class UceEvoPosologia implements Serializable {
         this.id = id;
     }
 
-    public UceEvoPosologia(Integer id, SumSuministro idSuministro, UceEvolucion idUceEvolucion, int usuario, Date fdigita) {
+    public UceEvoPosologia(Integer id, SumSuministro idSuministro, UceEvolucion idUceEvolucion, int usuario, Date fdigita, Date hora) {
         this.id = id;
         this.idSuministro = idSuministro;
         this.idUceEvolucion = idUceEvolucion;
         this.usuario = usuario;
         this.fdigita = fdigita;
+        this.hora = hora;
+    }
+
+    public Date getHora() {
+        return hora;
+    }
+
+    public void setHora(Date hora) {
+        this.hora = hora;
     }
 
     public Integer getId() {
