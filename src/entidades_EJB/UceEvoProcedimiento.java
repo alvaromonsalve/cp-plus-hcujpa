@@ -45,6 +45,8 @@ public class UceEvoProcedimiento implements Serializable {
     @Basic(optional = false)
     @Column(name = "id_usuario")
     private int idUsuario;
+    @Column(name = "generado")
+    private int generado;
 
     public UceEvoProcedimiento() {
     }
@@ -53,11 +55,20 @@ public class UceEvoProcedimiento implements Serializable {
         this.id = id;
     }
 
-    public UceEvoProcedimiento(Integer id, UceEvolucion idUceEvolucion, ConfigCups idConfigCups, int idUsuario) {
+    public UceEvoProcedimiento(Integer id, UceEvolucion idUceEvolucion, ConfigCups idConfigCups, int idUsuario, int generado) {
         this.id = id;
         this.idUceEvolucion = idUceEvolucion;
         this.idConfigCups = idConfigCups;
         this.idUsuario = idUsuario;
+        this.generado = generado;
+    }
+
+    public int getGenerado() {
+        return generado;
+    }
+
+    public void setGenerado(int generado) {
+        this.generado = generado;
     }
 
     public Integer getId() {

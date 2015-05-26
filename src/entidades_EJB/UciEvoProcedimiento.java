@@ -1,4 +1,3 @@
-
 package entidades_EJB;
 
 import java.io.Serializable;
@@ -25,17 +24,18 @@ import javax.persistence.Table;
 @NamedQueries({
     @NamedQuery(name = "UciEvoProcedimiento.findAll", query = "SELECT h FROM UciEvoProcedimiento h")})
 public class UciEvoProcedimiento implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @JoinColumn(name = "id_hcu_evolucion",referencedColumnName = "id")
-    @ManyToOne(optional=false)
+    @JoinColumn(name = "id_hcu_evolucion", referencedColumnName = "id")
+    @ManyToOne(optional = false)
     private UciEvolucion idUciEvolucion;
-    @JoinColumn(name = "id_config_cups",referencedColumnName = "id")
-    @ManyToOne(optional=false)
+    @JoinColumn(name = "id_config_cups", referencedColumnName = "id")
+    @ManyToOne(optional = false)
     private ConfigCups idConfigCups;
     @Lob
     @Column(name = "observacion")
@@ -45,6 +45,8 @@ public class UciEvoProcedimiento implements Serializable {
     @Basic(optional = false)
     @Column(name = "id_usuario")
     private int idUsuario;
+    @Column(name = "generado")
+    private int generado;
 
     public UciEvoProcedimiento() {
     }
@@ -53,11 +55,20 @@ public class UciEvoProcedimiento implements Serializable {
         this.id = id;
     }
 
-    public UciEvoProcedimiento(Integer id, UciEvolucion idUciEvolucion, ConfigCups idConfigCups, int idUsuario) {
+    public UciEvoProcedimiento(Integer id, UciEvolucion idUciEvolucion, ConfigCups idConfigCups, int idUsuario, int generado) {
         this.id = id;
         this.idUciEvolucion = idUciEvolucion;
         this.idConfigCups = idConfigCups;
         this.idUsuario = idUsuario;
+        this.generado = generado;
+    }
+
+    public int getGenerado() {
+        return generado;
+    }
+
+    public void setGenerado(int generado) {
+        this.generado = generado;
     }
 
     public Integer getId() {
