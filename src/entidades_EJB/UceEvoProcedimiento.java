@@ -1,7 +1,7 @@
-
 package entidades_EJB;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,6 +15,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
 
 /**
  *
@@ -25,17 +26,18 @@ import javax.persistence.Table;
 @NamedQueries({
     @NamedQuery(name = "UceEvoProcedimiento.findAll", query = "SELECT h FROM UceEvoProcedimiento h")})
 public class UceEvoProcedimiento implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @JoinColumn(name = "id_hcu_evolucion",referencedColumnName = "id")
-    @ManyToOne(optional=false)
+    @JoinColumn(name = "id_hcu_evolucion", referencedColumnName = "id")
+    @ManyToOne(optional = false)
     private UceEvolucion idUceEvolucion;
-    @JoinColumn(name = "id_config_cups",referencedColumnName = "id")
-    @ManyToOne(optional=false)
+    @JoinColumn(name = "id_config_cups", referencedColumnName = "id")
+    @ManyToOne(optional = false)
     private ConfigCups idConfigCups;
     @Lob
     @Column(name = "observacion")
@@ -47,6 +49,10 @@ public class UceEvoProcedimiento implements Serializable {
     private int idUsuario;
     @Column(name = "generado")
     private int generado;
+    @Basic(optional = false)
+    @Column(name = "hora")
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    private Date hora;
 
     public UceEvoProcedimiento() {
     }
@@ -55,12 +61,21 @@ public class UceEvoProcedimiento implements Serializable {
         this.id = id;
     }
 
-    public UceEvoProcedimiento(Integer id, UceEvolucion idUceEvolucion, ConfigCups idConfigCups, int idUsuario, int generado) {
+    public UceEvoProcedimiento(Integer id, UceEvolucion idUceEvolucion, ConfigCups idConfigCups, int idUsuario, int generado, Date hora) {
         this.id = id;
         this.idUceEvolucion = idUceEvolucion;
         this.idConfigCups = idConfigCups;
         this.idUsuario = idUsuario;
         this.generado = generado;
+        this.hora = hora;
+    }
+
+    public Date getHora() {
+        return hora;
+    }
+
+    public void setHora(Date hora) {
+        this.hora = hora;
     }
 
     public int getGenerado() {

@@ -1,6 +1,7 @@
 package entidades_EJB;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,6 +15,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
 
 /**
  *
@@ -47,6 +49,10 @@ public class UciEvoProcedimiento implements Serializable {
     private int idUsuario;
     @Column(name = "generado")
     private int generado;
+    @Basic(optional = false)
+    @Column(name = "hora")
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    private Date hora;
 
     public UciEvoProcedimiento() {
     }
@@ -55,12 +61,21 @@ public class UciEvoProcedimiento implements Serializable {
         this.id = id;
     }
 
-    public UciEvoProcedimiento(Integer id, UciEvolucion idUciEvolucion, ConfigCups idConfigCups, int idUsuario, int generado) {
+    public UciEvoProcedimiento(Integer id, UciEvolucion idUciEvolucion, ConfigCups idConfigCups, int idUsuario, int generado, Date hora) {
         this.id = id;
         this.idUciEvolucion = idUciEvolucion;
         this.idConfigCups = idConfigCups;
         this.idUsuario = idUsuario;
         this.generado = generado;
+        this.hora = hora;
+    }
+
+    public Date getHora() {
+        return hora;
+    }
+
+    public void setHora(Date hora) {
+        this.hora = hora;
     }
 
     public int getGenerado() {
