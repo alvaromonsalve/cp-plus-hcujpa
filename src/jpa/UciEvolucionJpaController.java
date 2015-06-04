@@ -422,6 +422,18 @@ public class UciEvolucionJpaController implements Serializable {
             em.close();
         }
    }
+    
+    public List<UciEvolucion> FindUciEvolucionsMed(UciHistoriac ihc){
+        EntityManager em = getEntityManager();
+        try {
+            return em.createQuery("SELECT h FROM UciEvolucion h WHERE h.idUciHistoriac = :hc AND h.estado = '8' ORDER BY h.fechaEvo ASC")
+            .setParameter("hc", ihc)
+            .setHint("javax.persistence.cache.storeMode", "REFRESH")
+            .getResultList();
+        } finally {
+            em.close();
+        }
+   }
 
     public Long CountInterconsultas(UciHistoriac ihc, StaticEspecialidades se){
         EntityManager em = getEntityManager();
