@@ -161,5 +161,17 @@
     <class>entidades_EJB.UrgEnfuAplicacionesOxigeno</class>
     <class>entidades_EJB.UciAplicacionesOxigenoH</class>
     <class>entidades_EJB.SegServicios</class>
+    <class>entidades_EJB.HospAnexo3</class>
+    <class>entidades_EJB.HospAnexo3Cie10</class>
+    <class>entidades_EJB.HospAnexo3Procedimientos</class>
+    <class>entidades_EJB.UceAnexo3Cie10</class>
+    <class>entidades_EJB.UciAnexo3Cie10</class>
+    <class>entidades_EJB.UrgAnexo3Procedimientos</class>
+    <class>entidades_EJB.UrgAnexo3Cie10</class>
+    <class>entidades_EJB.UciAnexo3</class>
+    <class>entidades_EJB.UceAnexo3</class>
+    <class>entidades_EJB.UceAnexo3Procedimientos</class>
+    <class>entidades_EJB.UciAnexo3Procedimientos</class>
+    <class>entidades_EJB.UrgAnexo3</class>
   </persistence-unit>
 </persistence>
