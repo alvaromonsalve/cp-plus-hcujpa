@@ -16,5 +16,6 @@ public class MyDate_IN_ejb {
     public static SimpleDateFormat yyyyMMddHHmm = new SimpleDateFormat("yyyy-MM-dd HH:mm");
     public static SimpleDateFormat ddMMyyyy2 = new SimpleDateFormat("dd-MM-yyyy");
     public static SimpleDateFormat HHmm = new SimpleDateFormat("HH:mm");
+    public static SimpleDateFormat yyyyMMdd = new SimpleDateFormat("yyyy-MM-dd");
     
 }

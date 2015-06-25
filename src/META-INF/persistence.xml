@@ -173,5 +173,21 @@
     <class>entidades_EJB.UceAnexo3Procedimientos</class>
     <class>entidades_EJB.UciAnexo3Procedimientos</class>
     <class>entidades_EJB.UrgAnexo3</class>
+    <class>entidades_EJB.HospCtcMedicamento</class>
+    <class>entidades_EJB.HospCtcCie10</class>
+    <class>entidades_EJB.HospCtcProcedimientos</class>
+    <class>entidades_EJB.HospCtc</class>
+    <class>entidades_EJB.UrgCtcMedicamento</class>
+    <class>entidades_EJB.UrgCtcCie10</class>
+    <class>entidades_EJB.UciCtcProcedimientos</class>
+    <class>entidades_EJB.UciCtcMedicamento</class>
+    <class>entidades_EJB.UceCtcCie10</class>
+    <class>entidades_EJB.UrgCtcProcedimientos</class>
+    <class>entidades_EJB.UrgCtc</class>
+    <class>entidades_EJB.UceCtcProcedimientos</class>
+    <class>entidades_EJB.UceCtcMedicamento</class>
+    <class>entidades_EJB.UciCtc</class>
+    <class>entidades_EJB.UceCtc</class>
+    <class>entidades_EJB.UciCtcCie10</class>
   </persistence-unit>
 </persistence>
