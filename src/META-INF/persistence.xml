@@ -203,5 +203,7 @@
     <class>entidades_EJB.HospIngAnexo3</class>
     <class>entidades_EJB.HospIngAnexo3Cie10</class>
     <class>entidades_EJB.HospIngAnexo3Procedimientos</class>
+    <class>entidades_EJB.EnfuSolicitudSumDesc</class>
+    <class>entidades_EJB.EnfuSolicitudSum</class>
   </persistence-unit>
 </persistence>
