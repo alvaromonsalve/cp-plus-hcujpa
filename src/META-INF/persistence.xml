@@ -196,5 +196,12 @@
     <class>entidades_EJB.UrgIngCtcCie10</class>
     <class>entidades_EJB.UrgIngCtcMedicamento</class>
     <class>entidades_EJB.UrgIngCtc</class>
+    <class>entidades_EJB.HospIngCtc</class>
+    <class>entidades_EJB.HospIngCtcCie10</class>
+    <class>entidades_EJB.HospIngCtcMedicamento</class>
+    <class>entidades_EJB.HospIngCtcProcedimientos</class>
+    <class>entidades_EJB.HospIngAnexo3</class>
+    <class>entidades_EJB.HospIngAnexo3Cie10</class>
+    <class>entidades_EJB.HospIngAnexo3Procedimientos</class>
   </persistence-unit>
 </persistence>
