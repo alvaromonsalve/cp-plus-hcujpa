@@ -189,5 +189,12 @@
     <class>entidades_EJB.UciCtc</class>
     <class>entidades_EJB.UceCtc</class>
     <class>entidades_EJB.UciCtcCie10</class>
+    <class>entidades_EJB.UrgIngAnexo3</class>
+    <class>entidades_EJB.UrgIngAnexo3Cie10</class>
+    <class>entidades_EJB.UrgIngAnexo3Procedimientos</class>
+    <class>entidades_EJB.UrgIngCtcProcedimientos</class>
+    <class>entidades_EJB.UrgIngCtcCie10</class>
+    <class>entidades_EJB.UrgIngCtcMedicamento</class>
+    <class>entidades_EJB.UrgIngCtc</class>
   </persistence-unit>
 </persistence>
