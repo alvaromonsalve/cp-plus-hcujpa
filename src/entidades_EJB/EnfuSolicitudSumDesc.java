@@ -42,9 +42,9 @@ public class EnfuSolicitudSumDesc implements Serializable {
     @Basic(optional = false)
     @Column(name = "estado")
     private int estado;
-    @JoinColumn(name = "id_usuario",referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Configdecripcionlogin idUsuario;
+    @Basic(optional = false)
+    @Column(name = "id_usuario")
+    private int idUsuario;
     @Basic(optional = false)
     @Column(name = "f_digita")
     @Temporal(TemporalType.TIMESTAMP)
@@ -100,11 +100,11 @@ public class EnfuSolicitudSumDesc implements Serializable {
         this.estado = estado;
     }
 
-    public Configdecripcionlogin getIdUsuario() {
+    public int getIdUsuario() {
         return idUsuario;
     }
 
-    public void setIdUsuario(Configdecripcionlogin idUsuario) {
+    public void setIdUsuario(int idUsuario) {
         this.idUsuario = idUsuario;
     }
 
