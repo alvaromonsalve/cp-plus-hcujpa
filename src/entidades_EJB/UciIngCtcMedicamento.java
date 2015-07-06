@@ -35,9 +35,9 @@ public class UciIngCtcMedicamento implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Basic(optional = false)
-    @Column(name = "idsuministro")
-    private int idsuministro;
+    @JoinColumn(name = "idsuministro", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private SumSuministro idSuministro;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "dosis_n")
     private Float dosisN;
@@ -74,9 +74,8 @@ public class UciIngCtcMedicamento implements Serializable {
         this.id = id;
     }
 
-    public UciIngCtcMedicamento(Integer id, int idsuministro, short tipo, String codcum) {
+    public UciIngCtcMedicamento(Integer id, short tipo, String codcum) {
         this.id = id;
-        this.idsuministro = idsuministro;
         this.tipo = tipo;
         this.codcum = codcum;
     }
@@ -89,12 +88,12 @@ public class UciIngCtcMedicamento implements Serializable {
         this.id = id;
     }
 
-    public int getIdsuministro() {
-        return idsuministro;
+    public SumSuministro getIdSuministro() {
+        return idSuministro;
     }
 
-    public void setIdsuministro(int idsuministro) {
-        this.idsuministro = idsuministro;
+    public void setIdSuministro(SumSuministro idSuministro) {
+        this.idSuministro = idSuministro;
     }
 
     public Float getDosisN() {
