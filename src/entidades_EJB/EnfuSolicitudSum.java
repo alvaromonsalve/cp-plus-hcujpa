@@ -8,6 +8,7 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -52,7 +53,7 @@ public class EnfuSolicitudSum implements Serializable {
     @Column(name = "f_digita")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fDigita;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idEnfuSolicitudSum")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idEnfuSolicitudSum",fetch = FetchType.LAZY)
     private List<EnfuSolicitudSumDesc> enfuSolicitudSumDescList;
 
     public EnfuSolicitudSum() {

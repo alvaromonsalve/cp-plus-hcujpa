@@ -217,5 +217,6 @@
     <class>entidades_EJB.UciIngAnexo3Procedimientos</class>
     <class>entidades_EJB.UciIngCtcCie10</class>
     <class>entidades_EJB.UciIngCtcMedicamento</class>
+    <class>entidades_EJB.EnfuPosologia</class>
   </persistence-unit>
 </persistence>
