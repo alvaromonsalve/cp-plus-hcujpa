@@ -61,6 +61,12 @@ public class InfoPosologiaHcu implements Serializable {
     @Column(name = "fdigita")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fdigita;
+    @Basic(optional = false)
+    @Column(name = "dosisunica")
+    private int dosisunica;
+    @Column(name = "rango")
+    @Temporal(TemporalType.TIME)
+    private Date rango;
 
     public InfoPosologiaHcu() {
     }
@@ -163,6 +169,22 @@ public class InfoPosologiaHcu implements Serializable {
 
     public void setFdigita(Date fdigita) {
         this.fdigita = fdigita;
+    }
+
+    public int getDosisunica() {
+        return dosisunica;
+    }
+
+    public void setDosisunica(int dosisunica) {
+        this.dosisunica = dosisunica;
+    }
+
+    public Date getRango() {
+        return rango;
+    }
+
+    public void setRango(Date rango) {
+        this.rango = rango;
     }
 
     @Override
