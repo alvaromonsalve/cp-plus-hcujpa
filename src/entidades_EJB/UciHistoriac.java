@@ -21,6 +21,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import tools.MyDate_IN_ejb;
 
 /**
  *
@@ -31,9 +32,9 @@ import javax.persistence.TemporalType;
 @NamedQueries({
     @NamedQuery(name = "UciHistoriac.findAll", query = "SELECT i FROM UciHistoriac i")})
 public class UciHistoriac implements Serializable {
-
+    
     private static final long serialVersionUID = 1L;
-
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
@@ -114,149 +115,149 @@ public class UciHistoriac implements Serializable {
     private String destino;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUciHistoriac", fetch = FetchType.LAZY)
     private List<UciCamas> uciCamasList;
-
+    
     public UciHistoriac() {
     }
-
+    
     public UciHistoriac(Integer id) {
         this.id = id;
     }
-
+    
     public Integer getId() {
         return id;
     }
-
+    
     public void setId(Integer id) {
         this.id = id;
     }
-
+    
     public String getHallazgo() {
         return hallazgo;
     }
-
+    
     public void setHallazgo(String hallazgo) {
         this.hallazgo = hallazgo;
     }
-
+    
     public String getMotivoConsulta() {
         return motivoConsulta;
     }
-
+    
     public void setMotivoConsulta(String motivoConsulta) {
         this.motivoConsulta = motivoConsulta;
     }
-
+    
     public String getCausaExterna() {
         return causaExterna;
     }
-
+    
     public void setCausaExterna(String causaExterna) {
         this.causaExterna = causaExterna;
     }
-
+    
     public Integer getNivelTriaje() {
         return nivelTriaje;
     }
-
+    
     public void setNivelTriaje(Integer nivelTriaje) {
         this.nivelTriaje = nivelTriaje;
     }
-
+    
     public String getAlergias() {
         return alergias;
     }
-
+    
     public void setAlergias(String alergias) {
         this.alergias = alergias;
     }
-
+    
     public String getIngresosPrevios() {
         return ingresosPrevios;
     }
-
+    
     public void setIngresosPrevios(String ingresosPrevios) {
         this.ingresosPrevios = ingresosPrevios;
     }
-
+    
     public String getTraumatismos() {
         return traumatismos;
     }
-
+    
     public void setTraumatismos(String traumatismos) {
         this.traumatismos = traumatismos;
     }
-
+    
     public String getTratamientos() {
         return tratamientos;
     }
-
+    
     public void setTratamientos(String tratamientos) {
         this.tratamientos = tratamientos;
     }
-
+    
     public String getDescHdd() {
         return descHdd;
     }
-
+    
     public void setDescHdd(String descHdd) {
         this.descHdd = descHdd;
     }
-
+    
     public String getOtrosHabitos() {
         return otrosHabitos;
     }
-
+    
     public void setOtrosHabitos(String otrosHabitos) {
         this.otrosHabitos = otrosHabitos;
     }
-
+    
     public String getSituacionBasal() {
         return situacionBasal;
     }
-
+    
     public void setSituacionBasal(String situacionBasal) {
         this.situacionBasal = situacionBasal;
     }
-
+    
     public String getAntFamiliar() {
         return antFamiliar;
     }
-
+    
     public void setAntFamiliar(String antFamiliar) {
         this.antFamiliar = antFamiliar;
     }
-
+    
     public String getEnfermedadActual() {
         return enfermedadActual;
     }
-
+    
     public void setEnfermedadActual(String enfermedadActual) {
         this.enfermedadActual = enfermedadActual;
     }
-
+    
     public String getDestino() {
         return destino;
     }
-
+    
     public void setDestino(String destino) {
         this.destino = destino;
     }
-
+    
     public InfoAdmision getIdInfoAdmision() {
         return idInfoAdmision;
     }
-
+    
     public void setIdInfoAdmision(InfoAdmision idInfoAdmision) {
         this.idInfoAdmision = idInfoAdmision;
     }
-
+    
     @Override
     public int hashCode() {
         int hash = 0;
         hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
-
+    
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
@@ -269,160 +270,160 @@ public class UciHistoriac implements Serializable {
         }
         return true;
     }
-
+    
     @Override
     public String toString() {
-        return "INGRESO";
+        return MyDate_IN_ejb.HHmm.format(getFechaDato());
     }
-
+    
     public Boolean getDm() {
         return dm;
     }
-
+    
     public void setDm(Boolean dm) {
         this.dm = dm;
     }
-
+    
     public Boolean getHta() {
         return hta;
     }
-
+    
     public void setHta(Boolean hta) {
         this.hta = hta;
     }
-
+    
     public Boolean getDislipidemia() {
         return dislipidemia;
     }
-
+    
     public void setDislipidemia(Boolean dislipidemia) {
         this.dislipidemia = dislipidemia;
     }
-
+    
     public Boolean getTabaco() {
         return tabaco;
     }
-
+    
     public void setTabaco(Boolean tabaco) {
         this.tabaco = tabaco;
     }
-
+    
     public Boolean getAlcohol() {
         return alcohol;
     }
-
+    
     public void setAlcohol(Boolean alcohol) {
         this.alcohol = alcohol;
     }
-
+    
     public Boolean getDroga() {
         return droga;
     }
-
+    
     public void setDroga(Boolean droga) {
         this.droga = droga;
     }
-
+    
     public Long getTiempoConsulta() {
         return tiempoConsulta;
     }
-
+    
     public void setTiempoConsulta(Long tiempoConsulta) {
         this.tiempoConsulta = tiempoConsulta;
     }
-
+    
     public int getTipoHc() {
         return tipoHc;
     }
-
+    
     public void setTipoHc(int tipoHc) {
         this.tipoHc = tipoHc;
     }
-
+    
     public int getEstado() {
         return estado;
     }
-
+    
     public void setEstado(int estado) {
         this.estado = estado;
     }
-
+    
     public Date getFechaDato() {
         return fechaDato;
     }
-
+    
     public void setFechaDato(Date fechaDato) {
         this.fechaDato = fechaDato;
     }
-
+    
     public UciHcExpfisica getUciHcExpfisica() {
         return uciHcExpfisica;
     }
-
+    
     public void setUciHcExpfisica(UciHcExpfisica uciHcExpfisica) {
         this.uciHcExpfisica = uciHcExpfisica;
     }
-
+    
     public Integer getDiagnostico() {
         return diagnostico;
     }
-
+    
     public void setDiagnostico(Integer diagnostico) {
         this.diagnostico = diagnostico;
     }
-
+    
     public Integer getDiagnostico2() {
         return diagnostico2;
     }
-
+    
     public void setDiagnostico2(Integer diagnostico2) {
         this.diagnostico2 = diagnostico2;
     }
-
+    
     public Integer getDiagnostico3() {
         return diagnostico3;
     }
-
+    
     public void setDiagnostico3(Integer diagnostico3) {
         this.diagnostico3 = diagnostico3;
     }
-
+    
     public Integer getDiagnostico4() {
         return diagnostico4;
     }
-
+    
     public void setDiagnostico4(Integer diagnostico4) {
         this.diagnostico4 = diagnostico4;
     }
-
+    
     public Integer getDiagnostico5() {
         return diagnostico5;
     }
-
+    
     public void setDiagnostico5(Integer diagnostico5) {
         this.diagnostico5 = diagnostico5;
     }
-
+    
     public List<UciPruebasComplement> getUciPruebasComplements() {
         return uciPruebasComplements;
     }
-
+    
     public void setUciPruebasComplements(List<UciPruebasComplement> uciPruebasComplements) {
         this.uciPruebasComplements = uciPruebasComplements;
     }
-
+    
     public List<UciCamas> getUciCamasList() {
         return uciCamasList;
     }
-
+    
     public void setUciCamasList(List<UciCamas> uciCamasList) {
         this.uciCamasList = uciCamasList;
     }
-
+    
     public Configdecripcionlogin getIdConfigdecripcionlogin() {
         return idConfigdecripcionlogin;
     }
-
+    
     public void setIdConfigdecripcionlogin(Configdecripcionlogin idConfigdecripcionlogin) {
         this.idConfigdecripcionlogin = idConfigdecripcionlogin;
     }

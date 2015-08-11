@@ -21,6 +21,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import tools.MyDate_IN_ejb;
 
 /**
  *
@@ -272,7 +273,7 @@ public class HospHistoriac implements Serializable {
 
     @Override
     public String toString() {
-        return "INGRESO";
+        return MyDate_IN_ejb.HHmm.format(getFechaDato());
     }
 
     public Boolean getDm() {

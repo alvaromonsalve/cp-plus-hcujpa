@@ -31,6 +31,8 @@ import javax.persistence.TemporalType;
 @NamedQueries({
     @NamedQuery(name = "HospIngAnexo3Procedimientos.findAll", query = "SELECT h FROM HospIngAnexo3Procedimientos h")})
 public class HospIngAnexo3Procedimientos implements Serializable {
+    @Column(name = "especialidad")
+    private Integer especialidad;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -138,6 +140,14 @@ public class HospIngAnexo3Procedimientos implements Serializable {
     @Override
     public String toString() {
         return "entidades_EJB.HospIngAnexo3Procedimientos[ id=" + id + " ]";
+    }
+
+    public Integer getEspecialidad() {
+        return especialidad;
+    }
+
+    public void setEspecialidad(Integer especialidad) {
+        this.especialidad = especialidad;
     }
     
 }

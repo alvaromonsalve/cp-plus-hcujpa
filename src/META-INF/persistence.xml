@@ -220,7 +220,6 @@
     <class>entidades_EJB.EnfuPosologia</class>
     <class>entidades_EJB.EnfuSolicitudSum</class>
     <class>entidades_EJB.EnfuSolicitudSumDesc</class>
-    <class>entidades_EJB.AuEvoluciones</class>
     <class>entidades_EJB.AuHistorias</class>
   </persistence-unit>
 </persistence>

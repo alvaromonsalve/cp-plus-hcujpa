@@ -141,7 +141,7 @@ public class HcuEvoPosologiaJpaController implements Serializable {
    public List<HcuEvoPosologia> ListFindInfoPosologia(HcuEvolucion evo){
         EntityManager em = getEntityManager();
         try {
-            return em.createQuery("SELECT h FROM HcuEvoPosologia h WHERE h.idHcuEvolucion = :evo")
+            return em.createQuery("SELECT h FROM HcuEvoPosologia h WHERE h.idHcuEvolucion = :evo AND h.estado='1'")
             .setParameter("evo", evo)
             .setHint("javax.persistence.cache.storeMode", "REFRESH")
             .getResultList();

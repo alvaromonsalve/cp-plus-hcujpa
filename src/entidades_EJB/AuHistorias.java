@@ -36,6 +36,9 @@ public class AuHistorias implements Serializable {
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
+    @Column(name = "tipo")
+    private int tipo;
+    @Basic(optional = false)
     @Column(name = "idregistro")
     private int idregistro;
     @Basic(optional = false)
@@ -63,8 +66,9 @@ public class AuHistorias implements Serializable {
         this.id = id;
     }
 
-    public AuHistorias(Integer id, int idregistro, int servicio, String observacion, int usuario, int estado, Date fechadato) {
+    public AuHistorias(Integer id, int tipo, int idregistro, int servicio, String observacion, int usuario, int estado, Date fechadato) {
         this.id = id;
+        this.tipo = tipo;
         this.idregistro = idregistro;
         this.servicio = servicio;
         this.observacion = observacion;
@@ -79,6 +83,14 @@ public class AuHistorias implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public int getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(int tipo) {
+        this.tipo = tipo;
     }
 
     public int getIdregistro() {
