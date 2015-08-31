@@ -221,5 +221,6 @@
     <class>entidades_EJB.EnfuSolicitudSum</class>
     <class>entidades_EJB.EnfuSolicitudSumDesc</class>
     <class>entidades_EJB.AuHistorias</class>
+    <class>entidades_EJB.LabListadoProced</class>
   </persistence-unit>
 </persistence>
