@@ -134,10 +134,8 @@ public class InfoProcedimientoHcuJpaController implements Serializable {
             em.close();
         }
     }
-    
-        
+
             //Codigo no Auto-generado
-    
 //   public List<InfoProcedimientoHcu> ListFindInfoProcedimientoHcu(InfoHistoriac ihc){
 //        EntityManager em = getEntityManager();
 //        em.clear();
@@ -149,17 +147,43 @@ public class InfoProcedimientoHcuJpaController implements Serializable {
 //            em.close();
 //        }
 //   }
-   
-      public List<InfoProcedimientoHcu> ListFindInfoProcedimientoHcu(InfoHistoriac ihc){
+    public List<InfoProcedimientoHcu> ListFindInfoProcedimientoHcu(InfoHistoriac ihc) {
         EntityManager em = getEntityManager();
         try {
             List results = em.createQuery("SELECT i FROM InfoProcedimientoHcu i WHERE i.idHistoriac = :hc and i.estado <> 1")//1 es inactivo
-            .setParameter("hc", ihc.getId())
-            .setHint("javax.persistence.cache.storeMode", "REFRESH")
-            .getResultList();return results;
+                    .setParameter("hc", ihc.getId())
+                    .setHint("javax.persistence.cache.storeMode", "REFRESH")
+                    .getResultList();
+            return results;
         } finally {
             em.close();
         }
-   }
-    
+    }
+
+    public List<InfoProcedimientoHcu> getHCU(int r) {
+        Query Q = null;
+        EntityManager em = getEntityManager();
+        Q = em.createQuery("SELECT a FROM InfoProcedimientoHcu a WHERE a.idHistoriac.id=:i AND a.estado='0'");
+        Q.setParameter("i", r);
+        return Q.getResultList();
+    }
+
+    public Object countProcedimiento(InfoHistoriac h) {
+        Query Q = null;
+        EntityManager em = getEntityManager();
+        Q = em.createQuery("SELECT COUNT(c) FROM InfoProcedimientoHcu c WHERE c.idCups='6621' AND c.idHistoriac=:h AND c.estado=0");
+        Q.setParameter("h", h.getId());
+        Q.setHint("javax.persistence.cache.storeMode", "REFRESH");
+        return Q.getSingleResult();
+    }
+
+    public List<InfoProcedimientoHcu> getProcedimiento(int h) {
+        Query Q = null;
+        EntityManager em = getEntityManager();
+        Q = em.createQuery("SELECT c FROM InfoProcedimientoHcu c WHERE c.idCups='6621' AND c.idHistoriac=:hi AND c.estado=0");
+        Q.setParameter("hi", h);
+        Q.setHint("javax.persistence.cache.storeMode", "REFRESH");
+        return Q.getResultList();
+    }
+
 }

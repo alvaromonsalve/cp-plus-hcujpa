@@ -193,30 +193,32 @@ public class InfoCamasJpaController implements Serializable {
             em.close();
         }
     }
-    
+
     //Codigo no Auto-Generado
     public List<InfoCamas> findInfoCamasEntities(int estado) {
         EntityManager em = getEntityManager();
         try {
-            return em.createQuery("SELECT i FROM InfoCamas i WHERE i.estado = :estado" )
+            return em.createQuery("SELECT i FROM InfoCamas i WHERE i.estado = :estado")
                     .setParameter("estado", estado)
                     .setHint("javax.persistence.cache.storeMode", "REFRESH")
                     .getResultList();
         } finally {
             em.close();
         }
-    }    
-    
-    public InfoCamas findCamasHcu(InfoHistoriac ih){
-        EntityManager em = getEntityManager();        
+    }
+
+    public InfoCamas findCamasHcu(InfoHistoriac ih) {
+        EntityManager em = getEntityManager();
         try {
             List results = em.createQuery("SELECT i FROM InfoCamas i WHERE i.idInfoHistoriac = :ih AND i.estado = 1")
-            .setParameter("ih", ih)
-            .setHint("javax.persistence.cache.storeMode", "REFRESH")
-            .getResultList();
-            if (results.isEmpty()) return null;
-            else if (results.size() == 1) return (InfoCamas) results.get(0);
-            else {
+                    .setParameter("ih", ih)
+                    .setHint("javax.persistence.cache.storeMode", "REFRESH")
+                    .getResultList();
+            if (results.isEmpty()) {
+                return null;
+            } else if (results.size() == 1) {
+                return (InfoCamas) results.get(0);
+            } else {
                 JOptionPane.showMessageDialog(null, "Informe al administrador del sistema de este error:\n"
                         + "Es posible que existan varias camas asignadas a esta historia clinica activas.\n", InfoCamasJpaController.class.getName(), JOptionPane.INFORMATION_MESSAGE);
                 return null;
@@ -225,5 +227,72 @@ public class InfoCamasJpaController implements Serializable {
             em.close();
         }
     }
-    
+
+    public List<InfoCamas> findInfocamas_() {
+        EntityManager em = getEntityManager();
+        Query Q = null;
+        try {
+            Q = em.createQuery("SELECT i FROM InfoCamas i WHERE i.estado='1'");
+            Q.setHint("javax.persistence.cache.storeMode", "REFRESH");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+        return Q.getResultList();
+    }
+
+    public Object getIDenfuSignosVitales_(int idhc) {
+        EntityManager em = getEntityManager();
+        Query Q;
+        Object a = 0;
+        try {
+            Q = em.createQuery("SELECT i.id FROM EnfuSignosVitales i WHERE i.idInfoHistoriac=:idh");
+            Q.setParameter("idh", idhc);
+            Q.setHint("javax.persistence.cache.storeMode", "REFRESH");
+            List results = Q.getResultList();
+            if (!results.isEmpty()) {
+                a = results.get(0);
+            } else {
+                a = 0;
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+        return a;
+    }
+//   public int Update_IC(ConfigCamas c){
+//        EntityManager em=getEntityManager();
+//        Query Q;
+//        int a = 0;
+//        Q=em.createQuery("UPDATE InfoCamas i SET i.idConfigCamas= ");
+//        
+//        
+//        return 0;
+//       
+//   }
+
+    public Object countCamas(InfoHistoriac h) {
+        Query Q = null;
+        EntityManager em = getEntityManager();
+        Q = em.createQuery("SELECT COUNT(i.id) FROM InfoCamas i WHERE i.idInfoHistoriac.id=:ht AND i.estado='1'");
+        Q.setParameter("ht", h.getId());
+        return Q.getSingleResult();
+    }
+
+    public Object countCamaOcupada(InfoHistoriac h) {
+        Query Q = null;
+        EntityManager em = getEntityManager();
+        Q = em.createQuery("SELECT COUNT(i.id) FROM InfoCamas i WHERE i.idInfoHistoriac.id=:ht AND i.estado='2'");
+        Q.setParameter("ht", h.getId());
+        return Q.getSingleResult();
+    }
+
+    public Object ValidarCama(InfoHistoriac h, ConfigCamas c) {
+        Query Q = null;
+        EntityManager em = getEntityManager();
+        Q = em.createQuery("SELECT COUNT(i.id) FROM InfoCamas i WHERE i.idInfoHistoriac.id=:ht AND i.idConfigCamas.id=:cc AND i.estado='1'");
+        Q.setParameter("ht", h.getId());
+        Q.setParameter("cc", c.getId());
+        return Q.getSingleResult();
+    }
+
 }

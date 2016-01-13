@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package jpa;
 
 import java.io.Serializable;
@@ -18,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.swing.JOptionPane;
 import jpa.exceptions.IllegalOrphanException;
 import jpa.exceptions.NonexistentEntityException;
 
@@ -201,21 +201,50 @@ public class CmProfesionalesJpaController implements Serializable {
             em.close();
         }
     }
-    
+
         //Codigo no auto-generado
-    
-    public CmProfesionales pprofesional(Configdecripcionlogin config){
+    public CmProfesionales pprofesional(Configdecripcionlogin config) {
         EntityManager em = getEntityManager();
         try {
             return (CmProfesionales) em.createQuery("SELECT c FROM CmProfesionales c WHERE c.idDescripcionLogin=:config AND c.estado='1'")
                     .setParameter("config", config)
                     .setHint("javax.persistence.cache.storeMode", "REFRESH")
                     .getSingleResult();
-        }catch(Exception e){
+        } catch (Exception e) {
             return null;
-        }finally {
+        } finally {
             em.close();
         }
     }
-    
+
+    public List<CmProfesionales> find_cmprofesionales() {
+        EntityManager em = getEntityManager();
+        Query Q = null;
+        try {
+            Q = em.createQuery("SELECT i FROM CmProfesionales i WHERE i.estado='1'");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+        return Q.getResultList();
+    }
+
+    public Object get_nombre_professional(int usr) {
+        EntityManager em = getEntityManager();
+        Query Q = null;
+        String U = null;
+        try {
+            Q = em.createQuery("SELECT CONCAT(i.idDescripcionLogin.nombres,' ',i.idDescripcionLogin.apellidos) FROM CmProfesionales i WHERE i.id=:idPro AND i.estado='1'");
+            Q.setParameter("idPro", usr);
+            List results = Q.getResultList();
+            if (!results.isEmpty()) {
+                U = (String) results.get(0);
+            } else {
+                U = "N/A";
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+        return U;
+    }
+
 }

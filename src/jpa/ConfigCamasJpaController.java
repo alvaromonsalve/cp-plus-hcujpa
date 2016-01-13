@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.swing.JOptionPane;
 import jpa.exceptions.NonexistentEntityException;
 
 /**
@@ -214,5 +215,54 @@ public class ConfigCamasJpaController implements Serializable {
             em.close();
         }
     }
-    
+
+    public List<ConfigCamas> find_config_camas() {
+        EntityManager em = getEntityManager();
+        Query Q = null;
+        try {
+            Q = em.createQuery("SELECT i FROM ConfigCamas i WHERE i.servicio.id=1 AND i.estado='0'");
+            Q.setHint("javax.persistence.cache.storeMode", "REFRESH");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+        return Q.getResultList();
+    }
+
+    public List<ConfigCamas> findconfigCamasEntities() {
+        EntityManager em = getEntityManager();
+        Query Q = null;
+        try {
+            Q = em.createQuery("SELECT i FROM ConfigCamas i");
+            Q.setHint("javax.persistence.cache.storeMode", "REFRESH");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+        return Q.getResultList();
+    }
+
+    public List<ConfigCamas> findconfigCamasEntities2() {
+        EntityManager em = getEntityManager();
+        Query Q = null;
+        try {
+            Q = em.createQuery("SELECT i FROM ConfigCamas i");
+            Q.setHint("javax.persistence.cache.storeMode", "REFRESH");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+        return Q.getResultList();
+    }
+
+    public ConfigCamas getEntidad(int id) {
+        EntityManager em = getEntityManager();
+        Query Q = null;
+        try {
+            Q = em.createQuery("SELECT i FROM ConfigCamas i WHERE i.id=:idd AND i.estado='0'");
+            Q.setParameter("idd", id);
+            Q.setHint("javax.persistence.cache.storeMode", "REFRESH");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+        return (ConfigCamas) Q.getSingleResult();
+    }
+
 }

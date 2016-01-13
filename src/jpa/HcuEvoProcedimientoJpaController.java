@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package jpa;
 
 import entidades_EJB.HcuEvoProcedimiento;
@@ -13,6 +12,7 @@ import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import entidades_EJB.HcuEvolucion;
+import entidades_EJB.InfoHistoriac;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -165,33 +165,50 @@ public class HcuEvoProcedimientoJpaController implements Serializable {
             em.close();
         }
     }
-    
-   //Codigo no Auto-generado
-   public List<HcuEvoProcedimiento> ListFindInfoProcedimientoEvo(HcuEvolucion evo){
+
+    //Codigo no Auto-generado
+    public List<HcuEvoProcedimiento> ListFindInfoProcedimientoEvo(HcuEvolucion evo) {
         EntityManager em = getEntityManager();
         em.clear();
         try {
             return em.createQuery("SELECT h FROM HcuEvoProcedimiento h WHERE h.idHcuEvolucion = :evo AND h.estado = '1'")
-            .setParameter("evo", evo)
-            .setHint("javax.persistence.cache.storeMode", "REFRESH")
-            .getResultList();
+                    .setParameter("evo", evo)
+                    .setHint("javax.persistence.cache.storeMode", "REFRESH")
+                    .getResultList();
         } finally {
             em.close();
         }
-   }
-   
-      public List<HcuEvoProcedimiento> ListFindInfoProcedimientoEvo(HcuEvolucion evo, Integer ConfigCups){
+    }
+
+    public List<HcuEvoProcedimiento> ListFindInfoProcedimientoEvo(HcuEvolucion evo, Integer ConfigCups) {
         EntityManager em = getEntityManager();
         em.clear();
         try {
             return em.createQuery("SELECT h FROM HcuEvoProcedimiento h WHERE h.idHcuEvolucion = :evo AND h.estado = '1' AND h.idConfigCups.idEstructuraCups.id = :cc")
-            .setParameter("evo", evo)
-            .setParameter("cc", ConfigCups)
-            .setHint("javax.persistence.cache.storeMode", "REFRESH")
-            .getResultList();
+                    .setParameter("evo", evo)
+                    .setParameter("cc", ConfigCups)
+                    .setHint("javax.persistence.cache.storeMode", "REFRESH")
+                    .getResultList();
         } finally {
             em.close();
         }
-   }
-    
+    }
+
+    public Object countEvoluciones(InfoHistoriac h) {
+        EntityManager em = getEntityManager();
+        Query Q = null;
+        Q = em.createQuery("SELECT COUNT(e.id) FROM HcuEvoProcedimiento e WHERE e.idHcuEvolucion.idInfoHistoriac.id=:his AND e.idConfigCups.id='6621'");
+        Q.setParameter("his", h.getId());
+        return Q.getSingleResult();
+    }
+
+    public List<HcuEvoProcedimiento> getProcedimientos(InfoHistoriac h) {
+        EntityManager em = getEntityManager();
+        Query Q = null;
+        Q = em.createQuery("SELECT e FROM HcuEvoProcedimiento e WHERE e.idHcuEvolucion.idInfoHistoriac=:hist AND e.idConfigCups.id='6621'");
+        Q.setHint("javax.persistence.cache.storeMode", "REFRESH");
+        Q.setParameter("hist", h.getId());
+        return Q.getResultList();
+    }
+
 }

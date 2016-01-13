@@ -140,8 +140,8 @@ public class InfoOtrosdatosAdmisionJpaController implements Serializable {
             em.close();
         }
     }
-    
-       public Integer getInfoOtrosdatosAdmisionCount(Integer id){
+
+    public Integer getInfoOtrosdatosAdmisionCount(Integer id) {
         EntityManager em = getEntityManager();
         try {
             Query q = em.createQuery("SELECT COUNT(i.idAdmision) FROM InfoOtrosdatosAdmision i WHERE i.idAdmision = :id");
@@ -150,6 +150,29 @@ public class InfoOtrosdatosAdmisionJpaController implements Serializable {
         } finally {
             em.close();
         }
-   }
-    
+    }
+
+    public List<InfoOtrosdatosAdmision> findotrosDatosadmision_() {
+        EntityManager em = getEntityManager();
+        Query Q = null;
+        try {
+            Q = em.createQuery("SELECT i FROM InfoOtrosDatosAdmision i WHERE i.estado='1'");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+        return Q.getResultList();
+    }
+
+    public Object getCount_Materna(int ida) {
+        EntityManager em = getEntityManager();
+        Query Q = null;
+        try {
+            Q = em.createQuery("SELECT COUNT(i.materna) FROM InfoOtrosdatosAdmision i WHERE (i.idAdmision=:idAdmision) AND (i.materna='1') AND (i.estado='1')");
+            Q.setParameter("idAdmision", ida);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+        return Q.getSingleResult();
+    }
+
 }

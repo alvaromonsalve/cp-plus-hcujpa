@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package jpa;
 
 import entidades_EJB.AccessConfigUser;
@@ -166,18 +165,31 @@ public class AccessConfigUserJpaController implements Serializable {
             em.close();
         }
     }
-    
+
     //Codigo no Auto-generado    
-    public List<AccessConfigUser> FindConfigUsers(Configdecripcionlogin cf ){
+    public List<AccessConfigUser> FindConfigUsers(Configdecripcionlogin cf) {
         EntityManager em = getEntityManager();
         try {
             return em.createQuery("SELECT a FROM AccessConfigUser a WHERE a.configdecripcionlogin = :cf AND a.estado <> '0'")
-            .setParameter("cf", cf)
-            .setHint("javax.persistence.cache.storeMode", "REFRESH")
-            .getResultList();
+                    .setParameter("cf", cf)
+                    .setHint("javax.persistence.cache.storeMode", "REFRESH")
+                    .getResultList();
         } finally {
             em.close();
         }
-   }
-    
+    }
+
+    public Object getAccesos(int us) {
+        EntityManager em = getEntityManager();
+        Query q = null;
+        try {
+            q = em.createQuery("SELECT COUNT(a.id) FROM AccessConfigUser a WHERE a.configdecripcionlogin.id=:usr AND a.idPerfiles.id='4' AND a.estado='1'");
+            q.setParameter("usr", us);
+            q.setHint("javax.persistence.cache.storeMode", "REFRESH");
+            return q.getSingleResult();
+        } finally {
+            em.close();
+        }
+    }
+
 }

@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.swing.JOptionPane;
 import jpa.exceptions.IllegalOrphanException;
 import jpa.exceptions.NonexistentEntityException;
 
@@ -227,5 +228,33 @@ public class ConfigdecripcionloginJpaController implements Serializable {
             em.close();
         }
     }
-    
+
+    public Object get_UserName_(int idu) {
+        EntityManager em = getEntityManager();
+        Query Q;
+        String u = null;
+        try {
+            Q = em.createQuery("SELECT w.nombres FROM Configdecripcionlogin w WHERE w.id=:iidu");
+            Q.setParameter("iidu", idu);
+            List results = Q.getResultList();
+            if (!results.isEmpty()) {
+                u = (String) results.get(0);
+            } else {
+                u = "N/A";
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+        return u;
+    }
+
+    public Object getNombLogin(int iuser) {
+        Query Q = null;
+        EntityManager em = getEntityManager();
+        Q = em.createQuery("SELECT dl FROM Configdecripcionlogin dl WHERE dl.id=:login");
+        Q.setParameter("login", iuser);
+        Q.setHint("javax.persistence.cache.storeMode", "REFRESH");
+        return Q.getSingleResult();
+    }
+
 }

@@ -1,4 +1,3 @@
-
 package jpa;
 
 import java.io.Serializable;
@@ -463,47 +462,78 @@ public class HcuEvolucionJpaController implements Serializable {
             em.close();
         }
     }
-    
-        //Codigo no Auto-generado    
-    public List<HcuEvolucion> FindHcuEvolucions(InfoHistoriac ihc){
+
+    //Codigo no Auto-generado    
+    public List<HcuEvolucion> FindHcuEvolucions(InfoHistoriac ihc) {
         EntityManager em = getEntityManager();
         try {
             return em.createQuery("SELECT h FROM HcuEvolucion h WHERE h.idInfoHistoriac = :hc AND h.estado <> '0' ORDER BY h.fechaEvo ASC")
-            .setParameter("hc", ihc)
-            .setHint("javax.persistence.cache.storeMode", "REFRESH")
-            .getResultList();
+                    .setParameter("hc", ihc)
+                    .setHint("javax.persistence.cache.storeMode", "REFRESH")
+                    .getResultList();
         } finally {
             em.close();
         }
-   }
-    
-    public Long CountInterconsultas(InfoHistoriac ihc, StaticEspecialidades se){
+    }
+
+    public Long CountInterconsultas(InfoHistoriac ihc, StaticEspecialidades se) {
         EntityManager em = getEntityManager();
         em.clear();
         try {
             return (Long) em.createQuery("SELECT COUNT(h) FROM HcuEvolucion h WHERE h.idInfoHistoriac = :ih AND h.idStaticEspecialidades = :se AND h.estado='1'")
-            .setParameter("ih", ihc)
-            .setParameter("se", se)
-            .setHint("javax.persistence.cache.storeMode", "REFRESH")
-            .getSingleResult();
+                    .setParameter("ih", ihc)
+                    .setParameter("se", se)
+                    .setHint("javax.persistence.cache.storeMode", "REFRESH")
+                    .getSingleResult();
         } finally {
             em.close();
         }
-   }    
-    
-    public Long CountInterconsultasGeneradas(InfoHistoriac ihc, StaticEspecialidades se){
+    }
+
+    public Long CountInterconsultasGeneradas(InfoHistoriac ihc, StaticEspecialidades se) {
         EntityManager em = getEntityManager();
         em.clear();
         try {
             return (Long) em.createQuery("SELECT COUNT(h) FROM HcuEvolucion h WHERE h.idInfoHistoriac = :ih AND h.idStaticEspecialidades = :se AND h.estado='1' AND h.tipo = '1'")
-            .setParameter("ih", ihc)
-            .setParameter("se", se)
-            .setHint("javax.persistence.cache.storeMode", "REFRESH")
-            .getSingleResult();
+                    .setParameter("ih", ihc)
+                    .setParameter("se", se)
+                    .setHint("javax.persistence.cache.storeMode", "REFRESH")
+                    .getSingleResult();
         } finally {
             em.close();
         }
-   }   
-    
-}
+    }
 
+    public Object getHcuEvolucionCount(InfoHistoriac historia) {
+        EntityManager em = getEntityManager();
+        Query Q = null;
+        Q = em.createQuery("SELECT COUNT(e.id) FROM HcuEvolucion e WHERE e.idInfoHistoriac=:idh AND e.estado='4'");
+        Q.setParameter("idh", historia);
+        Q.setHint("javax.persistence.cache.storeMode", "REFRESH");
+        return Q.getSingleResult();
+    }
+
+    public HcuEvolucion getEntidadEvolucionEgreso(InfoHistoriac h) {
+        HcuEvolucion evo = null;
+        EntityManager em = getEntityManager();
+        Query Q = null;
+        Q = em.createQuery("SELECT ev FROM HcuEvolucion ev WHERE (ev.idInfoHistoriac=:hh AND ev.estado='4')");
+        Q.setParameter("hh", h.getId());
+        List results = Q.getResultList();
+        if (!results.isEmpty()) {
+            evo = (HcuEvolucion) results.get(0);
+        } else {
+            evo = null;
+        }
+        return evo;
+    }
+
+    public List<HcuEvolucion> getEvoluciones(InfoHistoriac h) {
+        EntityManager em = getEntityManager();
+        Query Q = em.createQuery("SELECT e FROM HcuEvolucion e WHERE e.idInfoHistoriac=:ht AND (e.estado='2' OR e.estado='4')");
+        Q.setParameter("ht", h.getId());
+        Q.setHint("javax.persistence.cache.storeMode", "REFRESH");
+        return Q.getResultList();
+    }
+
+}

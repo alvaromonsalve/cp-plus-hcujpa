@@ -158,7 +158,7 @@
     <class>entidades_EJB.UciHojaTratamientosH</class>
     <class>entidades_EJB.UceAplicacionesOxigenoH</class>
     <class>entidades_EJB.HospAplicacionesOxigenoH</class>
-    <class>entidades_EJB.UrgEnfuAplicacionesOxigeno</class>
+    <class>entidades_EJB.EnfuAplicacionesOxigeno</class>
     <class>entidades_EJB.UciAplicacionesOxigenoH</class>
     <class>entidades_EJB.SegServicios</class>
     <class>entidades_EJB.HospAnexo3</class>
@@ -222,5 +222,23 @@
     <class>entidades_EJB.EnfuSolicitudSumDesc</class>
     <class>entidades_EJB.AuHistorias</class>
     <class>entidades_EJB.LabListadoProced</class>
+    <class>entidades_EJB.EnfuFactsNotas</class>
+    <class>entidades_EJB.AccessEspeciales</class>
+    <class>entidades_EJB.EnfuHojaTratamientos</class>
+    <class>entidades_EJB.EnfuControlDiableticos</class>
+    <class>entidades_EJB.EnfuControlLiquidos</class>
+    <class>entidades_EJB.EnfuElLiquidos</class>
+    <class>entidades_EJB.EnfuApLiquidos</class>
+    <class>entidades_EJB.EnfuFactsLiquidos</class>
+    <class>entidades_EJB.EnfuLiqAdministrados</class>
+    <class>entidades_EJB.EnfuLiqEliminados</class>
+    <class>entidades_EJB.EnfuMedSuministrados</class>
+    <class>entidades_EJB.EnfuSignosVitalesDet</class>
+    <class>entidades_EJB.EnfuSignosVitalesMat</class>
+    <class>entidades_EJB.EnfuGlasgow</class>
+    <class>entidades_EJB.EnfuEspecificacionesGenerales</class>
+    <class>entidades_EJB.EnfuFinalizacionesOxigeno</class>
+    <class>entidades_EJB.EnfuLiquidos</class>
+    <class>entidades_EJB.EnfuLogs</class>
   </persistence-unit>
 </persistence>

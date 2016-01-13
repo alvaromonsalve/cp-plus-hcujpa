@@ -20,6 +20,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -30,6 +31,7 @@ import javax.persistence.Table;
 @NamedQueries({
     @NamedQuery(name = "ConfigCamas.findAll", query = "SELECT c FROM ConfigCamas c")})
 public class ConfigCamas implements Serializable {
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idConfigCamas")
     private List<InfoCamas> infoCamasList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idConfigCamas")
@@ -133,7 +135,7 @@ public class ConfigCamas implements Serializable {
     public void setInfoCamasList(List<InfoCamas> infoCamasList) {
         this.infoCamasList = infoCamasList;
     }
-    
+
     public List<HospCamas> getHospCamasList() {
         return hospCamasList;
     }
@@ -141,7 +143,7 @@ public class ConfigCamas implements Serializable {
     public void setHospCamasList(List<HospCamas> hospCamasList) {
         this.hospCamasList = hospCamasList;
     }
-    
+
     public List<UciCamas> getUciCamasList() {
         return uciCamasList;
     }
@@ -149,7 +151,7 @@ public class ConfigCamas implements Serializable {
     public void setUciCamasList(List<UciCamas> uciCamasList) {
         this.uciCamasList = uciCamasList;
     }
-    
+
     public List<UceCamas> getUceCamasList() {
         return uceCamasList;
     }
