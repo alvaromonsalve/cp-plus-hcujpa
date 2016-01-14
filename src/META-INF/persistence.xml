@@ -240,5 +240,6 @@
     <class>entidades_EJB.EnfuFinalizacionesOxigeno</class>
     <class>entidades_EJB.EnfuLiquidos</class>
     <class>entidades_EJB.EnfuLogs</class>
+    <class>entidades_EJB.EnfuHojaTratamientos2</class>
   </persistence-unit>
 </persistence>

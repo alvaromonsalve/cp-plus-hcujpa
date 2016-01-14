@@ -197,7 +197,7 @@ public class HcuEvoProcedimientoJpaController implements Serializable {
     public Object countEvoluciones(InfoHistoriac h) {
         EntityManager em = getEntityManager();
         Query Q = null;
-        Q = em.createQuery("SELECT COUNT(e.id) FROM HcuEvoProcedimiento e WHERE e.idHcuEvolucion.idInfoHistoriac.id=:his AND e.idConfigCups.id='6621'");
+        Q = em.createQuery("SELECT COUNT(e) FROM HcuEvoProcedimiento e WHERE e.idHcuEvolucion.idInfoHistoriac.id=:his AND e.idConfigCups.id='6621'");
         Q.setParameter("his", h.getId());
         return Q.getSingleResult();
     }
@@ -205,7 +205,7 @@ public class HcuEvoProcedimientoJpaController implements Serializable {
     public List<HcuEvoProcedimiento> getProcedimientos(InfoHistoriac h) {
         EntityManager em = getEntityManager();
         Query Q = null;
-        Q = em.createQuery("SELECT e FROM HcuEvoProcedimiento e WHERE e.idHcuEvolucion.idInfoHistoriac=:hist AND e.idConfigCups.id='6621'");
+        Q = em.createQuery("SELECT e FROM HcuEvoProcedimiento e WHERE e.idHcuEvolucion.idInfoHistoriac.id=:hist AND e.idConfigCups.id='6621'");
         Q.setHint("javax.persistence.cache.storeMode", "REFRESH");
         Q.setParameter("hist", h.getId());
         return Q.getResultList();
