@@ -242,5 +242,27 @@
         <class>entidades_EJB.EnfuLogs</class>
         <class>entidades_EJB.EnfuHojaTratamientos2</class>
         <class>entidades_EJB.EnfuRegPacientesOtrosServicios</class>
+        <class>entidades_EJB.HospAplicacionesOxigeno</class>
+        <class>entidades_EJB.HospControlDiableticos</class>
+        <class>entidades_EJB.HospEnfLogs</class>
+        <class>entidades_EJB.HospEspecificacionesGenerales</class>
+        <class>entidades_EJB.HospFactsLiquidos</class>
+        <class>entidades_EJB.HospFactsNotas</class>
+        <class>entidades_EJB.HospFinalizacionesOxigeno</class>
+        <class>entidades_EJB.HospGlasgow</class>
+        <class>entidades_EJB.HospHojaTratamientos</class>
+        <class>entidades_EJB.HospHojaTratamientos2</class>
+        <class>entidades_EJB.HospSignosVitalesDet</class>
+        <class>entidades_EJB.HospLiquidos</class>
+        <class>entidades_EJB.HospMedSuministrados</class>
+        <class>entidades_EJB.UciAplicacionesAiremedico</class>
+        <class>entidades_EJB.UciAplicacionesOxigeno</class>
+        <class>entidades_EJB.UciAplicacionesTransfusion</class>
+        <class>entidades_EJB.UciAplicacionesTransfusionSellos</class>
+        <class>entidades_EJB.UciAplicacionesTransfusionSignos</class>
+        <class>entidades_EJB.UciFactsLiquidos</class>
+        <class>entidades_EJB.UciFactsNotas</class>
+        <class>entidades_EJB.UciLiquidos</class>
+        <class>entidades_EJB.UciSolicitudTransfusiones</class>
     </persistence-unit>
 </persistence>

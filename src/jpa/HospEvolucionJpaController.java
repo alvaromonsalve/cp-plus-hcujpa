@@ -1,4 +1,3 @@
-
 package jpa;
 
 import java.io.Serializable;
@@ -410,45 +409,77 @@ public class HospEvolucionJpaController implements Serializable {
         }
     }
 
-        //Codigo no Auto-generado
-    public List<HospEvolucion> FindHospEvolucions(HospHistoriac ihc){
+    //Codigo no Auto-generado
+    public List<HospEvolucion> FindHospEvolucions(HospHistoriac ihc) {
         EntityManager em = getEntityManager();
         try {
             return em.createQuery("SELECT h FROM HospEvolucion h WHERE h.idHospHistoriac = :hc AND h.estado <> '0' ORDER BY h.fechaEvo ASC")
-            .setParameter("hc", ihc)
-            .setHint("javax.persistence.cache.storeMode", "REFRESH")
-            .getResultList();
+                    .setParameter("hc", ihc)
+                    .setHint("javax.persistence.cache.storeMode", "REFRESH")
+                    .getResultList();
         } finally {
             em.close();
         }
-   }
+    }
 
-    public Long CountInterconsultas(HospHistoriac ihc, StaticEspecialidades se){
+    public Long CountInterconsultas(HospHistoriac ihc, StaticEspecialidades se) {
         EntityManager em = getEntityManager();
         em.clear();
         try {
             return (Long) em.createQuery("SELECT COUNT(h) FROM HospEvolucion h WHERE h.idHospHistoriac = :ih AND h.idStaticEspecialidades = :se AND h.estado='1'")
-            .setParameter("ih", ihc)
-            .setParameter("se", se)
-            .setHint("javax.persistence.cache.storeMode", "REFRESH")
-            .getSingleResult();
+                    .setParameter("ih", ihc)
+                    .setParameter("se", se)
+                    .setHint("javax.persistence.cache.storeMode", "REFRESH")
+                    .getSingleResult();
         } finally {
             em.close();
         }
-   }
+    }
 
-    public Long CountInterconsultasGeneradas(HospHistoriac ihc, StaticEspecialidades se){
+    public Long CountInterconsultasGeneradas(HospHistoriac ihc, StaticEspecialidades se) {
         EntityManager em = getEntityManager();
         em.clear();
         try {
             return (Long) em.createQuery("SELECT COUNT(h) FROM HospEvolucion h WHERE h.idHospHistoriac = :ih AND h.idStaticEspecialidades = :se AND h.estado='1' AND h.tipo = '1'")
-            .setParameter("ih", ihc)
-            .setParameter("se", se)
-            .setHint("javax.persistence.cache.storeMode", "REFRESH")
-            .getSingleResult();
+                    .setParameter("ih", ihc)
+                    .setParameter("se", se)
+                    .setHint("javax.persistence.cache.storeMode", "REFRESH")
+                    .getSingleResult();
         } finally {
             em.close();
         }
-   }
+    }
+
+    public Object getHcuEvolucionCount(HospHistoriac historia) {
+        EntityManager em = getEntityManager();
+        Query Q = null;
+        Q = em.createQuery("SELECT COUNT(e.id) FROM HospEvolucion e WHERE e.idHospHistoriac.id=:idh AND e.estado='4'");
+        Q.setParameter("idh", historia.getId());
+        Q.setHint("javax.persistence.cache.storeMode", "REFRESH");
+        return Q.getSingleResult();
+    }
+
+    public HospEvolucion getEntidadEvolucionEgreso(HospHistoriac h) {
+        HospEvolucion evo = null;
+        EntityManager em = getEntityManager();
+        Query Q = null;
+        Q = em.createQuery("SELECT ev FROM HospEvolucion ev WHERE (ev.idHospHistoriac.id=:hh AND ev.estado='4')");
+        Q.setParameter("hh", h.getId());
+        List results = Q.getResultList();
+        if (!results.isEmpty()) {
+            evo = (HospEvolucion) results.get(0);
+        } else {
+            evo = null;
+        }
+        return evo;
+    }
+
+    public List<HospEvolucion> getEvoluciones(HospHistoriac h) {
+        EntityManager em = getEntityManager();
+        Query Q = em.createQuery("SELECT e FROM HospEvolucion e WHERE e.idHospHistoriac.id=:ht AND (e.estado='2' OR e.estado='4') ");
+        Q.setParameter("ht", h.getId());
+        Q.setHint("javax.persistence.cache.storeMode", "REFRESH");
+        return Q.getResultList();
+    }
 
 }

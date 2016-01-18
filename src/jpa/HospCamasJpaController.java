@@ -194,7 +194,7 @@ public class HospCamasJpaController implements Serializable {
     public List<HospCamas> findHospCamasEntities(int estado) {
         EntityManager em = getEntityManager();
         try {
-            return em.createQuery("SELECT i FROM HospCamas i WHERE i.estado = :estado" )
+            return em.createQuery("SELECT i FROM HospCamas i WHERE i.estado = :estado")
                     .setParameter("estado", estado)
                     .setHint("javax.persistence.cache.storeMode", "REFRESH")
                     .getResultList();
@@ -203,16 +203,18 @@ public class HospCamasJpaController implements Serializable {
         }
     }
 
-    public HospCamas findCamasHcu(HospHistoriac ih){
+    public HospCamas findCamasHcu(HospHistoriac ih) {
         EntityManager em = getEntityManager();
         try {
             List results = em.createQuery("SELECT i FROM HospCamas i WHERE i.idHospHistoriac = :ih AND i.estado = 1")
-            .setParameter("ih", ih)
-            .setHint("javax.persistence.cache.storeMode", "REFRESH")
-            .getResultList();
-            if (results.isEmpty()) return null;
-            else if (results.size() == 1) return (HospCamas) results.get(0);
-            else {
+                    .setParameter("ih", ih)
+                    .setHint("javax.persistence.cache.storeMode", "REFRESH")
+                    .getResultList();
+            if (results.isEmpty()) {
+                return null;
+            } else if (results.size() == 1) {
+                return (HospCamas) results.get(0);
+            } else {
                 JOptionPane.showMessageDialog(null, "Hosprme al administrador del sistema de este error:\n"
                         + "Es posible que existan varias camas asignadas a esta historia clinica activas.\n", HospCamasJpaController.class.getName(), JOptionPane.INFORMATION_MESSAGE);
                 return null;
@@ -220,6 +222,43 @@ public class HospCamasJpaController implements Serializable {
         } finally {
             em.close();
         }
+    }
+
+    public Object countCamas(HospHistoriac h) {
+        Query Q = null;
+        EntityManager em = getEntityManager();
+        Q = em.createQuery("SELECT COUNT(i.id) FROM HospCamas i WHERE i.idInfoHistoriac.id=:ht AND i.estado='1'");
+        Q.setParameter("ht", h.getId());
+        return Q.getSingleResult();
+    }
+
+    public Object countCamaOcupada(HospHistoriac h) {
+        Query Q = null;
+        EntityManager em = getEntityManager();
+        Q = em.createQuery("SELECT COUNT(i.id) FROM HospCamas i WHERE i.idInfoHistoriac.id=:ht AND i.estado='2'");
+        Q.setParameter("ht", h.getId());
+        return Q.getSingleResult();
+    }
+
+    public Object ValidarCama(HospHistoriac h, ConfigCamas c) {
+        Query Q = null;
+        EntityManager em = getEntityManager();
+        Q = em.createQuery("SELECT COUNT(i.id) FROM HospCamas i WHERE i.idInfoHistoriac.id=:ht AND i.idConfigCamas.id=:cc AND i.estado='1'");
+        Q.setParameter("ht", h.getId());
+        Q.setParameter("cc", c.getId());
+        return Q.getSingleResult();
+    }
+
+    public List<HospCamas> findInfocamas_() {
+        EntityManager em = getEntityManager();
+        Query Q = null;
+        try {
+            Q = em.createQuery("SELECT i FROM HospCamas i WHERE i.estado='1'");
+            Q.setHint("javax.persistence.cache.storeMode", "REFRESH");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+        return Q.getResultList();
     }
 
 }

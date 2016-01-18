@@ -1,7 +1,12 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package jpa;
 
+import entidades_EJB.HospFactsNotas;
 import entidades_EJB.HospHistoriac;
-import entidades_EJB.HospProcedimiento;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -14,11 +19,11 @@ import jpa.exceptions.NonexistentEntityException;
 
 /**
  *
- * @author Alvaro Monsalve
+ * @author IdlhDeveloper
  */
-public class HospProcedimientoJpaController implements Serializable {
+public class HospFactsNotasJpaController implements Serializable {
 
-    public HospProcedimientoJpaController(EntityManagerFactory emf) {
+    public HospFactsNotasJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
     private EntityManagerFactory emf = null;
@@ -27,12 +32,12 @@ public class HospProcedimientoJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(HospProcedimiento hospProcedimiento) {
+    public void create(HospFactsNotas hospFactsNotas) {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            em.persist(hospProcedimiento);
+            em.persist(hospFactsNotas);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -41,19 +46,19 @@ public class HospProcedimientoJpaController implements Serializable {
         }
     }
 
-    public void edit(HospProcedimiento hospProcedimiento) throws NonexistentEntityException, Exception {
+    public void edit(HospFactsNotas hospFactsNotas) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            hospProcedimiento = em.merge(hospProcedimiento);
+            hospFactsNotas = em.merge(hospFactsNotas);
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                Integer id = hospProcedimiento.getId();
-                if (findHospProcedimiento(id) == null) {
-                    throw new NonexistentEntityException("The hospProcedimiento with id " + id + " no longer exists.");
+                Integer id = hospFactsNotas.getId();
+                if (findHospFactsNotas(id) == null) {
+                    throw new NonexistentEntityException("The hospFactsNotas with id " + id + " no longer exists.");
                 }
             }
             throw ex;
@@ -69,14 +74,14 @@ public class HospProcedimientoJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            HospProcedimiento hospProcedimiento;
+            HospFactsNotas hospFactsNotas;
             try {
-                hospProcedimiento = em.getReference(HospProcedimiento.class, id);
-                hospProcedimiento.getId();
+                hospFactsNotas = em.getReference(HospFactsNotas.class, id);
+                hospFactsNotas.getId();
             } catch (EntityNotFoundException enfe) {
-                throw new NonexistentEntityException("The hospProcedimiento with id " + id + " no longer exists.", enfe);
+                throw new NonexistentEntityException("The hospFactsNotas with id " + id + " no longer exists.", enfe);
             }
-            em.remove(hospProcedimiento);
+            em.remove(hospFactsNotas);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -85,19 +90,19 @@ public class HospProcedimientoJpaController implements Serializable {
         }
     }
 
-    public List<HospProcedimiento> findHospProcedimientoEntities() {
-        return findHospProcedimientoEntities(true, -1, -1);
+    public List<HospFactsNotas> findHospFactsNotasEntities() {
+        return findHospFactsNotasEntities(true, -1, -1);
     }
 
-    public List<HospProcedimiento> findHospProcedimientoEntities(int maxResults, int firstResult) {
-        return findHospProcedimientoEntities(false, maxResults, firstResult);
+    public List<HospFactsNotas> findHospFactsNotasEntities(int maxResults, int firstResult) {
+        return findHospFactsNotasEntities(false, maxResults, firstResult);
     }
 
-    private List<HospProcedimiento> findHospProcedimientoEntities(boolean all, int maxResults, int firstResult) {
+    private List<HospFactsNotas> findHospFactsNotasEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(HospProcedimiento.class));
+            cq.select(cq.from(HospFactsNotas.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -109,20 +114,20 @@ public class HospProcedimientoJpaController implements Serializable {
         }
     }
 
-    public HospProcedimiento findHospProcedimiento(Integer id) {
+    public HospFactsNotas findHospFactsNotas(Integer id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(HospProcedimiento.class, id);
+            return em.find(HospFactsNotas.class, id);
         } finally {
             em.close();
         }
     }
 
-    public int getHospProcedimientoCount() {
+    public int getHospFactsNotasCount() {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<HospProcedimiento> rt = cq.from(HospProcedimiento.class);
+            Root<HospFactsNotas> rt = cq.from(HospFactsNotas.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();
@@ -131,42 +136,33 @@ public class HospProcedimientoJpaController implements Serializable {
         }
     }
 
-    //Codigo no Auto-generado
-    public List<HospProcedimiento> ListFindHospProcedimiento(HospHistoriac ihc) {
+    public List<HospFactsNotas> getNotasHospitalizacion(int historia) {
         EntityManager em = getEntityManager();
+        Query q = null;
         try {
-            List results = em.createQuery("SELECT i FROM HospProcedimiento i WHERE i.idHistoriac = :hc")
-                    .setParameter("hc", ihc.getId())
-                    .setHint("javax.persistence.cache.storeMode", "REFRESH")
-                    .getResultList();
-            return results;
+            q = em.createQuery("SELECT n FROM HospFactsNotas n WHERE n.idHistoriac.id=:h AND n.estado='1'");
+            q.setParameter("h", historia);
+            q.setHint("javax.persistence.cache.storeMode", "REFRESH");
+            return q.getResultList();
         } finally {
             em.close();
         }
     }
 
-    public List<HospProcedimiento> getHCU(int r) {
-        Query Q = null;
+    public List<HospFactsNotas> find_Notas(HospHistoriac hi) {
         EntityManager em = getEntityManager();
-        Q = em.createQuery("SELECT a FROM HospProcedimiento a WHERE a.idHistoriac=:i AND a.estado='0'");
-        Q.setParameter("i", r);
+        Query Q = null;
+        Q = em.createQuery("SELECT i FROM HospFactsNotas i WHERE i.idHistoriac=:h AND i.estado='1'");
+        Q.setParameter("h", hi);
+        Q.setHint("javax.persistence.cache.storeMode", "REFRESH");
         return Q.getResultList();
     }
 
-    public Object countProcedimiento(int h) {
-        Query Q = null;
+    public List<HospFactsNotas> find_Notas2(HospHistoriac hi) {
         EntityManager em = getEntityManager();
-        Q = em.createQuery("SELECT COUNT(c.id) FROM HospProcedimiento c WHERE c.idCups='6621' AND c.idHistoriac=:his AND c.estado='0'");
-        Q.setParameter("his", h);
-        Q.setHint("javax.persistence.cache.storeMode", "REFRESH");
-        return Q.getSingleResult();
-    }
-
-    public List<HospProcedimiento> getProcedimiento(int h) {
         Query Q = null;
-        EntityManager em = getEntityManager();
-        Q = em.createQuery("SELECT c FROM HospProcedimiento c WHERE c.idCups='6621' AND c.idHistoriac=:his AND c.estado='0'");
-        Q.setParameter("his", h);
+        Q = em.createQuery("SELECT i FROM HospFactsNotas i WHERE i.idHistoriac=:h");
+        Q.setParameter("h", hi);
         Q.setHint("javax.persistence.cache.storeMode", "REFRESH");
         return Q.getResultList();
     }

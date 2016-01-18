@@ -1,4 +1,3 @@
-
 package jpa;
 
 import entidades_EJB.HospEvoProcedimiento;
@@ -161,32 +160,48 @@ public class HospEvoProcedimientoJpaController implements Serializable {
         }
     }
 
-   //Codigo no Auto-generado
-   public List<HospEvoProcedimiento> ListFindInfoProcedimientoEvo(HospEvolucion evo){
+    //Codigo no Auto-generado
+    public List<HospEvoProcedimiento> ListFindInfoProcedimientoEvo(HospEvolucion evo) {
         EntityManager em = getEntityManager();
         em.clear();
         try {
             return em.createQuery("SELECT h FROM HospEvoProcedimiento h WHERE h.idHospEvolucion = :evo AND h.estado = '1'")
-            .setParameter("evo", evo)
-            .setHint("javax.persistence.cache.storeMode", "REFRESH")
-            .getResultList();
+                    .setParameter("evo", evo)
+                    .setHint("javax.persistence.cache.storeMode", "REFRESH")
+                    .getResultList();
         } finally {
             em.close();
         }
-   }
+    }
 
-      public List<HospEvoProcedimiento> ListFindInfoProcedimientoEvo(HospEvolucion evo, Integer ConfigCups){
+    public List<HospEvoProcedimiento> ListFindInfoProcedimientoEvo(HospEvolucion evo, Integer ConfigCups) {
         EntityManager em = getEntityManager();
         em.clear();
         try {
             return em.createQuery("SELECT h FROM HospEvoProcedimiento h WHERE h.idHospEvolucion = :evo AND h.estado = '1' AND h.idConfigCups.idEstructuraCups.id = :cc")
-            .setParameter("evo", evo)
-            .setParameter("cc", ConfigCups)
-            .setHint("javax.persistence.cache.storeMode", "REFRESH")
-            .getResultList();
+                    .setParameter("evo", evo)
+                    .setParameter("cc", ConfigCups)
+                    .setHint("javax.persistence.cache.storeMode", "REFRESH")
+                    .getResultList();
         } finally {
             em.close();
         }
-   }
+    }
+
+    public Object countEvoluciones(int h) {
+        EntityManager em = getEntityManager();
+        Query Q = null;
+        Q = em.createQuery("SELECT COUNT(e.id) FROM HospEvoProcedimiento e WHERE e.idHospEvolucion.idHospHistoriac.id=:hist AND e.idConfigCups.id='6621'");
+        Q.setParameter("hist", h);
+        return Q.getSingleResult();
+    }
+
+    public List<HospEvoProcedimiento> getProcedimientos(int h) {
+        EntityManager em = getEntityManager();
+        Query Q = null;
+        Q = em.createQuery("SELECT e FROM HospEvoProcedimiento e WHERE (e.idHospEvolucion.idHospHistoriac.id=:hist AND e.idConfigCups.id='6621')");
+        Q.setParameter("hist", h);
+        return Q.getResultList();
+    }
 
 }
