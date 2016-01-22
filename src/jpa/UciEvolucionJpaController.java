@@ -1,4 +1,3 @@
-
 package jpa;
 
 import java.io.Serializable;
@@ -410,57 +409,88 @@ public class UciEvolucionJpaController implements Serializable {
         }
     }
 
-        //Codigo no Auto-generado
-    public List<UciEvolucion> FindUciEvolucions(UciHistoriac ihc){
+    //Codigo no Auto-generado
+    public List<UciEvolucion> FindUciEvolucions(UciHistoriac ihc) {
         EntityManager em = getEntityManager();
         try {
             return em.createQuery("SELECT h FROM UciEvolucion h WHERE h.idUciHistoriac = :hc AND h.estado <> '0' ORDER BY h.fechaEvo ASC")
-            .setParameter("hc", ihc)
-            .setHint("javax.persistence.cache.storeMode", "REFRESH")
-            .getResultList();
+                    .setParameter("hc", ihc)
+                    .setHint("javax.persistence.cache.storeMode", "REFRESH")
+                    .getResultList();
         } finally {
             em.close();
         }
-   }
-    
-    public List<UciEvolucion> FindUciEvolucionsMed(UciHistoriac ihc){
+    }
+
+    public List<UciEvolucion> FindUciEvolucionsMed(UciHistoriac ihc) {
         EntityManager em = getEntityManager();
         try {
             return em.createQuery("SELECT h FROM UciEvolucion h WHERE h.idUciHistoriac = :hc AND h.estado = '8' ORDER BY h.fechaEvo ASC")
-            .setParameter("hc", ihc)
-            .setHint("javax.persistence.cache.storeMode", "REFRESH")
-            .getResultList();
+                    .setParameter("hc", ihc)
+                    .setHint("javax.persistence.cache.storeMode", "REFRESH")
+                    .getResultList();
         } finally {
             em.close();
         }
-   }
+    }
 
-    public Long CountInterconsultas(UciHistoriac ihc, StaticEspecialidades se){
+    public Long CountInterconsultas(UciHistoriac ihc, StaticEspecialidades se) {
         EntityManager em = getEntityManager();
         em.clear();
         try {
             return (Long) em.createQuery("SELECT COUNT(h) FROM UciEvolucion h WHERE h.idUciHistoriac = :ih AND h.idStaticEspecialidades = :se AND h.estado='1'")
-            .setParameter("ih", ihc)
-            .setParameter("se", se)
-            .setHint("javax.persistence.cache.storeMode", "REFRESH")
-            .getSingleResult();
+                    .setParameter("ih", ihc)
+                    .setParameter("se", se)
+                    .setHint("javax.persistence.cache.storeMode", "REFRESH")
+                    .getSingleResult();
         } finally {
             em.close();
         }
-   }
+    }
 
-    public Long CountInterconsultasGeneradas(UciHistoriac ihc, StaticEspecialidades se){
+    public Long CountInterconsultasGeneradas(UciHistoriac ihc, StaticEspecialidades se) {
         EntityManager em = getEntityManager();
         em.clear();
         try {
             return (Long) em.createQuery("SELECT COUNT(h) FROM UciEvolucion h WHERE h.idUciHistoriac = :ih AND h.idStaticEspecialidades = :se AND h.estado='1' AND h.tipo = '1'")
-            .setParameter("ih", ihc)
-            .setParameter("se", se)
-            .setHint("javax.persistence.cache.storeMode", "REFRESH")
-            .getSingleResult();
+                    .setParameter("ih", ihc)
+                    .setParameter("se", se)
+                    .setHint("javax.persistence.cache.storeMode", "REFRESH")
+                    .getSingleResult();
         } finally {
             em.close();
         }
-   }
+    }
 
+    public Object getHcuEvolucionCount(UciHistoriac historia) {
+        EntityManager em = getEntityManager();
+        Query Q = null;
+        Q = em.createQuery("SELECT COUNT(e.id) FROM UciEvolucion e WHERE e.idUciHistoriac.id=:idh AND e.estado='4'");
+        Q.setParameter("idh", historia.getId());
+        Q.setHint("javax.persistence.cache.storeMode", "REFRESH");
+        return Q.getSingleResult();
+    }
+
+    public UciEvolucion getEntidadEvolucionEgreso(UciHistoriac h) {
+        UciEvolucion evo = null;
+        EntityManager em = getEntityManager();
+        Query Q = null;
+        Q = em.createQuery("SELECT ev FROM UciEvolucion ev WHERE (ev.idUciHistoriac.id=:hh AND ev.estado='4')");
+        Q.setParameter("hh", h.getId());
+        List results = Q.getResultList();
+        if (!results.isEmpty()) {
+            evo = (UciEvolucion) results.get(0);
+        } else {
+            evo = null;
+        }
+        return evo;
+    }
+
+    public List<UciEvolucion> getEvoluciones(UciHistoriac h) {
+        EntityManager em = getEntityManager();
+        Query Q = em.createQuery("SELECT e FROM UciEvolucion e WHERE e.idUciHistoriac.id=:ht AND (e.estado='2' OR e.estado='4') ");
+        Q.setParameter("ht", h.getId());
+        Q.setHint("javax.persistence.cache.storeMode", "REFRESH");
+        return Q.getResultList();
+    }
 }

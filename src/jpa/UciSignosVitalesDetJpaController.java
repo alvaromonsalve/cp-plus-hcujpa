@@ -5,7 +5,9 @@
  */
 package jpa;
 
-import entidades_EJB.UciAplicacionesAiremedico;
+import entidades_EJB.UciFactsNotas;
+import entidades_EJB.UciHistoriac;
+import entidades_EJB.UciSignosVitalesDet;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -14,16 +16,15 @@ import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import javax.swing.JOptionPane;
 import jpa.exceptions.NonexistentEntityException;
 
 /**
  *
  * @author IdlhDeveloper
  */
-public class UciAplicacionesAiremedicoJpaController implements Serializable {
+public class UciSignosVitalesDetJpaController implements Serializable {
 
-    public UciAplicacionesAiremedicoJpaController(EntityManagerFactory emf) {
+    public UciSignosVitalesDetJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
     private EntityManagerFactory emf = null;
@@ -32,12 +33,12 @@ public class UciAplicacionesAiremedicoJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(UciAplicacionesAiremedico uciAplicacionesAiremedico) {
+    public void create(UciSignosVitalesDet uciSignosVitalesDet) {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            em.persist(uciAplicacionesAiremedico);
+            em.persist(uciSignosVitalesDet);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -46,19 +47,19 @@ public class UciAplicacionesAiremedicoJpaController implements Serializable {
         }
     }
 
-    public void edit(UciAplicacionesAiremedico uciAplicacionesAiremedico) throws NonexistentEntityException, Exception {
+    public void edit(UciSignosVitalesDet uciSignosVitalesDet) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            uciAplicacionesAiremedico = em.merge(uciAplicacionesAiremedico);
+            uciSignosVitalesDet = em.merge(uciSignosVitalesDet);
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                Integer id = uciAplicacionesAiremedico.getId();
-                if (findUciAplicacionesAiremedico(id) == null) {
-                    throw new NonexistentEntityException("The uciAplicacionesAiremedico with id " + id + " no longer exists.");
+                Integer id = uciSignosVitalesDet.getId();
+                if (findUciSignosVitalesDet(id) == null) {
+                    throw new NonexistentEntityException("The uciSignosVitalesDet with id " + id + " no longer exists.");
                 }
             }
             throw ex;
@@ -74,14 +75,14 @@ public class UciAplicacionesAiremedicoJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            UciAplicacionesAiremedico uciAplicacionesAiremedico;
+            UciSignosVitalesDet uciSignosVitalesDet;
             try {
-                uciAplicacionesAiremedico = em.getReference(UciAplicacionesAiremedico.class, id);
-                uciAplicacionesAiremedico.getId();
+                uciSignosVitalesDet = em.getReference(UciSignosVitalesDet.class, id);
+                uciSignosVitalesDet.getId();
             } catch (EntityNotFoundException enfe) {
-                throw new NonexistentEntityException("The uciAplicacionesAiremedico with id " + id + " no longer exists.", enfe);
+                throw new NonexistentEntityException("The uciSignosVitalesDet with id " + id + " no longer exists.", enfe);
             }
-            em.remove(uciAplicacionesAiremedico);
+            em.remove(uciSignosVitalesDet);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -90,19 +91,19 @@ public class UciAplicacionesAiremedicoJpaController implements Serializable {
         }
     }
 
-    public List<UciAplicacionesAiremedico> findUciAplicacionesAiremedicoEntities() {
-        return findUciAplicacionesAiremedicoEntities(true, -1, -1);
+    public List<UciSignosVitalesDet> findUciSignosVitalesDetEntities() {
+        return findUciSignosVitalesDetEntities(true, -1, -1);
     }
 
-    public List<UciAplicacionesAiremedico> findUciAplicacionesAiremedicoEntities(int maxResults, int firstResult) {
-        return findUciAplicacionesAiremedicoEntities(false, maxResults, firstResult);
+    public List<UciSignosVitalesDet> findUciSignosVitalesDetEntities(int maxResults, int firstResult) {
+        return findUciSignosVitalesDetEntities(false, maxResults, firstResult);
     }
 
-    private List<UciAplicacionesAiremedico> findUciAplicacionesAiremedicoEntities(boolean all, int maxResults, int firstResult) {
+    private List<UciSignosVitalesDet> findUciSignosVitalesDetEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(UciAplicacionesAiremedico.class));
+            cq.select(cq.from(UciSignosVitalesDet.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -114,20 +115,20 @@ public class UciAplicacionesAiremedicoJpaController implements Serializable {
         }
     }
 
-    public UciAplicacionesAiremedico findUciAplicacionesAiremedico(Integer id) {
+    public UciSignosVitalesDet findUciSignosVitalesDet(Integer id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(UciAplicacionesAiremedico.class, id);
+            return em.find(UciSignosVitalesDet.class, id);
         } finally {
             em.close();
         }
     }
 
-    public int getUciAplicacionesAiremedicoCount() {
+    public int getUciSignosVitalesDetCount() {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<UciAplicacionesAiremedico> rt = cq.from(UciAplicacionesAiremedico.class);
+            Root<UciSignosVitalesDet> rt = cq.from(UciSignosVitalesDet.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();
@@ -136,28 +137,29 @@ public class UciAplicacionesAiremedicoJpaController implements Serializable {
         }
     }
 
-    public List<UciAplicacionesAiremedico> find_aplicacionesO2(int hc) {
+    public UciSignosVitalesDet get_Signos(UciFactsNotas n) {
+        UciSignosVitalesDet signos;
         EntityManager em = getEntityManager();
         Query Q = null;
-        try {
-            Q = em.createQuery("SELECT i FROM UciAplicacionesAiremedico i WHERE (i.idHistoriac.id=:idhc) AND (i.estado='1')");
-            Q.setParameter("idhc", hc);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error" + e.getMessage());
+        Q = em.createQuery("SELECT s FROM UciSignosVitalesDet s WHERE s.idFactsNotas=:no AND s.estado='1'");
+        Q.setParameter("no", n);
+        Q.setHint("javax.persistence.cache.storeMode", "REFRESH");
+        List results = Q.getResultList();
+        if (!results.isEmpty()) {
+            signos = (UciSignosVitalesDet) results.get(0);
+        } else {
+            signos = null;
         }
-        return Q.getResultList();
+        return signos;
     }
 
-    public List<UciAplicacionesAiremedico> get_AplicacionesOxigeno(int h) {
-        Query Q = null;
+    public List<UciSignosVitalesDet> get_SignosHist(UciHistoriac n) {
+        UciSignosVitalesDet signos;
         EntityManager em = getEntityManager();
-        try {
-            Q = em.createQuery("SELECT O FROM UciAplicacionesAiremedico O WHERE O.idHistoriac.id=:hc AND O.estado <> '0'");
-            Q.setParameter("hc", h);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
-        }
+        Query Q = null;
+        Q = em.createQuery("SELECT s FROM UciSignosVitalesDet s WHERE s.idFactsNotas.idHistoriac=:h AND s.estado='1' GROUP BY s.idFactsNotas.fecha");
+        Q.setParameter("h", n);
+        Q.setHint("javax.persistence.cache.storeMode", "REFRESH");
         return Q.getResultList();
     }
-
 }

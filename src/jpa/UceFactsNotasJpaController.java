@@ -5,7 +5,7 @@
  */
 package jpa;
 
-import entidades_EJB.UciAplicacionesOxigeno;
+import entidades_EJB.UceFactsNotas;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -14,16 +14,15 @@ import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import javax.swing.JOptionPane;
 import jpa.exceptions.NonexistentEntityException;
 
 /**
  *
  * @author IdlhDeveloper
  */
-public class UciAplicacionesOxigenoJpaController implements Serializable {
+public class UceFactsNotasJpaController implements Serializable {
 
-    public UciAplicacionesOxigenoJpaController(EntityManagerFactory emf) {
+    public UceFactsNotasJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
     private EntityManagerFactory emf = null;
@@ -32,12 +31,12 @@ public class UciAplicacionesOxigenoJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(UciAplicacionesOxigeno uciAplicacionesOxigeno) {
+    public void create(UceFactsNotas uceFactsNotas) {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            em.persist(uciAplicacionesOxigeno);
+            em.persist(uceFactsNotas);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -46,19 +45,19 @@ public class UciAplicacionesOxigenoJpaController implements Serializable {
         }
     }
 
-    public void edit(UciAplicacionesOxigeno uciAplicacionesOxigeno) throws NonexistentEntityException, Exception {
+    public void edit(UceFactsNotas uceFactsNotas) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            uciAplicacionesOxigeno = em.merge(uciAplicacionesOxigeno);
+            uceFactsNotas = em.merge(uceFactsNotas);
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                Integer id = uciAplicacionesOxigeno.getId();
-                if (findUciAplicacionesOxigeno(id) == null) {
-                    throw new NonexistentEntityException("The uciAplicacionesOxigeno with id " + id + " no longer exists.");
+                Integer id = uceFactsNotas.getId();
+                if (findUceFactsNotas(id) == null) {
+                    throw new NonexistentEntityException("The uceFactsNotas with id " + id + " no longer exists.");
                 }
             }
             throw ex;
@@ -74,14 +73,14 @@ public class UciAplicacionesOxigenoJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            UciAplicacionesOxigeno uciAplicacionesOxigeno;
+            UceFactsNotas uceFactsNotas;
             try {
-                uciAplicacionesOxigeno = em.getReference(UciAplicacionesOxigeno.class, id);
-                uciAplicacionesOxigeno.getId();
+                uceFactsNotas = em.getReference(UceFactsNotas.class, id);
+                uceFactsNotas.getId();
             } catch (EntityNotFoundException enfe) {
-                throw new NonexistentEntityException("The uciAplicacionesOxigeno with id " + id + " no longer exists.", enfe);
+                throw new NonexistentEntityException("The uceFactsNotas with id " + id + " no longer exists.", enfe);
             }
-            em.remove(uciAplicacionesOxigeno);
+            em.remove(uceFactsNotas);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -90,19 +89,19 @@ public class UciAplicacionesOxigenoJpaController implements Serializable {
         }
     }
 
-    public List<UciAplicacionesOxigeno> findUciAplicacionesOxigenoEntities() {
-        return findUciAplicacionesOxigenoEntities(true, -1, -1);
+    public List<UceFactsNotas> findUceFactsNotasEntities() {
+        return findUceFactsNotasEntities(true, -1, -1);
     }
 
-    public List<UciAplicacionesOxigeno> findUciAplicacionesOxigenoEntities(int maxResults, int firstResult) {
-        return findUciAplicacionesOxigenoEntities(false, maxResults, firstResult);
+    public List<UceFactsNotas> findUceFactsNotasEntities(int maxResults, int firstResult) {
+        return findUceFactsNotasEntities(false, maxResults, firstResult);
     }
 
-    private List<UciAplicacionesOxigeno> findUciAplicacionesOxigenoEntities(boolean all, int maxResults, int firstResult) {
+    private List<UceFactsNotas> findUceFactsNotasEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(UciAplicacionesOxigeno.class));
+            cq.select(cq.from(UceFactsNotas.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -114,20 +113,20 @@ public class UciAplicacionesOxigenoJpaController implements Serializable {
         }
     }
 
-    public UciAplicacionesOxigeno findUciAplicacionesOxigeno(Integer id) {
+    public UceFactsNotas findUceFactsNotas(Integer id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(UciAplicacionesOxigeno.class, id);
+            return em.find(UceFactsNotas.class, id);
         } finally {
             em.close();
         }
     }
 
-    public int getUciAplicacionesOxigenoCount() {
+    public int getUceFactsNotasCount() {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<UciAplicacionesOxigeno> rt = cq.from(UciAplicacionesOxigeno.class);
+            Root<UceFactsNotas> rt = cq.from(UceFactsNotas.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();
@@ -135,27 +134,17 @@ public class UciAplicacionesOxigenoJpaController implements Serializable {
             em.close();
         }
     }
-    
-    public List<UciAplicacionesOxigeno>find_aplicacionesO2(int hc){
-     EntityManager em = getEntityManager();
-     Query Q=null;
+
+    public List<UceFactsNotas> getNotasUCE(int historia) {
+        EntityManager em = getEntityManager();
+        Query q = null;
         try {
-            Q=em.createQuery("SELECT i FROM UciAplicacionesOxigeno i WHERE (i.idHistoriac.id=:idhc) AND (i.estado='1')");
-            Q.setParameter("idhc", hc);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null,"Error"+ e.getMessage());
-         } 
-        return Q.getResultList();
-    }
-    public List<UciAplicacionesOxigeno>get_AplicacionesOxigeno(int h){
-        Query Q=null;
-        EntityManager em=getEntityManager();
-        try {
-            Q=em.createQuery("SELECT O FROM UciAplicacionesOxigeno O WHERE O.idHistoriac.id=:hc AND O.estado <> '0'");
-            Q.setParameter("hc", h);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
+            q = em.createQuery("SELECT n FROM UceFactsNotas n WHERE n.idHistoriac.id=:h AND n.estado='1'");
+            q.setParameter("h", historia);
+            q.setHint("javax.persistence.cache.storeMode", "REFRESH");
+            return q.getResultList();
+        } finally {
+            em.close();
         }
-        return Q.getResultList();
     }
 }

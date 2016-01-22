@@ -28,20 +28,20 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author IdlhDeveloper
  */
 @Entity
-@Table(name = "uci_aplicaciones_oxigeno")
+@Table(name = "uce_aplicaciones_oxigeno")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "UciAplicacionesOxigeno.findAll", query = "SELECT u FROM UciAplicacionesOxigeno u"),
-    @NamedQuery(name = "UciAplicacionesOxigeno.findById", query = "SELECT u FROM UciAplicacionesOxigeno u WHERE u.id = :id"),
-    @NamedQuery(name = "UciAplicacionesOxigeno.findByFecha", query = "SELECT u FROM UciAplicacionesOxigeno u WHERE u.fecha = :fecha"),
-    @NamedQuery(name = "UciAplicacionesOxigeno.findByHoraInicio", query = "SELECT u FROM UciAplicacionesOxigeno u WHERE u.horaInicio = :horaInicio"),
-    @NamedQuery(name = "UciAplicacionesOxigeno.findByMedico", query = "SELECT u FROM UciAplicacionesOxigeno u WHERE u.medico = :medico"),
-    @NamedQuery(name = "UciAplicacionesOxigeno.findBySisO2", query = "SELECT u FROM UciAplicacionesOxigeno u WHERE u.sisO2 = :sisO2"),
-    @NamedQuery(name = "UciAplicacionesOxigeno.findByFiO2", query = "SELECT u FROM UciAplicacionesOxigeno u WHERE u.fiO2 = :fiO2"),
-    @NamedQuery(name = "UciAplicacionesOxigeno.findByLts", query = "SELECT u FROM UciAplicacionesOxigeno u WHERE u.lts = :lts"),
-    @NamedQuery(name = "UciAplicacionesOxigeno.findByUsr", query = "SELECT u FROM UciAplicacionesOxigeno u WHERE u.usr = :usr"),
-    @NamedQuery(name = "UciAplicacionesOxigeno.findByEstado", query = "SELECT u FROM UciAplicacionesOxigeno u WHERE u.estado = :estado")})
-public class UciAplicacionesOxigeno implements Serializable {
+    @NamedQuery(name = "UceAplicacionesOxigeno.findAll", query = "SELECT u FROM UceAplicacionesOxigeno u"),
+    @NamedQuery(name = "UceAplicacionesOxigeno.findById", query = "SELECT u FROM UceAplicacionesOxigeno u WHERE u.id = :id"),
+    @NamedQuery(name = "UceAplicacionesOxigeno.findByFecha", query = "SELECT u FROM UceAplicacionesOxigeno u WHERE u.fecha = :fecha"),
+    @NamedQuery(name = "UceAplicacionesOxigeno.findByHoraInicio", query = "SELECT u FROM UceAplicacionesOxigeno u WHERE u.horaInicio = :horaInicio"),
+    @NamedQuery(name = "UceAplicacionesOxigeno.findByMedico", query = "SELECT u FROM UceAplicacionesOxigeno u WHERE u.medico = :medico"),
+    @NamedQuery(name = "UceAplicacionesOxigeno.findBySisO2", query = "SELECT u FROM UceAplicacionesOxigeno u WHERE u.sisO2 = :sisO2"),
+    @NamedQuery(name = "UceAplicacionesOxigeno.findByFiO2", query = "SELECT u FROM UceAplicacionesOxigeno u WHERE u.fiO2 = :fiO2"),
+    @NamedQuery(name = "UceAplicacionesOxigeno.findByLts", query = "SELECT u FROM UceAplicacionesOxigeno u WHERE u.lts = :lts"),
+    @NamedQuery(name = "UceAplicacionesOxigeno.findByUsr", query = "SELECT u FROM UceAplicacionesOxigeno u WHERE u.usr = :usr"),
+    @NamedQuery(name = "UceAplicacionesOxigeno.findByEstado", query = "SELECT u FROM UceAplicacionesOxigeno u WHERE u.estado = :estado")})
+public class UceAplicacionesOxigeno implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -53,9 +53,9 @@ public class UciAplicacionesOxigeno implements Serializable {
     private Date fecha;
     @Column(name = "hora_inicio")
     private String horaInicio;
-    @JoinColumn(name = "medico", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private CmProfesionales medico;
+    @Basic(optional = false)
+    @Column(name = "medico")
+    private int medico;
     @Column(name = "sis_O2")
     private Integer sisO2;
     @Column(name = "fiO2")
@@ -68,16 +68,16 @@ public class UciAplicacionesOxigeno implements Serializable {
     private Character estado;
     @JoinColumn(name = "id_historiac", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    private UciHistoriac idHistoriac;
+    private UceHistoriac idHistoriac;
 
-    public UciAplicacionesOxigeno() {
+    public UceAplicacionesOxigeno() {
     }
 
-    public UciAplicacionesOxigeno(Integer id) {
+    public UceAplicacionesOxigeno(Integer id) {
         this.id = id;
     }
 
-    public UciAplicacionesOxigeno(Integer id, CmProfesionales medico) {
+    public UceAplicacionesOxigeno(Integer id, int medico) {
         this.id = id;
         this.medico = medico;
     }
@@ -106,11 +106,11 @@ public class UciAplicacionesOxigeno implements Serializable {
         this.horaInicio = horaInicio;
     }
 
-    public CmProfesionales getMedico() {
+    public int getMedico() {
         return medico;
     }
 
-    public void setMedico(CmProfesionales medico) {
+    public void setMedico(int medico) {
         this.medico = medico;
     }
 
@@ -154,11 +154,11 @@ public class UciAplicacionesOxigeno implements Serializable {
         this.estado = estado;
     }
 
-    public UciHistoriac getIdHistoriac() {
+    public UceHistoriac getIdHistoriac() {
         return idHistoriac;
     }
 
-    public void setIdHistoriac(UciHistoriac idHistoriac) {
+    public void setIdHistoriac(UceHistoriac idHistoriac) {
         this.idHistoriac = idHistoriac;
     }
 
@@ -172,10 +172,10 @@ public class UciAplicacionesOxigeno implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof UciAplicacionesOxigeno)) {
+        if (!(object instanceof UceAplicacionesOxigeno)) {
             return false;
         }
-        UciAplicacionesOxigeno other = (UciAplicacionesOxigeno) object;
+        UceAplicacionesOxigeno other = (UceAplicacionesOxigeno) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -184,7 +184,7 @@ public class UciAplicacionesOxigeno implements Serializable {
 
     @Override
     public String toString() {
-        return "Entidades_Rep.UciAplicacionesOxigeno[ id=" + id + " ]";
+        return "Entidades_Rep.UceAplicacionesOxigeno[ id=" + id + " ]";
     }
     
 }

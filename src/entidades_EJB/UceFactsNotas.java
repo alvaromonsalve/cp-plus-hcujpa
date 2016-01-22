@@ -28,44 +28,48 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author IdlhDeveloper
  */
 @Entity
-@Table(name = "uci_aplicaciones_transfusion_sellos")
+@Table(name = "uce_facts_notas")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "UciAplicacionesTransfusionSellos.findAll", query = "SELECT u FROM UciAplicacionesTransfusionSellos u"),
-    @NamedQuery(name = "UciAplicacionesTransfusionSellos.findById", query = "SELECT u FROM UciAplicacionesTransfusionSellos u WHERE u.id = :id"),
-    @NamedQuery(name = "UciAplicacionesTransfusionSellos.findBySello", query = "SELECT u FROM UciAplicacionesTransfusionSellos u WHERE u.sello = :sello"),
-    @NamedQuery(name = "UciAplicacionesTransfusionSellos.findByUsr", query = "SELECT u FROM UciAplicacionesTransfusionSellos u WHERE u.usr = :usr"),
-    @NamedQuery(name = "UciAplicacionesTransfusionSellos.findByEstado", query = "SELECT u FROM UciAplicacionesTransfusionSellos u WHERE u.estado = :estado"),
-    @NamedQuery(name = "UciAplicacionesTransfusionSellos.findByFechaIngresoDatos", query = "SELECT u FROM UciAplicacionesTransfusionSellos u WHERE u.fechaIngresoDatos = :fechaIngresoDatos")})
-public class UciAplicacionesTransfusionSellos implements Serializable {
+    @NamedQuery(name = "UceFactsNotas.findAll", query = "SELECT u FROM UceFactsNotas u"),
+    @NamedQuery(name = "UceFactsNotas.findById", query = "SELECT u FROM UceFactsNotas u WHERE u.id = :id"),
+    @NamedQuery(name = "UceFactsNotas.findByFecha", query = "SELECT u FROM UceFactsNotas u WHERE u.fecha = :fecha"),
+    @NamedQuery(name = "UceFactsNotas.findByHora", query = "SELECT u FROM UceFactsNotas u WHERE u.hora = :hora"),
+    @NamedQuery(name = "UceFactsNotas.findByUsuario", query = "SELECT u FROM UceFactsNotas u WHERE u.usuario = :usuario"),
+    @NamedQuery(name = "UceFactsNotas.findByEstado", query = "SELECT u FROM UceFactsNotas u WHERE u.estado = :estado"),
+    @NamedQuery(name = "UceFactsNotas.findByFechaIngresoDatos", query = "SELECT u FROM UceFactsNotas u WHERE u.fechaIngresoDatos = :fechaIngresoDatos")})
+public class UceFactsNotas implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Column(name = "sello")
-    private String sello;
-    @Column(name = "usr")
-    private Integer usr;
+    @Column(name = "fecha")
+    @Temporal(TemporalType.DATE)
+    private Date fecha;
+    @Column(name = "hora")
+    private String hora;
+    @Column(name = "usuario")
+    private Integer usuario;
     @Column(name = "estado")
-    private Integer estado;
+    private Character estado;
     @Basic(optional = false)
     @Column(name = "fecha_ingreso_datos")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaIngresoDatos;
-    @JoinColumn(name = "id_aplicacion_transfusion", referencedColumnName = "id")
+    @JoinColumn(name = "id_historiac", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    private UciAplicacionesTransfusion_2 idAplicacionTransfusion;
+    private UceHistoriac idHistoriac;
 
-    public UciAplicacionesTransfusionSellos() {
+    public UceFactsNotas() {
     }
 
-    public UciAplicacionesTransfusionSellos(Integer id) {
+    public UceFactsNotas(Integer id) {
         this.id = id;
     }
 
-    public UciAplicacionesTransfusionSellos(Integer id, Date fechaIngresoDatos) {
+    public UceFactsNotas(Integer id, Date fechaIngresoDatos) {
         this.id = id;
         this.fechaIngresoDatos = fechaIngresoDatos;
     }
@@ -78,27 +82,35 @@ public class UciAplicacionesTransfusionSellos implements Serializable {
         this.id = id;
     }
 
-    public String getSello() {
-        return sello;
+    public Date getFecha() {
+        return fecha;
     }
 
-    public void setSello(String sello) {
-        this.sello = sello;
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
     }
 
-    public Integer getUsr() {
-        return usr;
+    public String getHora() {
+        return hora;
     }
 
-    public void setUsr(Integer usr) {
-        this.usr = usr;
+    public void setHora(String hora) {
+        this.hora = hora;
     }
 
-    public Integer getEstado() {
+    public Integer getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Integer usuario) {
+        this.usuario = usuario;
+    }
+
+    public Character getEstado() {
         return estado;
     }
 
-    public void setEstado(Integer estado) {
+    public void setEstado(Character estado) {
         this.estado = estado;
     }
 
@@ -110,12 +122,12 @@ public class UciAplicacionesTransfusionSellos implements Serializable {
         this.fechaIngresoDatos = fechaIngresoDatos;
     }
 
-    public UciAplicacionesTransfusion_2 getIdAplicacionTransfusion() {
-        return idAplicacionTransfusion;
+    public UceHistoriac getIdHistoriac() {
+        return idHistoriac;
     }
 
-    public void setIdAplicacionTransfusion(UciAplicacionesTransfusion_2 idAplicacionTransfusion) {
-        this.idAplicacionTransfusion = idAplicacionTransfusion;
+    public void setIdHistoriac(UceHistoriac idHistoriac) {
+        this.idHistoriac = idHistoriac;
     }
 
     @Override
@@ -128,10 +140,10 @@ public class UciAplicacionesTransfusionSellos implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof UciAplicacionesTransfusionSellos)) {
+        if (!(object instanceof UceFactsNotas)) {
             return false;
         }
-        UciAplicacionesTransfusionSellos other = (UciAplicacionesTransfusionSellos) object;
+        UceFactsNotas other = (UceFactsNotas) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -140,7 +152,7 @@ public class UciAplicacionesTransfusionSellos implements Serializable {
 
     @Override
     public String toString() {
-        return "Entidades_Rep.UciAplicacionesTransfusionSellos[ id=" + id + " ]";
+        return "Entidades_Rep.UceFactsNotas[ id=" + id + " ]";
     }
     
 }

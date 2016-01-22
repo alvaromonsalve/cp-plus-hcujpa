@@ -4,8 +4,9 @@
  */
 package jpa;
 
-import jpa.exceptions.NonexistentEntityException;
 import entidades_EJB.HospHojaTratamientos;
+import jpa.exceptions.NonexistentEntityException;
+import entidades_EJB.UciHojaTratamientos;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -73,9 +74,9 @@ public class HospHojaTratamientosJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            HospHojaTratamientos hospHojaTratamientos;
+            UciHojaTratamientos hospHojaTratamientos;
             try {
-                hospHojaTratamientos = em.getReference(HospHojaTratamientos.class, id);
+                hospHojaTratamientos = em.getReference(UciHojaTratamientos.class, id);
                 hospHojaTratamientos.getId();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The hospHojaTratamientos with id " + id + " no longer exists.", enfe);
@@ -101,7 +102,7 @@ public class HospHojaTratamientosJpaController implements Serializable {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(HospHojaTratamientos.class));
+            cq.select(cq.from(UciHojaTratamientos.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -126,7 +127,7 @@ public class HospHojaTratamientosJpaController implements Serializable {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<HospHojaTratamientos> rt = cq.from(HospHojaTratamientos.class);
+            Root<HospHojaTratamientos> rt = cq.from(UciHojaTratamientos.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();

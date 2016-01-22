@@ -3,30 +3,27 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package jpa;
 
-import jpa.exceptions.NonexistentEntityException;
-import entidades_EJB.UciAplicacionesTransfusion;
-import entidades_EJB.UciAplicacionesTransfusion_2;
+import entidades_EJB.UciEnfLogs;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
-import javax.persistence.Persistence;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import jpa.exceptions.NonexistentEntityException;
 
 /**
  *
  * @author IdlhDeveloper
  */
-public class UciAplicacionesTransfusionJpaController implements Serializable {
+public class UciEnfLogsJpaController implements Serializable {
 
-    public UciAplicacionesTransfusionJpaController(EntityManagerFactory emf) {
-       this.emf = emf;
+    public UciEnfLogsJpaController(EntityManagerFactory emf) {
+        this.emf = emf;
     }
     private EntityManagerFactory emf = null;
 
@@ -34,12 +31,12 @@ public class UciAplicacionesTransfusionJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(UciAplicacionesTransfusion_2 uciAplicacionesTransfusion) {
+    public void create(UciEnfLogs uciEnfLogs) {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            em.persist(uciAplicacionesTransfusion);
+            em.persist(uciEnfLogs);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -48,19 +45,19 @@ public class UciAplicacionesTransfusionJpaController implements Serializable {
         }
     }
 
-    public void edit(UciAplicacionesTransfusion_2 uciAplicacionesTransfusion) throws NonexistentEntityException, Exception {
+    public void edit(UciEnfLogs uciEnfLogs) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            uciAplicacionesTransfusion = em.merge(uciAplicacionesTransfusion);
+            uciEnfLogs = em.merge(uciEnfLogs);
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                Integer id = uciAplicacionesTransfusion.getId();
-                if (findUciAplicacionesTransfusion(id) == null) {
-                    throw new NonexistentEntityException("The uciAplicacionesTransfusion with id " + id + " no longer exists.");
+                Integer id = uciEnfLogs.getId();
+                if (findUciEnfLogs(id) == null) {
+                    throw new NonexistentEntityException("The uciEnfLogs with id " + id + " no longer exists.");
                 }
             }
             throw ex;
@@ -76,14 +73,14 @@ public class UciAplicacionesTransfusionJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            UciAplicacionesTransfusion uciAplicacionesTransfusion;
+            UciEnfLogs uciEnfLogs;
             try {
-                uciAplicacionesTransfusion = em.getReference(UciAplicacionesTransfusion.class, id);
-                uciAplicacionesTransfusion.getId();
+                uciEnfLogs = em.getReference(UciEnfLogs.class, id);
+                uciEnfLogs.getId();
             } catch (EntityNotFoundException enfe) {
-                throw new NonexistentEntityException("The uciAplicacionesTransfusion with id " + id + " no longer exists.", enfe);
+                throw new NonexistentEntityException("The uciEnfLogs with id " + id + " no longer exists.", enfe);
             }
-            em.remove(uciAplicacionesTransfusion);
+            em.remove(uciEnfLogs);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -92,19 +89,19 @@ public class UciAplicacionesTransfusionJpaController implements Serializable {
         }
     }
 
-    public List<UciAplicacionesTransfusion> findUciAplicacionesTransfusionEntities() {
-        return findUciAplicacionesTransfusionEntities(true, -1, -1);
+    public List<UciEnfLogs> findUciEnfLogsEntities() {
+        return findUciEnfLogsEntities(true, -1, -1);
     }
 
-    public List<UciAplicacionesTransfusion> findUciAplicacionesTransfusionEntities(int maxResults, int firstResult) {
-        return findUciAplicacionesTransfusionEntities(false, maxResults, firstResult);
+    public List<UciEnfLogs> findUciEnfLogsEntities(int maxResults, int firstResult) {
+        return findUciEnfLogsEntities(false, maxResults, firstResult);
     }
 
-    private List<UciAplicacionesTransfusion> findUciAplicacionesTransfusionEntities(boolean all, int maxResults, int firstResult) {
+    private List<UciEnfLogs> findUciEnfLogsEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(UciAplicacionesTransfusion.class));
+            cq.select(cq.from(UciEnfLogs.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -116,20 +113,20 @@ public class UciAplicacionesTransfusionJpaController implements Serializable {
         }
     }
 
-    public UciAplicacionesTransfusion_2 findUciAplicacionesTransfusion(Integer id) {
+    public UciEnfLogs findUciEnfLogs(Integer id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(UciAplicacionesTransfusion_2.class, id);
+            return em.find(UciEnfLogs.class, id);
         } finally {
             em.close();
         }
     }
 
-    public int getUciAplicacionesTransfusionCount() {
+    public int getUciEnfLogsCount() {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<UciAplicacionesTransfusion> rt = cq.from(UciAplicacionesTransfusion.class);
+            Root<UciEnfLogs> rt = cq.from(UciEnfLogs.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();

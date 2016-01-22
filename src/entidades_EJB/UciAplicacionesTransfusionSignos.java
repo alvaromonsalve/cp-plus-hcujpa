@@ -68,7 +68,7 @@ public class UciAplicacionesTransfusionSignos implements Serializable {
     private Date fechaIngresoDatos;
     @JoinColumn(name = "id_aplicacion_transfusion", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    private UciAplicacionesTransfusion idAplicacionTransfusion;
+    private UciAplicacionesTransfusion_2 idAplicacionTransfusion;
 
     public UciAplicacionesTransfusionSignos() {
     }
@@ -154,11 +154,11 @@ public class UciAplicacionesTransfusionSignos implements Serializable {
         this.fechaIngresoDatos = fechaIngresoDatos;
     }
 
-    public UciAplicacionesTransfusion getIdAplicacionTransfusion() {
+    public UciAplicacionesTransfusion_2 getIdAplicacionTransfusion() {
         return idAplicacionTransfusion;
     }
 
-    public void setIdAplicacionTransfusion(UciAplicacionesTransfusion idAplicacionTransfusion) {
+    public void setIdAplicacionTransfusion(UciAplicacionesTransfusion_2 idAplicacionTransfusion) {
         this.idAplicacionTransfusion = idAplicacionTransfusion;
     }
 

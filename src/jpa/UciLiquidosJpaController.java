@@ -166,4 +166,11 @@ public class UciLiquidosJpaController implements Serializable {
         }
     }
 
+     public List<UciLiquidos>getLiquidos(int control){
+        EntityManager em = getEntityManager();
+        Query Q=null;
+        Q=em.createQuery("SELECT l FROM UciLiquidos l WHERE l.idControlO.id=:idc AND l.estado='1'");
+        Q.setParameter("idc", control);
+        return Q.getResultList();
+    }
 }

@@ -1,6 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
+ * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
 package entidades_EJB;
@@ -20,16 +19,30 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Juan Camilo
+ * @author IdlhDeveloper
  */
 @Entity
 @Table(name = "hosp_hoja_tratamientos")
+@XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "HospHojaTratamientosH.findAll", query = "SELECT h FROM HospHojaTratamientosH h")})
-public class HospHojaTratamientosH implements Serializable {
+    @NamedQuery(name = "HospHojaTratamientos.findAll", query = "SELECT h FROM HospHojaTratamientos h"),
+    @NamedQuery(name = "HospHojaTratamientos.findById", query = "SELECT h FROM HospHojaTratamientos h WHERE h.id = :id"),
+    @NamedQuery(name = "HospHojaTratamientos.findByTipo", query = "SELECT h FROM HospHojaTratamientos h WHERE h.tipo = :tipo"),
+    @NamedQuery(name = "HospHojaTratamientos.findByIdentificador", query = "SELECT h FROM HospHojaTratamientos h WHERE h.identificador = :identificador"),
+    @NamedQuery(name = "HospHojaTratamientos.findByFecha", query = "SELECT h FROM HospHojaTratamientos h WHERE h.fecha = :fecha"),
+    @NamedQuery(name = "HospHojaTratamientos.findByHora", query = "SELECT h FROM HospHojaTratamientos h WHERE h.hora = :hora"),
+    @NamedQuery(name = "HospHojaTratamientos.findByDroga", query = "SELECT h FROM HospHojaTratamientos h WHERE h.droga = :droga"),
+    @NamedQuery(name = "HospHojaTratamientos.findByDosis", query = "SELECT h FROM HospHojaTratamientos h WHERE h.dosis = :dosis"),
+    @NamedQuery(name = "HospHojaTratamientos.findByVia", query = "SELECT h FROM HospHojaTratamientos h WHERE h.via = :via"),
+    @NamedQuery(name = "HospHojaTratamientos.findByObservaciones", query = "SELECT h FROM HospHojaTratamientos h WHERE h.observaciones = :observaciones"),
+    @NamedQuery(name = "HospHojaTratamientos.findByUsr", query = "SELECT h FROM HospHojaTratamientos h WHERE h.usr = :usr"),
+    @NamedQuery(name = "HospHojaTratamientos.findByEstado", query = "SELECT h FROM HospHojaTratamientos h WHERE h.estado = :estado"),
+    @NamedQuery(name = "HospHojaTratamientos.findByFechaIngresoDatos", query = "SELECT h FROM HospHojaTratamientos h WHERE h.fechaIngresoDatos = :fechaIngresoDatos")})
+public class UciHojaTratamientos implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -64,35 +77,19 @@ public class HospHojaTratamientosH implements Serializable {
     private Date fechaIngresoDatos;
     @JoinColumn(name = "id_historia", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    private HospHistoriac idHospHistoriac;
+    private UciHistoriac idHistoria;
     @JoinColumn(name = "id_suministro", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private SumSuministro idSuministro;
-
-    public HospHistoriac getIdHospHistoriac() {
-        return idHospHistoriac;
-    }
-
-    public void setIdHospHistoriac(HospHistoriac idHospHistoriac) {
-        this.idHospHistoriac = idHospHistoriac;
-    }
-
-    public SumSuministro getIdSuministro() {
-        return idSuministro;
-    }
-
-    public void setIdSuministro(SumSuministro idSuministro) {
-        this.idSuministro = idSuministro;
-    }
     
-    public HospHojaTratamientosH() {
+    public UciHojaTratamientos() {
     }
 
-    public HospHojaTratamientosH(Integer id) {
+    public UciHojaTratamientos(Integer id) {
         this.id = id;
     }
 
-    public HospHojaTratamientosH(Integer id, Date fechaIngresoDatos) {
+    public UciHojaTratamientos(Integer id, Date fechaIngresoDatos) {
         this.id = id;
         this.fechaIngresoDatos = fechaIngresoDatos;
     }
@@ -193,6 +190,22 @@ public class HospHojaTratamientosH implements Serializable {
         this.fechaIngresoDatos = fechaIngresoDatos;
     }
 
+    public UciHistoriac getIdHistoria() {
+        return idHistoria;
+    }
+
+    public void setIdHistoria(UciHistoriac idHistoria) {
+        this.idHistoria = idHistoria;
+    }
+
+    public SumSuministro getIdSuministro() {
+        return idSuministro;
+    }
+
+    public void setIdSuministro(SumSuministro idSuministro) {
+        this.idSuministro = idSuministro;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 0;
@@ -203,10 +216,10 @@ public class HospHojaTratamientosH implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof HospHojaTratamientosH)) {
+        if (!(object instanceof UciHojaTratamientos)) {
             return false;
         }
-        HospHojaTratamientosH other = (HospHojaTratamientosH) object;
+        UciHojaTratamientos other = (UciHojaTratamientos) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -215,7 +228,7 @@ public class HospHojaTratamientosH implements Serializable {
 
     @Override
     public String toString() {
-        return "entidades_EJB.HospHojaTratamientosH[ id=" + id + " ]";
+        return "EntidadesHosp.HospHojaTratamientos[ id=" + id + " ]";
     }
     
 }

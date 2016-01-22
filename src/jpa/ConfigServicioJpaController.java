@@ -198,5 +198,10 @@ public class ConfigServicioJpaController implements Serializable {
             em.close();
         }
     }
-    
+
+    public List<ConfigServicio> getServicios() {
+        EntityManager em = getEntityManager();
+        Query q = em.createQuery("SELECT s FROM ConfigServicio s WHERE s.estado='0'");
+        return q.getResultList();
+    }
 }
