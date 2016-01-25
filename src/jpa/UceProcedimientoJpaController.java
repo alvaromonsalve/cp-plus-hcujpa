@@ -1,4 +1,3 @@
-
 package jpa;
 
 import entidades_EJB.UceHistoriac;
@@ -132,19 +131,44 @@ public class UceProcedimientoJpaController implements Serializable {
         }
     }
 
-
-            //Codigo no Auto-generado
-
-      public List<UceProcedimiento> ListFindUceProcedimiento(UceHistoriac ihc){
+    //Codigo no Auto-generado
+    public List<UceProcedimiento> ListFindUceProcedimiento(UceHistoriac ihc) {
         EntityManager em = getEntityManager();
         try {
             List results = em.createQuery("SELECT i FROM UceProcedimiento i WHERE i.idHistoriac = :hc")
-            .setParameter("hc", ihc.getId())
-            .setHint("javax.persistence.cache.storeMode", "REFRESH")
-            .getResultList();return results;
+                    .setParameter("hc", ihc.getId())
+                    .setHint("javax.persistence.cache.storeMode", "REFRESH")
+                    .getResultList();
+            return results;
         } finally {
             em.close();
         }
-   }
+    }
+
+    public List<UceProcedimiento> getHCU(int r) {
+        Query Q = null;
+        EntityManager em = getEntityManager();
+        Q = em.createQuery("SELECT a FROM UceProcedimiento a WHERE a.idHistoriac=:i AND a.estado='0'");
+        Q.setParameter("i", r);
+        return Q.getResultList();
+    }
+
+    public Object countProcedimiento(int h) {
+        Query Q = null;
+        EntityManager em = getEntityManager();
+        Q = em.createQuery("SELECT COUNT(c.id) FROM UceProcedimiento c WHERE c.idCups='6621' AND c.idHistoriac=:his AND c.estado='0'");
+        Q.setParameter("his", h);
+        Q.setHint("javax.persistence.cache.storeMode", "REFRESH");
+        return Q.getSingleResult();
+    }
+
+    public List<UceProcedimiento> getProcedimiento(int h) {
+        Query Q = null;
+        EntityManager em = getEntityManager();
+        Q = em.createQuery("SELECT c FROM UceProcedimiento c WHERE c.idCups='6621' AND c.idHistoriac=:his AND c.estado='0'");
+        Q.setParameter("his", h);
+        Q.setHint("javax.persistence.cache.storeMode", "REFRESH");
+        return Q.getResultList();
+    }
 
 }

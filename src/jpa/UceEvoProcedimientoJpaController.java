@@ -1,4 +1,3 @@
-
 package jpa;
 
 import entidades_EJB.UceEvoProcedimiento;
@@ -161,32 +160,47 @@ public class UceEvoProcedimientoJpaController implements Serializable {
         }
     }
 
-   //Codigo no Auto-generado
-   public List<UceEvoProcedimiento> ListFindUceProcedimientoEvo(UceEvolucion evo){
+    //Codigo no Auto-generado
+    public List<UceEvoProcedimiento> ListFindUceProcedimientoEvo(UceEvolucion evo) {
         EntityManager em = getEntityManager();
         em.clear();
         try {
             return em.createQuery("SELECT h FROM UceEvoProcedimiento h WHERE h.idUceEvolucion = :evo AND h.estado = '1'")
-            .setParameter("evo", evo)
-            .setHint("javax.persistence.cache.storeMode", "REFRESH")
-            .getResultList();
+                    .setParameter("evo", evo)
+                    .setHint("javax.persistence.cache.storeMode", "REFRESH")
+                    .getResultList();
         } finally {
             em.close();
         }
-   }
+    }
 
-      public List<UceEvoProcedimiento> ListFindUceProcedimientoEvo(UceEvolucion evo, Integer ConfigCups){
+    public List<UceEvoProcedimiento> ListFindUceProcedimientoEvo(UceEvolucion evo, Integer ConfigCups) {
         EntityManager em = getEntityManager();
         em.clear();
         try {
             return em.createQuery("SELECT h FROM UceEvoProcedimiento h WHERE h.idUceEvolucion = :evo AND h.estado = '1' AND h.idConfigCups.idEstructuraCups.id = :cc")
-            .setParameter("evo", evo)
-            .setParameter("cc", ConfigCups)
-            .setHint("javax.persistence.cache.storeMode", "REFRESH")
-            .getResultList();
+                    .setParameter("evo", evo)
+                    .setParameter("cc", ConfigCups)
+                    .setHint("javax.persistence.cache.storeMode", "REFRESH")
+                    .getResultList();
         } finally {
             em.close();
         }
-   }
+    }
 
+    public Object countEvoluciones(int h) {
+        EntityManager em = getEntityManager();
+        Query Q = null;
+        Q = em.createQuery("SELECT COUNT(e.id) FROM UceEvoProcedimiento e WHERE e.idUceEvolucion.idUceHistoriac.id=:hist AND e.idConfigCups.id='6621'");
+        Q.setParameter("hist", h);
+        return Q.getSingleResult();
+    }
+
+    public List<UceEvoProcedimiento> getProcedimientos(int h) {
+        EntityManager em = getEntityManager();
+        Query Q = null;
+        Q = em.createQuery("SELECT e FROM UceEvoProcedimiento e WHERE e.idUceEvolucion.idUceHistoriac.id=:hist AND e.idConfigCups.id='6621'");
+        Q.setParameter("hist", h);
+        return Q.getResultList();
+    }
 }

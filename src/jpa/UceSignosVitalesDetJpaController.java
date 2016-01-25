@@ -7,6 +7,7 @@ package jpa;
 
 import entidades_EJB.UceFactsNotas;
 import entidades_EJB.UceHistoriac;
+import entidades_EJB.UceSignosVitalesDet;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -21,9 +22,9 @@ import jpa.exceptions.NonexistentEntityException;
  *
  * @author IdlhDeveloper
  */
-public class UceFactsNotasJpaController implements Serializable {
+public class UceSignosVitalesDetJpaController implements Serializable {
 
-    public UceFactsNotasJpaController(EntityManagerFactory emf) {
+    public UceSignosVitalesDetJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
     private EntityManagerFactory emf = null;
@@ -32,12 +33,12 @@ public class UceFactsNotasJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(UceFactsNotas uceFactsNotas) {
+    public void create(UceSignosVitalesDet uceSignosVitalesDet) {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            em.persist(uceFactsNotas);
+            em.persist(uceSignosVitalesDet);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -46,19 +47,19 @@ public class UceFactsNotasJpaController implements Serializable {
         }
     }
 
-    public void edit(UceFactsNotas uceFactsNotas) throws NonexistentEntityException, Exception {
+    public void edit(UceSignosVitalesDet uceSignosVitalesDet) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            uceFactsNotas = em.merge(uceFactsNotas);
+            uceSignosVitalesDet = em.merge(uceSignosVitalesDet);
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                Integer id = uceFactsNotas.getId();
-                if (findUceFactsNotas(id) == null) {
-                    throw new NonexistentEntityException("The uceFactsNotas with id " + id + " no longer exists.");
+                Integer id = uceSignosVitalesDet.getId();
+                if (findUceSignosVitalesDet(id) == null) {
+                    throw new NonexistentEntityException("The uceSignosVitalesDet with id " + id + " no longer exists.");
                 }
             }
             throw ex;
@@ -74,14 +75,14 @@ public class UceFactsNotasJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            UceFactsNotas uceFactsNotas;
+            UceSignosVitalesDet uceSignosVitalesDet;
             try {
-                uceFactsNotas = em.getReference(UceFactsNotas.class, id);
-                uceFactsNotas.getId();
+                uceSignosVitalesDet = em.getReference(UceSignosVitalesDet.class, id);
+                uceSignosVitalesDet.getId();
             } catch (EntityNotFoundException enfe) {
-                throw new NonexistentEntityException("The uceFactsNotas with id " + id + " no longer exists.", enfe);
+                throw new NonexistentEntityException("The uceSignosVitalesDet with id " + id + " no longer exists.", enfe);
             }
-            em.remove(uceFactsNotas);
+            em.remove(uceSignosVitalesDet);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -90,19 +91,19 @@ public class UceFactsNotasJpaController implements Serializable {
         }
     }
 
-    public List<UceFactsNotas> findUceFactsNotasEntities() {
-        return findUceFactsNotasEntities(true, -1, -1);
+    public List<UceSignosVitalesDet> findUceSignosVitalesDetEntities() {
+        return findUceSignosVitalesDetEntities(true, -1, -1);
     }
 
-    public List<UceFactsNotas> findUceFactsNotasEntities(int maxResults, int firstResult) {
-        return findUceFactsNotasEntities(false, maxResults, firstResult);
+    public List<UceSignosVitalesDet> findUceSignosVitalesDetEntities(int maxResults, int firstResult) {
+        return findUceSignosVitalesDetEntities(false, maxResults, firstResult);
     }
 
-    private List<UceFactsNotas> findUceFactsNotasEntities(boolean all, int maxResults, int firstResult) {
+    private List<UceSignosVitalesDet> findUceSignosVitalesDetEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(UceFactsNotas.class));
+            cq.select(cq.from(UceSignosVitalesDet.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -114,20 +115,20 @@ public class UceFactsNotasJpaController implements Serializable {
         }
     }
 
-    public UceFactsNotas findUceFactsNotas(Integer id) {
+    public UceSignosVitalesDet findUceSignosVitalesDet(Integer id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(UceFactsNotas.class, id);
+            return em.find(UceSignosVitalesDet.class, id);
         } finally {
             em.close();
         }
     }
 
-    public int getUceFactsNotasCount() {
+    public int getUceSignosVitalesDetCount() {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<UceFactsNotas> rt = cq.from(UceFactsNotas.class);
+            Root<UceSignosVitalesDet> rt = cq.from(UceSignosVitalesDet.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();
@@ -136,33 +137,28 @@ public class UceFactsNotasJpaController implements Serializable {
         }
     }
 
-    public List<UceFactsNotas> getNotasUCE(int historia) {
-        EntityManager em = getEntityManager();
-        Query q = null;
-        try {
-            q = em.createQuery("SELECT n FROM UceFactsNotas n WHERE n.idHistoriac.id=:h AND n.estado='1'");
-            q.setParameter("h", historia);
-            q.setHint("javax.persistence.cache.storeMode", "REFRESH");
-            return q.getResultList();
-        } finally {
-            em.close();
-        }
-    }
-
-    public List<UceFactsNotas> find_Notas(UceHistoriac hi) {
+    public UceSignosVitalesDet get_Signos(UceFactsNotas n) {
+        UceSignosVitalesDet signos;
         EntityManager em = getEntityManager();
         Query Q = null;
-        Q = em.createQuery("SELECT i FROM UceFactsNotas i WHERE i.idHistoriac=:h AND i.estado='1'");
-        Q.setParameter("h", hi);
+        Q = em.createQuery("SELECT s FROM UceSignosVitalesDet s WHERE s.idFactsNotas=:no AND s.estado='1'");
+        Q.setParameter("no", n);
         Q.setHint("javax.persistence.cache.storeMode", "REFRESH");
-        return Q.getResultList();
+        List results = Q.getResultList();
+        if (!results.isEmpty()) {
+            signos = (UceSignosVitalesDet) results.get(0);
+        } else {
+            signos = null;
+        }
+        return signos;
     }
 
-    public List<UceFactsNotas> find_Notas2(UceHistoriac hi) {
+    public List<UceSignosVitalesDet> get_SignosHist(UceHistoriac n) {
+        UceSignosVitalesDet signos;
         EntityManager em = getEntityManager();
         Query Q = null;
-        Q = em.createQuery("SELECT i FROM UceFactsNotas i WHERE i.idHistoriac=:h");
-        Q.setParameter("h", hi);
+        Q = em.createQuery("SELECT s FROM UceSignosVitalesDet s WHERE s.idFactsNotas.idHistoriac=:h AND s.estado='1' GROUP BY s.idFactsNotas.fecha");
+        Q.setParameter("h", n);
         Q.setHint("javax.persistence.cache.storeMode", "REFRESH");
         return Q.getResultList();
     }

@@ -6,7 +6,7 @@
 package jpa;
 
 import entidades_EJB.UceFactsNotas;
-import entidades_EJB.UceHistoriac;
+import entidades_EJB.UceMedSuministrados;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -21,9 +21,9 @@ import jpa.exceptions.NonexistentEntityException;
  *
  * @author IdlhDeveloper
  */
-public class UceFactsNotasJpaController implements Serializable {
+public class UceMedSuministradosJpaController implements Serializable {
 
-    public UceFactsNotasJpaController(EntityManagerFactory emf) {
+    public UceMedSuministradosJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
     private EntityManagerFactory emf = null;
@@ -32,12 +32,12 @@ public class UceFactsNotasJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(UceFactsNotas uceFactsNotas) {
+    public void create(UceMedSuministrados uceMedSuministrados) {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            em.persist(uceFactsNotas);
+            em.persist(uceMedSuministrados);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -46,19 +46,19 @@ public class UceFactsNotasJpaController implements Serializable {
         }
     }
 
-    public void edit(UceFactsNotas uceFactsNotas) throws NonexistentEntityException, Exception {
+    public void edit(UceMedSuministrados uceMedSuministrados) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            uceFactsNotas = em.merge(uceFactsNotas);
+            uceMedSuministrados = em.merge(uceMedSuministrados);
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                Integer id = uceFactsNotas.getId();
-                if (findUceFactsNotas(id) == null) {
-                    throw new NonexistentEntityException("The uceFactsNotas with id " + id + " no longer exists.");
+                Integer id = uceMedSuministrados.getId();
+                if (findUceMedSuministrados(id) == null) {
+                    throw new NonexistentEntityException("The uceMedSuministrados with id " + id + " no longer exists.");
                 }
             }
             throw ex;
@@ -74,14 +74,14 @@ public class UceFactsNotasJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            UceFactsNotas uceFactsNotas;
+            UceMedSuministrados uceMedSuministrados;
             try {
-                uceFactsNotas = em.getReference(UceFactsNotas.class, id);
-                uceFactsNotas.getId();
+                uceMedSuministrados = em.getReference(UceMedSuministrados.class, id);
+                uceMedSuministrados.getId();
             } catch (EntityNotFoundException enfe) {
-                throw new NonexistentEntityException("The uceFactsNotas with id " + id + " no longer exists.", enfe);
+                throw new NonexistentEntityException("The uceMedSuministrados with id " + id + " no longer exists.", enfe);
             }
-            em.remove(uceFactsNotas);
+            em.remove(uceMedSuministrados);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -90,19 +90,19 @@ public class UceFactsNotasJpaController implements Serializable {
         }
     }
 
-    public List<UceFactsNotas> findUceFactsNotasEntities() {
-        return findUceFactsNotasEntities(true, -1, -1);
+    public List<UceMedSuministrados> findUceMedSuministradosEntities() {
+        return findUceMedSuministradosEntities(true, -1, -1);
     }
 
-    public List<UceFactsNotas> findUceFactsNotasEntities(int maxResults, int firstResult) {
-        return findUceFactsNotasEntities(false, maxResults, firstResult);
+    public List<UceMedSuministrados> findUceMedSuministradosEntities(int maxResults, int firstResult) {
+        return findUceMedSuministradosEntities(false, maxResults, firstResult);
     }
 
-    private List<UceFactsNotas> findUceFactsNotasEntities(boolean all, int maxResults, int firstResult) {
+    private List<UceMedSuministrados> findUceMedSuministradosEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(UceFactsNotas.class));
+            cq.select(cq.from(UceMedSuministrados.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -114,20 +114,20 @@ public class UceFactsNotasJpaController implements Serializable {
         }
     }
 
-    public UceFactsNotas findUceFactsNotas(Integer id) {
+    public UceMedSuministrados findUceMedSuministrados(Integer id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(UceFactsNotas.class, id);
+            return em.find(UceMedSuministrados.class, id);
         } finally {
             em.close();
         }
     }
 
-    public int getUceFactsNotasCount() {
+    public int getUceMedSuministradosCount() {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<UceFactsNotas> rt = cq.from(UceFactsNotas.class);
+            Root<UceMedSuministrados> rt = cq.from(UceMedSuministrados.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();
@@ -136,34 +136,19 @@ public class UceFactsNotasJpaController implements Serializable {
         }
     }
 
-    public List<UceFactsNotas> getNotasUCE(int historia) {
+    public UceMedSuministrados get_Medicamentos(UceFactsNotas n) {
+        UceMedSuministrados med;
         EntityManager em = getEntityManager();
-        Query q = null;
-        try {
-            q = em.createQuery("SELECT n FROM UceFactsNotas n WHERE n.idHistoriac.id=:h AND n.estado='1'");
-            q.setParameter("h", historia);
-            q.setHint("javax.persistence.cache.storeMode", "REFRESH");
-            return q.getResultList();
-        } finally {
-            em.close();
+        Query Q = null;
+        Q = em.createQuery("SELECT m FROM UceMedSuministrados m WHERE m.idFactsNotas=:no AND m.estado='1'");
+        Q.setParameter("no", n);
+        Q.setHint("javax.persistence.cache.storeMode", "REFRESH");
+        List results = Q.getResultList();
+        if (!results.isEmpty()) {
+            med = (UceMedSuministrados) results.get(0);
+        } else {
+            med = null;
         }
-    }
-
-    public List<UceFactsNotas> find_Notas(UceHistoriac hi) {
-        EntityManager em = getEntityManager();
-        Query Q = null;
-        Q = em.createQuery("SELECT i FROM UceFactsNotas i WHERE i.idHistoriac=:h AND i.estado='1'");
-        Q.setParameter("h", hi);
-        Q.setHint("javax.persistence.cache.storeMode", "REFRESH");
-        return Q.getResultList();
-    }
-
-    public List<UceFactsNotas> find_Notas2(UceHistoriac hi) {
-        EntityManager em = getEntityManager();
-        Query Q = null;
-        Q = em.createQuery("SELECT i FROM UceFactsNotas i WHERE i.idHistoriac=:h");
-        Q.setParameter("h", hi);
-        Q.setHint("javax.persistence.cache.storeMode", "REFRESH");
-        return Q.getResultList();
+        return med;
     }
 }

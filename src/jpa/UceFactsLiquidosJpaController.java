@@ -6,6 +6,7 @@
 package jpa;
 
 import entidades_EJB.UceFactsLiquidos;
+import entidades_EJB.UceHistoriac;
 import java.io.Serializable;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
@@ -199,5 +200,12 @@ public class UceFactsLiquidosJpaController implements Serializable {
             em.close();
         }
     }
-    
+
+    public List<UceFactsLiquidos> getControlesLiquidos(UceHistoriac hc) {
+        Query q = null;
+        EntityManager em = getEntityManager();
+        q = em.createQuery("SELECT c FROM UceFactsLiquidos c WHERE c.idHistoria=:h AND c.estado='1'");
+        q.setParameter("h", hc);
+        return q.getResultList();
+    }
 }

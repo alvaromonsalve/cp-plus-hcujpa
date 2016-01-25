@@ -5,8 +5,7 @@
  */
 package jpa;
 
-import entidades_EJB.UceFactsNotas;
-import entidades_EJB.UceHistoriac;
+import entidades_EJB.UceFinalizacionesOxigeno;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -21,9 +20,9 @@ import jpa.exceptions.NonexistentEntityException;
  *
  * @author IdlhDeveloper
  */
-public class UceFactsNotasJpaController implements Serializable {
+public class UceFinalizacionesOxigenoJpaController implements Serializable {
 
-    public UceFactsNotasJpaController(EntityManagerFactory emf) {
+    public UceFinalizacionesOxigenoJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
     private EntityManagerFactory emf = null;
@@ -32,12 +31,12 @@ public class UceFactsNotasJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(UceFactsNotas uceFactsNotas) {
+    public void create(UceFinalizacionesOxigeno uceFinalizacionesOxigeno) {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            em.persist(uceFactsNotas);
+            em.persist(uceFinalizacionesOxigeno);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -46,19 +45,19 @@ public class UceFactsNotasJpaController implements Serializable {
         }
     }
 
-    public void edit(UceFactsNotas uceFactsNotas) throws NonexistentEntityException, Exception {
+    public void edit(UceFinalizacionesOxigeno uceFinalizacionesOxigeno) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            uceFactsNotas = em.merge(uceFactsNotas);
+            uceFinalizacionesOxigeno = em.merge(uceFinalizacionesOxigeno);
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                Integer id = uceFactsNotas.getId();
-                if (findUceFactsNotas(id) == null) {
-                    throw new NonexistentEntityException("The uceFactsNotas with id " + id + " no longer exists.");
+                Integer id = uceFinalizacionesOxigeno.getId();
+                if (findUceFinalizacionesOxigeno(id) == null) {
+                    throw new NonexistentEntityException("The uceFinalizacionesOxigeno with id " + id + " no longer exists.");
                 }
             }
             throw ex;
@@ -74,14 +73,14 @@ public class UceFactsNotasJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            UceFactsNotas uceFactsNotas;
+            UceFinalizacionesOxigeno uceFinalizacionesOxigeno;
             try {
-                uceFactsNotas = em.getReference(UceFactsNotas.class, id);
-                uceFactsNotas.getId();
+                uceFinalizacionesOxigeno = em.getReference(UceFinalizacionesOxigeno.class, id);
+                uceFinalizacionesOxigeno.getId();
             } catch (EntityNotFoundException enfe) {
-                throw new NonexistentEntityException("The uceFactsNotas with id " + id + " no longer exists.", enfe);
+                throw new NonexistentEntityException("The uceFinalizacionesOxigeno with id " + id + " no longer exists.", enfe);
             }
-            em.remove(uceFactsNotas);
+            em.remove(uceFinalizacionesOxigeno);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -90,19 +89,19 @@ public class UceFactsNotasJpaController implements Serializable {
         }
     }
 
-    public List<UceFactsNotas> findUceFactsNotasEntities() {
-        return findUceFactsNotasEntities(true, -1, -1);
+    public List<UceFinalizacionesOxigeno> findUceFinalizacionesOxigenoEntities() {
+        return findUceFinalizacionesOxigenoEntities(true, -1, -1);
     }
 
-    public List<UceFactsNotas> findUceFactsNotasEntities(int maxResults, int firstResult) {
-        return findUceFactsNotasEntities(false, maxResults, firstResult);
+    public List<UceFinalizacionesOxigeno> findUceFinalizacionesOxigenoEntities(int maxResults, int firstResult) {
+        return findUceFinalizacionesOxigenoEntities(false, maxResults, firstResult);
     }
 
-    private List<UceFactsNotas> findUceFactsNotasEntities(boolean all, int maxResults, int firstResult) {
+    private List<UceFinalizacionesOxigeno> findUceFinalizacionesOxigenoEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(UceFactsNotas.class));
+            cq.select(cq.from(UceFinalizacionesOxigeno.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -114,20 +113,20 @@ public class UceFactsNotasJpaController implements Serializable {
         }
     }
 
-    public UceFactsNotas findUceFactsNotas(Integer id) {
+    public UceFinalizacionesOxigeno findUceFinalizacionesOxigeno(Integer id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(UceFactsNotas.class, id);
+            return em.find(UceFinalizacionesOxigeno.class, id);
         } finally {
             em.close();
         }
     }
 
-    public int getUceFactsNotasCount() {
+    public int getUceFinalizacionesOxigenoCount() {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<UceFactsNotas> rt = cq.from(UceFactsNotas.class);
+            Root<UceFinalizacionesOxigeno> rt = cq.from(UceFinalizacionesOxigeno.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();
@@ -136,34 +135,30 @@ public class UceFactsNotasJpaController implements Serializable {
         }
     }
 
-    public List<UceFactsNotas> getNotasUCE(int historia) {
-        EntityManager em = getEntityManager();
-        Query q = null;
-        try {
-            q = em.createQuery("SELECT n FROM UceFactsNotas n WHERE n.idHistoriac.id=:h AND n.estado='1'");
-            q.setParameter("h", historia);
-            q.setHint("javax.persistence.cache.storeMode", "REFRESH");
-            return q.getResultList();
-        } finally {
-            em.close();
-        }
-    }
-
-    public List<UceFactsNotas> find_Notas(UceHistoriac hi) {
+    public List<UceFinalizacionesOxigeno> getFinalizados(int h) {
         EntityManager em = getEntityManager();
         Query Q = null;
-        Q = em.createQuery("SELECT i FROM UceFactsNotas i WHERE i.idHistoriac=:h AND i.estado='1'");
-        Q.setParameter("h", hi);
+        Q = em.createQuery("SELECT o FROM UceFinalizacionesOxigeno o WHERE o.idAplicacion.idHistoriac.id=:historia AND o.idAplicacion.estado='2' AND o.estado='1'");
+        Q.setParameter("historia", h);
         Q.setHint("javax.persistence.cache.storeMode", "REFRESH");
         return Q.getResultList();
     }
 
-    public List<UceFactsNotas> find_Notas2(UceHistoriac hi) {
+    public List<UceFinalizacionesOxigeno> getFinalizacion(int i) {
         EntityManager em = getEntityManager();
         Query Q = null;
-        Q = em.createQuery("SELECT i FROM UceFactsNotas i WHERE i.idHistoriac=:h");
-        Q.setParameter("h", hi);
+        Q = em.createQuery("SELECT o FROM UceFinalizacionesOxigeno o WHERE o.idAplicacion.id=:i AND o.estado='1'");
+        Q.setParameter("i", i);
         Q.setHint("javax.persistence.cache.storeMode", "REFRESH");
         return Q.getResultList();
+    }
+
+    public Object getCountFinalizacionO(int i) {
+        EntityManager em = getEntityManager();
+        Query Q = null;
+        Q = em.createQuery("SELECT COUNT(o.id) FROM UceFinalizacionesOxigeno o WHERE o.idAplicacion.id=:ia AND o.estado='1'");
+        Q.setParameter("ia", i);
+        Q.setHint("javax.persistence.cache.storeMode", "REFRESH");
+        return Q.getSingleResult();
     }
 }

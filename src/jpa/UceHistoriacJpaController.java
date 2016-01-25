@@ -1,4 +1,3 @@
-
 package jpa;
 
 import java.io.Serializable;
@@ -349,7 +348,7 @@ public class UceHistoriacJpaController implements Serializable {
     }
 
     //Codifo no Auto-Generado
-    public List<UceHistoriac> finduceHistoriacs(int estado){
+    public List<UceHistoriac> finduceHistoriacs(int estado) {
         EntityManager em = getEntityManager();
         try {
             return em.createQuery("SELECT i FROM UceHistoriac i WHERE i.estado = :estado")
@@ -381,5 +380,34 @@ public class UceHistoriacJpaController implements Serializable {
         } finally {
             em.close();
         }
+    }
+
+    public List<UceHistoriac> findHistoriac_() {
+        EntityManager em = getEntityManager();
+        Query Q = null;
+        try {
+            Q = em.createQuery("SELECT i FROM UceHistoriac i WHERE i.tipoHc='0' AND i.estado='1'");
+            Q.setHint("javax.persistence.cache.storeMode", "REFRESH");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+        return Q.getResultList();
+    }
+
+    public Object getTipoHC(UceHistoriac ihc) {
+        Query Q = null;
+        EntityManager em = getEntityManager();
+        Q = em.createQuery("SELECT h.tipoHc FROM UceHistoriac h WHERE h=:idht");
+        Q.setHint("javax.persistence.cache.storeMode", "REFRESH");
+        Q.setParameter("idht", ihc);
+        return Q.getSingleResult();
+    }
+
+    public List<UceHistoriac> getHistoriasALL(String ide) {
+        EntityManager em = getEntityManager();
+        Query Q = null;
+        Q = em.createQuery("SELECT h FROM UceHistoriac h WHERE h.idInfoAdmision.idDatosPersonales.numDoc=:document AND h.estado <>'5' AND h.idInfoAdmision.idDatosPersonales.estado='1'");
+        Q.setParameter("document", ide);
+        return Q.getResultList();
     }
 }

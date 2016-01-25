@@ -53,9 +53,9 @@ public class UceAplicacionesOxigeno implements Serializable {
     private Date fecha;
     @Column(name = "hora_inicio")
     private String horaInicio;
-    @Basic(optional = false)
-    @Column(name = "medico")
-    private int medico;
+    @JoinColumn(name = "medico", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private CmProfesionales medico;
     @Column(name = "sis_O2")
     private Integer sisO2;
     @Column(name = "fiO2")
@@ -77,7 +77,7 @@ public class UceAplicacionesOxigeno implements Serializable {
         this.id = id;
     }
 
-    public UceAplicacionesOxigeno(Integer id, int medico) {
+    public UceAplicacionesOxigeno(Integer id, CmProfesionales medico) {
         this.id = id;
         this.medico = medico;
     }
@@ -106,11 +106,11 @@ public class UceAplicacionesOxigeno implements Serializable {
         this.horaInicio = horaInicio;
     }
 
-    public int getMedico() {
+    public CmProfesionales getMedico() {
         return medico;
     }
 
-    public void setMedico(int medico) {
+    public void setMedico(CmProfesionales medico) {
         this.medico = medico;
     }
 

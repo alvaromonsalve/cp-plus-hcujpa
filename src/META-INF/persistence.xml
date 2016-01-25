@@ -283,5 +283,14 @@
     <class>entidades_EJB.UceFactsLiquidos</class>
     <class>entidades_EJB.UceFactsNotas</class>
     <class>entidades_EJB.UceLiquidos</class>
+    <class>entidades_EJB.UceEnfLogs</class>
+    <class>entidades_EJB.UceEspecificacionesGenerales</class>
+    <class>entidades_EJB.UceFinalizacionesAiremedico</class>
+    <class>entidades_EJB.UceFinalizacionesOxigeno</class>
+    <class>entidades_EJB.UceGlasgow</class>
+    <class>entidades_EJB.UceHojaTratamientos</class>
+    <class>entidades_EJB.UceHojaTratamientos2</class>
+    <class>entidades_EJB.UceMedSuministrados</class>
+    <class>entidades_EJB.UceSignosVitalesDet</class>
   </persistence-unit>
 </persistence>
