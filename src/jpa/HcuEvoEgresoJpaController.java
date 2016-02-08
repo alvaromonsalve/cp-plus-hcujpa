@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package jpa;
 
 import entidades_EJB.HcuEvoEgreso;
@@ -165,5 +164,34 @@ public class HcuEvoEgresoJpaController implements Serializable {
             em.close();
         }
     }
-    
+
+    public HcuEvoEgreso getEntidadHcuEvoEgreso(int evo) {
+        HcuEvoEgreso e = null;
+        EntityManager em = getEntityManager();
+        Query q = null;
+        q = em.createQuery("SELECT e FROM HcuEvoEgreso e WHERE e.idHcuEvolucion.id=:evo AND e.incapacidad='1'  AND e.estado='1'");
+        q.setParameter("evo", evo);
+        List result = q.getResultList();
+        if (!result.isEmpty()) {
+            e = (HcuEvoEgreso) result.get(0);
+        } else {
+            e = null;
+        }
+        return e;
+    }
+
+    public HcuEvoEgreso getEntidadHcuEvoEgresoReco(int evo) {
+        HcuEvoEgreso e = null;
+        EntityManager em = getEntityManager();
+        Query q = null;
+        q = em.createQuery("SELECT e FROM HcuEvoEgreso e WHERE e.idHcuEvolucion.id=:evo AND e.estado='1'");
+        q.setParameter("evo", evo);
+        List result = q.getResultList();
+        if (!result.isEmpty()) {
+            e = (HcuEvoEgreso) result.get(0);
+        } else {
+            e = null;
+        }
+        return e;
+    }
 }

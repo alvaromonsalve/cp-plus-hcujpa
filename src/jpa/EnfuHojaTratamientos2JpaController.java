@@ -146,4 +146,16 @@ public class EnfuHojaTratamientos2JpaController implements Serializable {
         return Q.getResultList();
     }
 
+    public Object countHojaTratamiento2(int h) {
+        EntityManager em = getEntityManager();
+        Query q = null;
+        try {
+            q = em.createQuery("SELECT COUNT(N) FROM EnfuHojaTratamientos2 N WHERE N.idHistoria.id=:ht AND N.estado='1'");
+            q.setParameter("ht", h);
+            q.setHint("javax.persistence.cache.storeMode", "REFRESH");
+            return q.getSingleResult();
+        } finally {
+            em.close();
+        }
+    }
 }

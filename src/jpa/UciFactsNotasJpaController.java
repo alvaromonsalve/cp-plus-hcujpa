@@ -166,5 +166,4 @@ public class UciFactsNotasJpaController implements Serializable {
         Q.setHint("javax.persistence.cache.storeMode", "REFRESH");
         return Q.getResultList();
     }
-
 }

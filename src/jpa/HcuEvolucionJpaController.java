@@ -513,12 +513,12 @@ public class HcuEvolucionJpaController implements Serializable {
         return Q.getSingleResult();
     }
 
-    public HcuEvolucion getEntidadEvolucionEgreso(InfoHistoriac h) {
+    public HcuEvolucion getEntidadEvolucionEgreso(int h) {
         HcuEvolucion evo = null;
         EntityManager em = getEntityManager();
         Query Q = null;
-        Q = em.createQuery("SELECT ev FROM HcuEvolucion ev WHERE (ev.idInfoHistoriac=:hh AND ev.estado='4')");
-        Q.setParameter("hh", h.getId());
+        Q = em.createQuery("SELECT ev FROM HcuEvolucion ev WHERE (ev.idInfoHistoriac.id=:hh AND ev.estado='4')");
+        Q.setParameter("hh", h);
         List results = Q.getResultList();
         if (!results.isEmpty()) {
             evo = (HcuEvolucion) results.get(0);
@@ -536,4 +536,11 @@ public class HcuEvolucionJpaController implements Serializable {
         return Q.getResultList();
     }
 
+    public List<HcuEvolucion> getEvoluciones(int h) {
+        EntityManager em = getEntityManager();
+        Query Q = em.createQuery("SELECT e FROM HcuEvolucion e WHERE e.idInfoHistoriac.id=:ht AND (e.estado='2' OR e.estado='4') ");
+        Q.setParameter("ht", h);
+        Q.setHint("javax.persistence.cache.storeMode", "REFRESH");
+        return Q.getResultList();
+    }
 }

@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package jpa;
 
 import entidades_EJB.CmEspPprofesional;
@@ -16,6 +15,7 @@ import entidades_EJB.CmProfesionales;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.swing.JOptionPane;
 import jpa.exceptions.NonexistentEntityException;
 
 /**
@@ -165,5 +165,63 @@ public class CmEspPprofesionalJpaController implements Serializable {
             em.close();
         }
     }
-    
+
+    public List<CmEspPprofesional> getProfesionales() {
+        Query Q = null;
+        try {
+            EntityManager em = getEntityManager();
+            Q = em.createQuery("SELECT ep FROM CmEspPprofesional ep WHERE ep.idProfesional.estado='1'");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+        return Q.getResultList();
+    }
+
+    public List<CmEspPprofesional> getProfesionalesESP(CmProfesionales p) {
+        Query Q = null;
+        try {
+            EntityManager em = getEntityManager();
+            Q = em.createQuery("SELECT ep FROM CmEspPprofesional ep WHERE ep.idProfesional=:pro AND ep.idProfesional.estado='1'");
+            Q.setParameter("pro", p);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+        return Q.getResultList();
+    }
+
+    public List<CmEspPprofesional> getProfesionalesESP(int p) {
+        Query Q = null;
+        try {
+            EntityManager em = getEntityManager();
+            Q = em.createQuery("SELECT ep FROM CmEspPprofesional ep WHERE ep.idProfesional.id=:pro AND ep.idProfesional.estado='1'");
+            Q.setParameter("pro", p);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+        return Q.getResultList();
+    }
+
+    public List<CmEspPprofesional> getProfesionalesESP2(CmProfesionales p) {
+        Query Q = null;
+        try {
+            EntityManager em = getEntityManager();
+            Q = em.createQuery("SELECT ep FROM CmEspPprofesional ep WHERE ep.idProfesional=:pro AND ep.idProfesional.estado='1'");
+            Q.setParameter("pro", p);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+        return Q.getResultList();
+    }
+
+    public List<CmEspPprofesional> getProfesionalesESP3(CmProfesionales p) {
+        Query Q = null;
+        try {
+            EntityManager em = getEntityManager();
+            Q = em.createQuery("SELECT ep FROM CmEspPprofesional ep WHERE ep.idProfesional=:pro AND ep.idProfesional.estado='1'");
+            Q.setParameter("pro", p);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+        return Q.getResultList();
+    }
 }

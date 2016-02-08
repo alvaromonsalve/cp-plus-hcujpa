@@ -227,5 +227,31 @@ public class InfoPacienteJpaController implements Serializable {
             em.close();
         }
     }
-    
+
+    public InfoPaciente getEntidadPaciente(String id) {
+        Query q = null;
+        InfoPaciente pa = null;
+        EntityManager em = getEntityManager();
+        q = em.createQuery("SELECT p FROM InfoPaciente p WHERE p.numDoc=:doc AND p.estado='1'");
+        q.setParameter("doc", id);
+        List<InfoPaciente> getEnt = q.getResultList();
+        if (!getEnt.isEmpty()) {
+            pa = getEnt.get(0);
+        }
+        return pa;
+    }
+
+    public InfoPaciente getEntidadPacienteSalCoop(String id) {//id 78 saludcoop
+        Query q = null;
+        InfoPaciente pa = null;
+        EntityManager em = getEntityManager();
+        q = em.createQuery("SELECT p FROM InfoPaciente p WHERE p.numDoc=:doc AND p.estado='1' "
+                + "AND (p.contratante.id='78' OR p.contratante.id='117' OR p.contratante.id='124' OR p.contratante.id='5' OR p.contratante.id='141')");
+        q.setParameter("doc", id);
+        List<InfoPaciente> getEnt = q.getResultList();
+        if (!getEnt.isEmpty()) {
+            pa = getEnt.get(0);
+        }
+        return pa;
+    }
 }

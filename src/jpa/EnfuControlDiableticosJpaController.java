@@ -144,5 +144,17 @@ public class EnfuControlDiableticosJpaController implements Serializable {
         Q.setHint("javax.persistence.cache.storeMode", "REFRESH");
         return Q.getResultList();
     }
-    
+
+    public Object getCountDiabetico(int h) {
+        EntityManager em = getEntityManager();
+        Query q = null;
+        try {
+            q = em.createQuery("SELECT COUNT(D) FROM EnfuControlDiableticos D WHERE D.idHistoria.id=:ht AND D.estado='1'");
+            q.setParameter("ht", h);
+            q.setHint("javax.persistence.cache.storeMode", "REFRESH");
+            return q.getSingleResult();
+        } finally {
+            em.close();
+        }
+    }
 }

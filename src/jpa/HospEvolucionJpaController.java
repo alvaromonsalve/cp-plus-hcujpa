@@ -459,12 +459,12 @@ public class HospEvolucionJpaController implements Serializable {
         return Q.getSingleResult();
     }
 
-    public HospEvolucion getEntidadEvolucionEgreso(HospHistoriac h) {
+    public HospEvolucion getEntidadEvolucionEgreso(int h) {
         HospEvolucion evo = null;
         EntityManager em = getEntityManager();
         Query Q = null;
         Q = em.createQuery("SELECT ev FROM HospEvolucion ev WHERE (ev.idHospHistoriac.id=:hh AND ev.estado='4')");
-        Q.setParameter("hh", h.getId());
+        Q.setParameter("hh", h);
         List results = Q.getResultList();
         if (!results.isEmpty()) {
             evo = (HospEvolucion) results.get(0);
@@ -478,6 +478,14 @@ public class HospEvolucionJpaController implements Serializable {
         EntityManager em = getEntityManager();
         Query Q = em.createQuery("SELECT e FROM HospEvolucion e WHERE e.idHospHistoriac.id=:ht AND (e.estado='2' OR e.estado='4') ");
         Q.setParameter("ht", h.getId());
+        Q.setHint("javax.persistence.cache.storeMode", "REFRESH");
+        return Q.getResultList();
+    }
+
+    public List<HospEvolucion> getEvoluciones(int h) {
+        EntityManager em = getEntityManager();
+        Query Q = em.createQuery("SELECT e FROM HospEvolucion e WHERE e.idInfoHistoriac=:ht AND (e.estado='2' OR e.estado='4') ");
+        Q.setParameter("ht", h);
         Q.setHint("javax.persistence.cache.storeMode", "REFRESH");
         return Q.getResultList();
     }

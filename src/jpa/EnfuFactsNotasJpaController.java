@@ -416,7 +416,7 @@ public class EnfuFactsNotasJpaController implements Serializable {
         } finally {
             em.close();
         }
-    }    
+    }
 
     public List<EnfuFactsNotas> find_Notas(InfoHistoriac hi) {
         EntityManager em = getEntityManager();
@@ -437,5 +437,31 @@ public class EnfuFactsNotasJpaController implements Serializable {
         Q.setParameter("h", hi);
         Q.setHint("javax.persistence.cache.storeMode", "REFRESH");
         return Q.getResultList();
+    }
+
+    public Object countNotas(int hist) {
+        EntityManager em = getEntityManager();
+        Query q = null;
+        try {
+            q = em.createQuery("SELECT COUNT(N) FROM EnfuFactsNotas N WHERE N.idHistoriac.id=:h AND N.estado='1'");
+            q.setParameter("h", hist);
+            q.setHint("javax.persistence.cache.storeMode", "REFRESH");
+            return q.getSingleResult();
+        } finally {
+            em.close();
+        }
+    }
+
+    public List<EnfuFactsNotas> getNotasUrgencias(int historia) {
+        EntityManager em = getEntityManager();
+        Query q = null;
+        try {
+            q = em.createQuery("SELECT n FROM EnfuFactsNotas n WHERE n.idHistoriac.id=:h AND n.estado='1'");
+            q.setParameter("h", historia);
+            q.setHint("javax.persistence.cache.storeMode", "REFRESH");
+            return q.getResultList();
+        } finally {
+            em.close();
+        }
     }
 }

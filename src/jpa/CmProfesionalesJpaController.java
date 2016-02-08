@@ -202,7 +202,7 @@ public class CmProfesionalesJpaController implements Serializable {
         }
     }
 
-        //Codigo no auto-generado
+    //Codigo no auto-generado
     public CmProfesionales pprofesional(Configdecripcionlogin config) {
         EntityManager em = getEntityManager();
         try {
@@ -247,4 +247,25 @@ public class CmProfesionalesJpaController implements Serializable {
         return U;
     }
 
+    public List<CmProfesionales> getProfesionalesList() {
+        EntityManager em = getEntityManager();
+        Query Q = null;
+        Q = em.createQuery("SELECT pro FROM CmProfesionales pro WHERE pro.estado='1'");
+        return Q.getResultList();
+    }
+
+    public CmProfesionales getEntidadProfesional(int p) {
+        EntityManager em = getEntityManager();
+        CmProfesionales cm = null;
+        Query Q = null;  // Viernes 27 de Febrero de 2015 - 16:12 
+        Q = em.createQuery("SELECT c FROM CmProfesionales c WHERE c.idDescripcionLogin.id=:cm AND c.estado='1'");
+        Q.setParameter("cm", p);
+        List<CmProfesionales> c = Q.getResultList();
+        if (!c.isEmpty()) {
+            cm = (CmProfesionales) c.get(0);
+        } else {
+            cm = null;
+        }
+        return cm;
+    }
 }

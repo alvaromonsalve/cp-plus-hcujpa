@@ -133,19 +133,24 @@ public class StaticEspecialidadesJpaController implements Serializable {
             em.close();
         }
     }
-    
-    
-        //Codigo no Auto-generado
-   public List<StaticEspecialidades> ListEspecialidades(){
+
+    //Codigo no Auto-generado
+    public List<StaticEspecialidades> ListEspecialidades() {
         EntityManager em = getEntityManager();
         em.clear();
         try {
             return em.createQuery("SELECT s FROM StaticEspecialidades s WHERE s.estado = '1'")
-            .setHint("javax.persistence.cache.storeMode", "REFRESH")
-            .getResultList();
+                    .setHint("javax.persistence.cache.storeMode", "REFRESH")
+                    .getResultList();
         } finally {
             em.close();
         }
-   }
-    
+    }
+
+    public List<StaticEspecialidades> getEspecialidades() {
+        EntityManager em = getEntityManager();
+        Query q = em.createQuery("SELECT e FROM StaticEspecialidades e WHERE e.estado='1'");
+        q.setHint("javax.persistence.cache.storeMode", "REFRESH");
+        return q.getResultList();
+    }
 }

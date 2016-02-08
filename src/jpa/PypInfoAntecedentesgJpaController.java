@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package jpa;
 
+import entidades_EJB.InfoPaciente;
 import entidades_EJB.PypInfoAntecedentesg;
 import java.io.Serializable;
 import java.util.List;
@@ -134,6 +134,29 @@ public class PypInfoAntecedentesgJpaController implements Serializable {
         } finally {
             em.close();
         }
+    }
+
+    public Object countAntecedenteGineco(int id) {
+        EntityManager em = getEntityManager();
+        Query q = null;
+        q = em.createQuery("SELECT COUNT(g.id) FROM PypInfoAntecedentesg g WHERE g.infoPaciente.id=:p");
+        q.setParameter("p", id);
+        return q.getSingleResult();
+    }
+
+    public PypInfoAntecedentesg getEntidadAntecedentesPersonales(InfoPaciente pa) {
+        PypInfoAntecedentesg antp = null;
+        EntityManager em = getEntityManager();
+        Query Q = null;
+        Q = em.createQuery("SELECT p FROM PypInfoAntecedentesg p WHERE p.infoPaciente=:idp");
+        Q.setParameter("idp", pa);
+        List results = Q.getResultList();
+        if (!results.isEmpty()) {
+            antp = (PypInfoAntecedentesg) results.get(0);
+        } else {
+            antp = null;
+        }
+        return antp;
     }
 
 }

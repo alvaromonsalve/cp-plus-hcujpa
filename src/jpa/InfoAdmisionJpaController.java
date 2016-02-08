@@ -258,11 +258,10 @@ public class InfoAdmisionJpaController implements Serializable {
             em.close();
         }
     }
-    
-        //Codigo no Auto-generado
-    
-   public List<InfoAdmision> findInfoAdmisionActivado(int estado){
-        EntityManager em = getEntityManager();        
+
+    //Codigo no Auto-generado
+    public List<InfoAdmision> findInfoAdmisionActivado(int estado) {
+        EntityManager em = getEntityManager();
         try {
             return em.createQuery("SELECT i FROM InfoAdmision i WHERE i.estado = :estado")
                     .setParameter("estado", estado)
@@ -271,7 +270,12 @@ public class InfoAdmisionJpaController implements Serializable {
         } finally {
             em.close();
         }
-   }
-    
-}
+    }
 
+    public List<InfoAdmision> getAdmisiones(int id) {
+        EntityManager em = getEntityManager();
+        Query q = em.createQuery("SELECT a FROM InfoAdmision a WHERE a.idDatosPersonales.id=:ident AND a.estado<>'0'");
+        q.setParameter("ident", id);
+        return q.getResultList();
+    }
+}

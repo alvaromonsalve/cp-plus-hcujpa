@@ -192,4 +192,30 @@ public class AccessConfigUserJpaController implements Serializable {
         }
     }
 
+    public Object getAcceso(int us) {
+        EntityManager em = getEntityManager();
+        Query q = null;
+        try {
+            q = em.createQuery("SELECT COUNT(A) FROM AccessConfigUser A WHERE A.configdecripcionlogin.id=:usr AND A.idPerfiles.id='9' AND A.estado='1'");
+            q.setParameter("usr", us);
+            q.setHint("javax.persistence.cache.storeMode", "REFRESH");
+            return q.getSingleResult();
+        } finally {
+            em.close();
+        }
+    }
+
+    public Object getAccesosce(int us) {
+        EntityManager em = getEntityManager();
+        Query q = null;
+        try {
+            q = em.createQuery("SELECT COUNT(a.id) FROM AccessConfigUser a WHERE a.configdecripcionlogin.id=:usr AND a.idPerfiles.id='10' AND a.estado='1'");
+            q.setParameter("usr", us);
+            q.setHint("javax.persistence.cache.storeMode", "REFRESH");
+            return q.getSingleResult();
+        } finally {
+            em.close();
+        }
+    }
+
 }

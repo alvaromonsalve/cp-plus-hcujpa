@@ -415,4 +415,13 @@ public class InfoHistoriacJpaController implements Serializable {
         Q.setParameter("document", ide);
         return Q.getResultList();
     }
+
+    public List<InfoHistoriac> getUrgencias(InfoAdmision a) {
+        Query Q = null;
+        EntityManager em = getEntityManager();
+        Q = em.createQuery("SELECT u FROM InfoHistoriac u WHERE u.idInfoAdmision.id=:adm AND (u.estado='4' OR u.estado='2' OR u.estado='3')");
+        Q.setParameter("adm", a.getId());
+        Q.setHint("javax.persistence.cache.storeMode", "REFRESH");
+        return Q.getResultList();
+    }
 }

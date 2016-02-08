@@ -493,4 +493,12 @@ public class UciEvolucionJpaController implements Serializable {
         Q.setHint("javax.persistence.cache.storeMode", "REFRESH");
         return Q.getResultList();
     }
+
+    public List<UciEvolucion> getEvolucionesUCI(int h) {
+        EntityManager em = getEntityManager();
+        Query Q = em.createQuery("SELECT e FROM UciEvolucion e WHERE e.idInfoHistoriac=:ht AND (e.estado='2' OR e.estado='4' OR e.estado='8')");
+        Q.setParameter("ht", h);
+        Q.setHint("javax.persistence.cache.storeMode", "REFRESH");
+        return Q.getResultList();
+    }
 }

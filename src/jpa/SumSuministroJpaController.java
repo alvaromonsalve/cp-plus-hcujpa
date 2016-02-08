@@ -198,19 +198,27 @@ public class SumSuministroJpaController implements Serializable {
             em.close();
         }
     }
-    
-       //Codigo no Auto-generado
-   public List<SumSuministro> ListfindFiltro(String like){
+
+    //Codigo no Auto-generado
+    public List<SumSuministro> ListfindFiltro(String like) {
         EntityManager em = getEntityManager();
         try {
 
             Query q = em.createQuery("SELECT s FROM SumSuministro s "
                     + "WHERE (s.idPricipioactivo.nombre LIKE :suministro OR s.suministro LIKE :suministro ) "
                     + "ORDER BY s.idPricipioactivo.nombre");
-            q.setParameter("suministro", "%"+like+"%");
+            q.setParameter("suministro", "%" + like + "%");
             return q.getResultList();
         } finally {
             em.close();
         }
-   }
+    }
+
+    public List<SumSuministro> ListaSuministros() {
+        Query Q = null;
+        EntityManager em = getEntityManager();
+        Q = em.createQuery("SELECT s FROM SumSuministro s WHERE s.estado='1' ORDER BY s.suministro ASC");
+        Q.setHint("javax.persistence.cache.storeMode", "REFRESH");
+        return Q.getResultList();
+    }
 }

@@ -263,4 +263,16 @@ public class EnfuFactsLiquidosJpaController implements Serializable {
         return q.getResultList();
     }
 
+    public Object getCountLiquidos(int h) {
+        EntityManager em = getEntityManager();
+        Query q = null;
+        try {
+            q = em.createQuery("SELECT COUNT(L) FROM EnfuFactsLiquidos L WHERE L.idHistoria.id=:ht AND L.estado='1'");
+            q.setParameter("ht", h);
+            q.setHint("javax.persistence.cache.storeMode", "REFRESH");
+            return q.getSingleResult();
+        } finally {
+            em.close();
+        }
+    }
 }

@@ -411,4 +411,13 @@ public class HospHistoriacJpaController implements Serializable {
         Q.setParameter("document", ide);
         return Q.getResultList();
     }
+
+    public List<HospHistoriac> getHospitalizaciones(InfoAdmision a) {
+        Query Q = null;
+        EntityManager em = getEntityManager();
+        Q = em.createQuery("SELECT h FROM HospHistoriac h WHERE h.idInfoAdmision=:adm AND (h.estado='4' OR h.estado='2' OR h.estado='3')");
+        Q.setParameter("adm", a);
+        Q.setHint("javax.persistence.cache.storeMode", "REFRESH");
+        return Q.getResultList();
+    }
 }

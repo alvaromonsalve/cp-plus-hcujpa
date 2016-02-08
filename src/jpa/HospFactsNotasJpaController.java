@@ -167,4 +167,16 @@ public class HospFactsNotasJpaController implements Serializable {
         return Q.getResultList();
     }
 
+    public Object countNotas(int hist) {
+        EntityManager em = getEntityManager();
+        Query q = null;
+        try {
+            q = em.createQuery("SELECT COUNT(N) FROM HospFactsNotas N WHERE N.idHistoriac.id=:h AND N.estado='1'");
+            q.setParameter("h", hist);
+            q.setHint("javax.persistence.cache.storeMode", "REFRESH");
+            return q.getSingleResult();
+        } finally {
+            em.close();
+        }
+    }
 }

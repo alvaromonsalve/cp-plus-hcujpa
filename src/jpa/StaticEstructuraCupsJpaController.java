@@ -197,25 +197,29 @@ public class StaticEstructuraCupsJpaController implements Serializable {
         } finally {
             em.close();
         }
-    }    
-    
+    }
+
     //Codigo no Auto-generado    
-    public ConfigCups FindCups(String codigo){
+    public ConfigCups FindCups(String codigo) {
         EntityManager em = getEntityManager();
         ConfigCups cc = null;
         try {
             cc = (ConfigCups) em.createQuery("SELECT c FROM ConfigCups c WHERE c.codigo = :codigo")
-            .setParameter("codigo", codigo)
-            .getSingleResult();
-        }catch(Exception e){
-            cc=null;
+                    .setParameter("codigo", codigo)
+                    .getSingleResult();
+        } catch (Exception e) {
+            cc = null;
         } finally {
             em.close();
         }
         return cc;
-   }
-    
-    
-    
-    
+    }
+
+    public List<StaticEstructuraCups> ListaCUPS() {
+        Query Q = null;
+        EntityManager em = getEntityManager();
+        Q = em.createQuery("SELECT c FROM StaticEstructuraCups c WHERE c.capitulo<>'0'");
+        return Q.getResultList();
+    }
+
 }

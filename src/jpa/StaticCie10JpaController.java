@@ -133,5 +133,12 @@ public class StaticCie10JpaController implements Serializable {
             em.close();
         }
     }
-    
+
+    public List<StaticCie10> CIE10List() {
+        Query Q = null;
+        EntityManager em = getEntityManager();
+        Q = em.createQuery("SELECT c FROM StaticCie10 c WHERE c.codigo <> '0000'");
+        return Q.getResultList();
+    }
+
 }
