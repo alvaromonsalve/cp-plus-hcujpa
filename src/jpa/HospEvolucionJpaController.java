@@ -484,7 +484,7 @@ public class HospEvolucionJpaController implements Serializable {
 
     public List<HospEvolucion> getEvoluciones(int h) {
         EntityManager em = getEntityManager();
-        Query Q = em.createQuery("SELECT e FROM HospEvolucion e WHERE e.idInfoHistoriac=:ht AND (e.estado='2' OR e.estado='4') ");
+        Query Q = em.createQuery("SELECT e FROM HospEvolucion e WHERE e.idHospHistoriac.id=:ht AND (e.estado='2' OR e.estado='4') ");
         Q.setParameter("ht", h);
         Q.setHint("javax.persistence.cache.storeMode", "REFRESH");
         return Q.getResultList();
