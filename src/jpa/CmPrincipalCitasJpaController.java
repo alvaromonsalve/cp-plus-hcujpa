@@ -240,4 +240,5 @@ public class CmPrincipalCitasJpaController implements Serializable {
         Q.setParameter("esp", especialidad);
         return Q.getResultList();
     }
+    
 }

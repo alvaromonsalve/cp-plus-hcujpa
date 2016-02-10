@@ -227,7 +227,7 @@ public class HospCamasJpaController implements Serializable {
     public Object countCamas(HospHistoriac h) {
         Query Q = null;
         EntityManager em = getEntityManager();
-        Q = em.createQuery("SELECT COUNT(i.id) FROM HospCamas i WHERE i.idInfoHistoriac.id=:ht AND i.estado='1'");
+        Q = em.createQuery("SELECT COUNT(i.id) FROM HospCamas i WHERE i.idHospHistoriac.id=:ht AND i.estado='1'");
         Q.setParameter("ht", h.getId());
         return Q.getSingleResult();
     }
@@ -235,7 +235,7 @@ public class HospCamasJpaController implements Serializable {
     public Object countCamaOcupada(HospHistoriac h) {
         Query Q = null;
         EntityManager em = getEntityManager();
-        Q = em.createQuery("SELECT COUNT(i.id) FROM HospCamas i WHERE i.idInfoHistoriac.id=:ht AND i.estado='2'");
+        Q = em.createQuery("SELECT COUNT(i.id) FROM HospCamas i WHERE i.idHospHistoriac.id=:ht AND i.estado='2'");
         Q.setParameter("ht", h.getId());
         return Q.getSingleResult();
     }
@@ -243,7 +243,7 @@ public class HospCamasJpaController implements Serializable {
     public Object ValidarCama(HospHistoriac h, ConfigCamas c) {
         Query Q = null;
         EntityManager em = getEntityManager();
-        Q = em.createQuery("SELECT COUNT(i.id) FROM HospCamas i WHERE i.idInfoHistoriac.id=:ht AND i.idConfigCamas.id=:cc AND i.estado='1'");
+        Q = em.createQuery("SELECT COUNT(i.id) FROM HospCamas i WHERE i.idHospHistoriac.id=:ht AND i.idConfigCamas.id=:cc AND i.estado='1'");
         Q.setParameter("ht", h.getId());
         Q.setParameter("cc", c.getId());
         return Q.getSingleResult();

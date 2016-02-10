@@ -467,7 +467,7 @@ public class CeHistoriac implements Serializable {
 
     @Override
     public String toString() {
-        return "Entidades_Rep.CeHistoriac[ id=" + id + " ]";
+        return "entidades_EJB.CeHistoriac[ id=" + id + " ]";
     }
 
     @XmlTransient

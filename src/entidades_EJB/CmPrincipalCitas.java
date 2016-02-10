@@ -237,7 +237,7 @@ public class CmPrincipalCitas implements Serializable {
 
     @Override
     public String toString() {
-        return "Entidades_Rep.CmPrincipalCitas[ id=" + id + " ]";
+        return "entidades_EJB.CmPrincipalCitas[ id=" + id + " ]";
     }
     
 }

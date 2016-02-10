@@ -135,16 +135,27 @@ public class UciHojaTratamientosJpaController implements Serializable {
         }
     }
 
-    public List<UciHojaTratamientos> getAplicaciones(int hc, int sum, int tipo, int ident) {
+    public List<UciHojaTratamientos> getAplicaciones(Integer hc, Integer sum, Integer tipo, Integer ident) {
         EntityManager em = getEntityManager();
-        Query q = null;
-        q = em.createQuery("SELECT a FROM UciHojaTratamientos a WHERE a.idHistoria.id=:h AND a.idSuministro.id=:s AND a.tipo=:t AND a.identificador=:i AND a.estado='1'");
-        q.setHint("javax.persistence.cache.storeMode", "REFRESH");
-        q.setParameter("h", hc);
-        q.setParameter("s", sum);
-        q.setParameter("t", tipo);
-        q.setParameter("i", ident);
-        return q.getResultList();
+        try {
+            return em.createQuery("SELECT a FROM UciHojaTratamientos a WHERE a.idHistoria.id =:hc AND a.idSuministro.id =:sum AND a.tipo =:tipo AND a.identificador =:ident AND a.estado='1'")
+                    .setParameter("hc", hc)
+                    .setParameter("sum", sum)
+                    .setParameter("tipo", tipo)
+                    .setParameter("ident", ident)
+                    .setHint("javax.persistence.cache.storeMode", "REFRESH")
+                    .getResultList();
+        } finally {
+            em.close();
+        }
+//        Query q = null;
+//        q = em.createQuery("SELECT a FROM UciHojaTratamientos a WHERE a.idHistoria.id=:h AND a.idSuministro.id=:s AND a.tipo=:t AND a.identificador=:i AND a.estado=1");
+//        q.setHint("javax.persistence.cache.storeMode", "REFRESH");
+//        q.setParameter("h", hc);
+//        q.setParameter("s", sum);
+//        q.setParameter("t", tipo);
+//        q.setParameter("i", ident);
+//        return q.getResultList();
     }
 
     public List<UciHojaTratamientos> getAplicaciones2(int hc) {

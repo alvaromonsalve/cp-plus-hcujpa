@@ -531,7 +531,7 @@ public class HcuEvolucionJpaController implements Serializable {
     public List<HcuEvolucion> getEvoluciones(InfoHistoriac h) {
         EntityManager em = getEntityManager();
         Query Q = em.createQuery("SELECT e FROM HcuEvolucion e WHERE e.idInfoHistoriac=:ht AND (e.estado='2' OR e.estado='4')");
-        Q.setParameter("ht", h.getId());
+        Q.setParameter("ht", h);
         Q.setHint("javax.persistence.cache.storeMode", "REFRESH");
         return Q.getResultList();
     }

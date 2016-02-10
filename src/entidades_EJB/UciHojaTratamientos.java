@@ -26,22 +26,22 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author IdlhDeveloper
  */
 @Entity
-@Table(name = "hosp_hoja_tratamientos")
+@Table(name = "uci_hoja_tratamientos")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "HospHojaTratamientos.findAll", query = "SELECT h FROM HospHojaTratamientos h"),
-    @NamedQuery(name = "HospHojaTratamientos.findById", query = "SELECT h FROM HospHojaTratamientos h WHERE h.id = :id"),
-    @NamedQuery(name = "HospHojaTratamientos.findByTipo", query = "SELECT h FROM HospHojaTratamientos h WHERE h.tipo = :tipo"),
-    @NamedQuery(name = "HospHojaTratamientos.findByIdentificador", query = "SELECT h FROM HospHojaTratamientos h WHERE h.identificador = :identificador"),
-    @NamedQuery(name = "HospHojaTratamientos.findByFecha", query = "SELECT h FROM HospHojaTratamientos h WHERE h.fecha = :fecha"),
-    @NamedQuery(name = "HospHojaTratamientos.findByHora", query = "SELECT h FROM HospHojaTratamientos h WHERE h.hora = :hora"),
-    @NamedQuery(name = "HospHojaTratamientos.findByDroga", query = "SELECT h FROM HospHojaTratamientos h WHERE h.droga = :droga"),
-    @NamedQuery(name = "HospHojaTratamientos.findByDosis", query = "SELECT h FROM HospHojaTratamientos h WHERE h.dosis = :dosis"),
-    @NamedQuery(name = "HospHojaTratamientos.findByVia", query = "SELECT h FROM HospHojaTratamientos h WHERE h.via = :via"),
-    @NamedQuery(name = "HospHojaTratamientos.findByObservaciones", query = "SELECT h FROM HospHojaTratamientos h WHERE h.observaciones = :observaciones"),
-    @NamedQuery(name = "HospHojaTratamientos.findByUsr", query = "SELECT h FROM HospHojaTratamientos h WHERE h.usr = :usr"),
-    @NamedQuery(name = "HospHojaTratamientos.findByEstado", query = "SELECT h FROM HospHojaTratamientos h WHERE h.estado = :estado"),
-    @NamedQuery(name = "HospHojaTratamientos.findByFechaIngresoDatos", query = "SELECT h FROM HospHojaTratamientos h WHERE h.fechaIngresoDatos = :fechaIngresoDatos")})
+    @NamedQuery(name = "UciHojaTratamientos.findAll", query = "SELECT h FROM UciHojaTratamientos h"),
+    @NamedQuery(name = "UciHojaTratamientos.findById", query = "SELECT h FROM UciHojaTratamientos h WHERE h.id = :id"),
+    @NamedQuery(name = "UciHojaTratamientos.findByTipo", query = "SELECT h FROM UciHojaTratamientos h WHERE h.tipo = :tipo"),
+    @NamedQuery(name = "UciHojaTratamientos.findByIdentificador", query = "SELECT h FROM UciHojaTratamientos h WHERE h.identificador = :identificador"),
+    @NamedQuery(name = "UciHojaTratamientos.findByFecha", query = "SELECT h FROM UciHojaTratamientos h WHERE h.fecha = :fecha"),
+    @NamedQuery(name = "UciHojaTratamientos.findByHora", query = "SELECT h FROM UciHojaTratamientos h WHERE h.hora = :hora"),
+    @NamedQuery(name = "UciHojaTratamientos.findByDroga", query = "SELECT h FROM UciHojaTratamientos h WHERE h.droga = :droga"),
+    @NamedQuery(name = "UciHojaTratamientos.findByDosis", query = "SELECT h FROM UciHojaTratamientos h WHERE h.dosis = :dosis"),
+    @NamedQuery(name = "UciHojaTratamientos.findByVia", query = "SELECT h FROM UciHojaTratamientos h WHERE h.via = :via"),
+    @NamedQuery(name = "UciHojaTratamientos.findByObservaciones", query = "SELECT h FROM UciHojaTratamientos h WHERE h.observaciones = :observaciones"),
+    @NamedQuery(name = "UciHojaTratamientos.findByUsr", query = "SELECT h FROM UciHojaTratamientos h WHERE h.usr = :usr"),
+    @NamedQuery(name = "UciHojaTratamientos.findByEstado", query = "SELECT h FROM UciHojaTratamientos h WHERE h.estado = :estado"),
+    @NamedQuery(name = "UciHojaTratamientos.findByFechaIngresoDatos", query = "SELECT h FROM UciHojaTratamientos h WHERE h.fechaIngresoDatos = :fechaIngresoDatos")})
 public class UciHojaTratamientos implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -228,7 +228,7 @@ public class UciHojaTratamientos implements Serializable {
 
     @Override
     public String toString() {
-        return "EntidadesHosp.HospHojaTratamientos[ id=" + id + " ]";
+        return "entidades_EJB.UciHojaTratamientos[ id=" + id + " ]";
     }
     
 }
