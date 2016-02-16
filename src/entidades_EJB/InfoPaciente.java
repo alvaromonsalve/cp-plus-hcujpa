@@ -112,10 +112,10 @@ public class InfoPaciente implements Serializable {
     @Column(name = "fecha_hora_ingreso_datos")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaHoraIngresoDatos;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idDatosPersonales", fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idDatosPersonales", fetch = FetchType.LAZY)
     private List<InfoAdmision> infoAdmisionList;
     @JoinColumn(name = "contratante", referencedColumnName = "id")
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(optional = false)
     private InfoEntidades contratante;
 
     public InfoPaciente() {
