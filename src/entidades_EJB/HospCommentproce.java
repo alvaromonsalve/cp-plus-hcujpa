@@ -6,6 +6,7 @@
 package entidades_EJB;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,6 +17,8 @@ import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -26,6 +29,10 @@ import javax.persistence.Table;
 @NamedQueries({
     @NamedQuery(name = "HospCommentproce.findAll", query = "SELECT h FROM HospCommentproce h")})
 public class HospCommentproce implements Serializable {
+
+    @Column(name = "fecha")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date fecha;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -146,6 +153,14 @@ public class HospCommentproce implements Serializable {
     @Override
     public String toString() {
         return "entidades_EJB.HospCommentproce[ id=" + id + " ]";
+    }
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
     }
     
 }
