@@ -316,5 +316,7 @@
     <class>entidades_EJB.CeValoracionDesc</class>
     <class>entidades_EJB.ConfigProcedimientos</class>
     <class>entidades_EJB.TempProcedimientos</class>
+    <class>entidades_EJB.DatosUsuarios</class>
+    <class>entidades_EJB.LabHemocomponentes</class>
   </persistence-unit>
 </persistence>
