@@ -113,6 +113,54 @@ public class LabHemocomponentes implements Serializable {
     @Column(name = "crioabmenos")
     private int crioabmenos;
     @Basic(optional = false)
+    @Column(name = "paqueteurggreomas")
+    private int paqueteurggreomas;
+    @Basic(optional = false)
+    @Column(name = "paqueteurggreomenos")
+    private int paqueteurggreomenos;
+    @Basic(optional = false)
+    @Column(name = "paqueteurggreamas")
+    private int paqueteurggreamas;
+    @Basic(optional = false)
+    @Column(name = "paqueteurggreamenos")
+    private int paqueteurggreamenos;
+    @Basic(optional = false)
+    @Column(name = "paqueteurggrebmas")
+    private int paqueteurggrebmas;
+    @Basic(optional = false)
+    @Column(name = "paqueteurggrebmenos")
+    private int paqueteurggrebmenos;
+    @Basic(optional = false)
+    @Column(name = "paqueteurggreabmas")
+    private int paqueteurggreabmas;
+    @Basic(optional = false)
+    @Column(name = "paqueteurggreabmenos")
+    private int paqueteurggreabmenos;
+    @Basic(optional = false)
+    @Column(name = "paqueteurgpfcomas")
+    private int paqueteurgpfcomas;
+    @Basic(optional = false)
+    @Column(name = "paqueteurgpfcomenos")
+    private int paqueteurgpfcomenos;
+    @Basic(optional = false)
+    @Column(name = "paqueteurgpfcamas")
+    private int paqueteurgpfcamas;
+    @Basic(optional = false)
+    @Column(name = "paqueteurgpfcamenos")
+    private int paqueteurgpfcamenos;
+    @Basic(optional = false)
+    @Column(name = "paqueteurgpfcbmas")
+    private int paqueteurgpfcbmas;
+    @Basic(optional = false)
+    @Column(name = "paqueteurgpfcbmenos")
+    private int paqueteurgpfcbmenos;
+    @Basic(optional = false)
+    @Column(name = "paqueteurgpfcabmas")
+    private int paqueteurgpfcabmas;
+    @Basic(optional = false)
+    @Column(name = "paqueteurgpfcabmenos")
+    private int paqueteurgpfcabmenos;
+    @Basic(optional = false)
     @Column(name = "estado")
     private int estado;
 
@@ -123,7 +171,7 @@ public class LabHemocomponentes implements Serializable {
         this.id = id;
     }
 
-    public LabHemocomponentes(Integer id, Date fecha, int globulosromas, int globulosromenos, int globulosramas, int globulosramenos, int globulosrbmas, int globulosrbmenos, int globulosrabmas, int globulosrabmenos, int plasmaomas, int plasmaomenos, int plasmaamas, int plasmaamenos, int plasmabmas, int plasmabmenos, int plasmaabmas, int plasmaabmenos, int crioomas, int crioomenos, int crioamas, int crioamenos, int criobmas, int criobmenos, int crioabmas, int crioabmenos, int estado) {
+    public LabHemocomponentes(Integer id, Date fecha, int globulosromas, int globulosromenos, int globulosramas, int globulosramenos, int globulosrbmas, int globulosrbmenos, int globulosrabmas, int globulosrabmenos, int plasmaomas, int plasmaomenos, int plasmaamas, int plasmaamenos, int plasmabmas, int plasmabmenos, int plasmaabmas, int plasmaabmenos, int crioomas, int crioomenos, int crioamas, int crioamenos, int criobmas, int criobmenos, int crioabmas, int crioabmenos, int paqueteurggreomas, int paqueteurggreomenos, int paqueteurggreamas, int paqueteurggreamenos, int paqueteurggrebmas, int paqueteurggrebmenos, int paqueteurggreabmas, int paqueteurggreabmenos, int paqueteurgpfcomas, int paqueteurgpfcomenos, int paqueteurgpfcamas, int paqueteurgpfcamenos, int paqueteurgpfcbmas, int paqueteurgpfcbmenos, int paqueteurgpfcabmas, int paqueteurgpfcabmenos, int estado) {
         this.id = id;
         this.fecha = fecha;
         this.globulosromas = globulosromas;
@@ -150,6 +198,22 @@ public class LabHemocomponentes implements Serializable {
         this.criobmenos = criobmenos;
         this.crioabmas = crioabmas;
         this.crioabmenos = crioabmenos;
+        this.paqueteurggreomas = paqueteurggreomas;
+        this.paqueteurggreomenos = paqueteurggreomenos;
+        this.paqueteurggreamas = paqueteurggreamas;
+        this.paqueteurggreamenos = paqueteurggreamenos;
+        this.paqueteurggrebmas = paqueteurggrebmas;
+        this.paqueteurggrebmenos = paqueteurggrebmenos;
+        this.paqueteurggreabmas = paqueteurggreabmas;
+        this.paqueteurggreabmenos = paqueteurggreabmenos;
+        this.paqueteurgpfcomas = paqueteurgpfcomas;
+        this.paqueteurgpfcomenos = paqueteurgpfcomenos;
+        this.paqueteurgpfcamas = paqueteurgpfcamas;
+        this.paqueteurgpfcamenos = paqueteurgpfcamenos;
+        this.paqueteurgpfcbmas = paqueteurgpfcbmas;
+        this.paqueteurgpfcbmenos = paqueteurgpfcbmenos;
+        this.paqueteurgpfcabmas = paqueteurgpfcabmas;
+        this.paqueteurgpfcabmenos = paqueteurgpfcabmenos;
         this.estado = estado;
     }
 
@@ -359,6 +423,134 @@ public class LabHemocomponentes implements Serializable {
 
     public void setCrioabmenos(int crioabmenos) {
         this.crioabmenos = crioabmenos;
+    }
+
+    public int getPaqueteurggreomas() {
+        return paqueteurggreomas;
+    }
+
+    public void setPaqueteurggreomas(int paqueteurggreomas) {
+        this.paqueteurggreomas = paqueteurggreomas;
+    }
+
+    public int getPaqueteurggreomenos() {
+        return paqueteurggreomenos;
+    }
+
+    public void setPaqueteurggreomenos(int paqueteurggreomenos) {
+        this.paqueteurggreomenos = paqueteurggreomenos;
+    }
+
+    public int getPaqueteurggreamas() {
+        return paqueteurggreamas;
+    }
+
+    public void setPaqueteurggreamas(int paqueteurggreamas) {
+        this.paqueteurggreamas = paqueteurggreamas;
+    }
+
+    public int getPaqueteurggreamenos() {
+        return paqueteurggreamenos;
+    }
+
+    public void setPaqueteurggreamenos(int paqueteurggreamenos) {
+        this.paqueteurggreamenos = paqueteurggreamenos;
+    }
+
+    public int getPaqueteurggrebmas() {
+        return paqueteurggrebmas;
+    }
+
+    public void setPaqueteurggrebmas(int paqueteurggrebmas) {
+        this.paqueteurggrebmas = paqueteurggrebmas;
+    }
+
+    public int getPaqueteurggrebmenos() {
+        return paqueteurggrebmenos;
+    }
+
+    public void setPaqueteurggrebmenos(int paqueteurggrebmenos) {
+        this.paqueteurggrebmenos = paqueteurggrebmenos;
+    }
+
+    public int getPaqueteurggreabmas() {
+        return paqueteurggreabmas;
+    }
+
+    public void setPaqueteurggreabmas(int paqueteurggreabmas) {
+        this.paqueteurggreabmas = paqueteurggreabmas;
+    }
+
+    public int getPaqueteurggreabmenos() {
+        return paqueteurggreabmenos;
+    }
+
+    public void setPaqueteurggreabmenos(int paqueteurggreabmenos) {
+        this.paqueteurggreabmenos = paqueteurggreabmenos;
+    }
+
+    public int getPaqueteurgpfcomas() {
+        return paqueteurgpfcomas;
+    }
+
+    public void setPaqueteurgpfcomas(int paqueteurgpfcomas) {
+        this.paqueteurgpfcomas = paqueteurgpfcomas;
+    }
+
+    public int getPaqueteurgpfcomenos() {
+        return paqueteurgpfcomenos;
+    }
+
+    public void setPaqueteurgpfcomenos(int paqueteurgpfcomenos) {
+        this.paqueteurgpfcomenos = paqueteurgpfcomenos;
+    }
+
+    public int getPaqueteurgpfcamas() {
+        return paqueteurgpfcamas;
+    }
+
+    public void setPaqueteurgpfcamas(int paqueteurgpfcamas) {
+        this.paqueteurgpfcamas = paqueteurgpfcamas;
+    }
+
+    public int getPaqueteurgpfcamenos() {
+        return paqueteurgpfcamenos;
+    }
+
+    public void setPaqueteurgpfcamenos(int paqueteurgpfcamenos) {
+        this.paqueteurgpfcamenos = paqueteurgpfcamenos;
+    }
+
+    public int getPaqueteurgpfcbmas() {
+        return paqueteurgpfcbmas;
+    }
+
+    public void setPaqueteurgpfcbmas(int paqueteurgpfcbmas) {
+        this.paqueteurgpfcbmas = paqueteurgpfcbmas;
+    }
+
+    public int getPaqueteurgpfcbmenos() {
+        return paqueteurgpfcbmenos;
+    }
+
+    public void setPaqueteurgpfcbmenos(int paqueteurgpfcbmenos) {
+        this.paqueteurgpfcbmenos = paqueteurgpfcbmenos;
+    }
+
+    public int getPaqueteurgpfcabmas() {
+        return paqueteurgpfcabmas;
+    }
+
+    public void setPaqueteurgpfcabmas(int paqueteurgpfcabmas) {
+        this.paqueteurgpfcabmas = paqueteurgpfcabmas;
+    }
+
+    public int getPaqueteurgpfcabmenos() {
+        return paqueteurgpfcabmenos;
+    }
+
+    public void setPaqueteurgpfcabmenos(int paqueteurgpfcabmenos) {
+        this.paqueteurgpfcabmenos = paqueteurgpfcabmenos;
     }
 
     public int getEstado() {

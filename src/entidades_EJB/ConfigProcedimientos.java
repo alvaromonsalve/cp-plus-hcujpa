@@ -159,7 +159,7 @@ public class ConfigProcedimientos implements Serializable {
 
     @Override
     public String toString() {
-        return "CE_Entidades.ConfigProcedimientos[ id=" + id + " ]";
+        return "entidades_EJB.ConfigProcedimientos[ id=" + id + " ]";
     }
     
 }
