@@ -318,5 +318,9 @@
     <class>entidades_EJB.TempProcedimientos</class>
     <class>entidades_EJB.DatosUsuarios</class>
     <class>entidades_EJB.LabHemocomponentes</class>
+    <class>entidades_EJB.HospInfquirurgicoCups</class>
+    <class>entidades_EJB.HospInfquirurgico</class>
+    <class>entidades_EJB.HospInfquirurgicoDxpre</class>
+    <class>entidades_EJB.HospInfquirurgicoDxpost</class>
   </persistence-unit>
 </persistence>

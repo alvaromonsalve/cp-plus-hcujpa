@@ -47,10 +47,10 @@ public class HospAnexo3 implements Serializable {
     private String cama;
     @Basic(optional = false)
     @Column(name = "prioridad")
-    private int estado;
+    private int prioridad;
     @Basic(optional = false)
     @Column(name = "estado")
-    private int prioridad;
+    private int estado;
     @Basic(optional = false)
     @Column(name = "fechadigita")
     @Temporal(TemporalType.TIMESTAMP)
