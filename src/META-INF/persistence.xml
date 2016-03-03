@@ -322,5 +322,13 @@
     <class>entidades_EJB.HospInfquirurgico</class>
     <class>entidades_EJB.HospInfquirurgicoDxpre</class>
     <class>entidades_EJB.HospInfquirurgicoDxpost</class>
+    <class>entidades_EJB.UciInfquirurgicoDxpre</class>
+    <class>entidades_EJB.UciInfquirurgicoCups</class>
+    <class>entidades_EJB.UciInfquirurgicoDxpost</class>
+    <class>entidades_EJB.UciInfquirurgico</class>
+    <class>entidades_EJB.UrgInfquirurgicoDxpost</class>
+    <class>entidades_EJB.UrgInfquirurgico</class>
+    <class>entidades_EJB.UrgInfquirurgicoDxpre</class>
+    <class>entidades_EJB.UrgInfquirurgicoCups</class>
   </persistence-unit>
 </persistence>
