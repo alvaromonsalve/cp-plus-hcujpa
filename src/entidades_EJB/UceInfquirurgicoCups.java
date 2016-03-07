@@ -25,10 +25,10 @@ import javax.persistence.Table;
  * @author IdlhDeveloper
  */
 @Entity
-@Table(name = "urg_infquirurgico_cups")
+@Table(name = "uce_infquirurgico_cups")
 @NamedQueries({
-    @NamedQuery(name = "UrgInfquirurgicoCups.findAll", query = "SELECT u FROM UrgInfquirurgicoCups u")})
-public class UrgInfquirurgicoCups implements Serializable {
+    @NamedQuery(name = "UceInfquirurgicoCups.findAll", query = "SELECT u FROM UceInfquirurgicoCups u")})
+public class UceInfquirurgicoCups implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -44,16 +44,16 @@ public class UrgInfquirurgicoCups implements Serializable {
     private int estado;
     @JoinColumn(name = "idquirurgico", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    private UrgInfquirurgico idquirurgico;
+    private UceInfquirurgico idquirurgico;
 
-    public UrgInfquirurgicoCups() {
+    public UceInfquirurgicoCups() {
     }
 
-    public UrgInfquirurgicoCups(Integer id) {
+    public UceInfquirurgicoCups(Integer id) {
         this.id = id;
     }
 
-    public UrgInfquirurgicoCups(Integer id, int idcups, int estado) {
+    public UceInfquirurgicoCups(Integer id, int idcups, int estado) {
         this.id = id;
         this.idcups = idcups;
         this.estado = estado;
@@ -83,11 +83,11 @@ public class UrgInfquirurgicoCups implements Serializable {
         this.estado = estado;
     }
 
-    public UrgInfquirurgico getIdquirurgico() {
+    public UceInfquirurgico getIdquirurgico() {
         return idquirurgico;
     }
 
-    public void setIdquirurgico(UrgInfquirurgico idquirurgico) {
+    public void setIdquirurgico(UceInfquirurgico idquirurgico) {
         this.idquirurgico = idquirurgico;
     }
 
@@ -101,10 +101,10 @@ public class UrgInfquirurgicoCups implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof UrgInfquirurgicoCups)) {
+        if (!(object instanceof UceInfquirurgicoCups)) {
             return false;
         }
-        UrgInfquirurgicoCups other = (UrgInfquirurgicoCups) object;
+        UceInfquirurgicoCups other = (UceInfquirurgicoCups) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -113,7 +113,7 @@ public class UrgInfquirurgicoCups implements Serializable {
 
     @Override
     public String toString() {
-        return "entidades_EJB.UrgInfquirurgicoCups[ id=" + id + " ]";
+        return "entidades_EJB.UceInfquirurgicoCups[ id=" + id + " ]";
     }
 
 }

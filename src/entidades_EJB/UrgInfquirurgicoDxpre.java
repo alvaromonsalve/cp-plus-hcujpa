@@ -43,7 +43,7 @@ public class UrgInfquirurgicoDxpre implements Serializable {
     @Column(name = "estado")
     private int estado;
     @JoinColumn(name = "idinfquirurgico", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false)
     private UrgInfquirurgico idinfquirurgico;
 
     public UrgInfquirurgicoDxpre() {

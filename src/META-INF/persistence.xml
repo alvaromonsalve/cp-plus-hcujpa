@@ -330,5 +330,9 @@
     <class>entidades_EJB.UrgInfquirurgico</class>
     <class>entidades_EJB.UrgInfquirurgicoDxpre</class>
     <class>entidades_EJB.UrgInfquirurgicoCups</class>
+    <class>entidades_EJB.UceInfquirurgicoCups</class>
+    <class>entidades_EJB.UceInfquirurgicoDxpost</class>
+    <class>entidades_EJB.UceInfquirurgicoDxpre</class>
+    <class>entidades_EJB.UceInfquirurgico</class>
   </persistence-unit>
 </persistence>

@@ -25,10 +25,10 @@ import javax.persistence.Table;
  * @author IdlhDeveloper
  */
 @Entity
-@Table(name = "urg_infquirurgico_cups")
+@Table(name = "uce_infquirurgico_dxpost")
 @NamedQueries({
-    @NamedQuery(name = "UrgInfquirurgicoCups.findAll", query = "SELECT u FROM UrgInfquirurgicoCups u")})
-public class UrgInfquirurgicoCups implements Serializable {
+    @NamedQuery(name = "UceInfquirurgicoDxpost.findAll", query = "SELECT u FROM UceInfquirurgicoDxpost u")})
+public class UceInfquirurgicoDxpost implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -37,25 +37,25 @@ public class UrgInfquirurgicoCups implements Serializable {
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
-    @Column(name = "idcups")
-    private int idcups;
+    @Column(name = "iddx")
+    private int iddx;
     @Basic(optional = false)
     @Column(name = "estado")
     private int estado;
-    @JoinColumn(name = "idquirurgico", referencedColumnName = "id")
+    @JoinColumn(name = "idinfquirurgico", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    private UrgInfquirurgico idquirurgico;
+    private UceInfquirurgico idinfquirurgico;
 
-    public UrgInfquirurgicoCups() {
+    public UceInfquirurgicoDxpost() {
     }
 
-    public UrgInfquirurgicoCups(Integer id) {
+    public UceInfquirurgicoDxpost(Integer id) {
         this.id = id;
     }
 
-    public UrgInfquirurgicoCups(Integer id, int idcups, int estado) {
+    public UceInfquirurgicoDxpost(Integer id, int iddx, int estado) {
         this.id = id;
-        this.idcups = idcups;
+        this.iddx = iddx;
         this.estado = estado;
     }
 
@@ -67,12 +67,12 @@ public class UrgInfquirurgicoCups implements Serializable {
         this.id = id;
     }
 
-    public int getIdcups() {
-        return idcups;
+    public int getIddx() {
+        return iddx;
     }
 
-    public void setIdcups(int idcups) {
-        this.idcups = idcups;
+    public void setIddx(int iddx) {
+        this.iddx = iddx;
     }
 
     public int getEstado() {
@@ -83,12 +83,12 @@ public class UrgInfquirurgicoCups implements Serializable {
         this.estado = estado;
     }
 
-    public UrgInfquirurgico getIdquirurgico() {
-        return idquirurgico;
+    public UceInfquirurgico getIdinfquirurgico() {
+        return idinfquirurgico;
     }
 
-    public void setIdquirurgico(UrgInfquirurgico idquirurgico) {
-        this.idquirurgico = idquirurgico;
+    public void setIdinfquirurgico(UceInfquirurgico idinfquirurgico) {
+        this.idinfquirurgico = idinfquirurgico;
     }
 
     @Override
@@ -101,10 +101,10 @@ public class UrgInfquirurgicoCups implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof UrgInfquirurgicoCups)) {
+        if (!(object instanceof UceInfquirurgicoDxpost)) {
             return false;
         }
-        UrgInfquirurgicoCups other = (UrgInfquirurgicoCups) object;
+        UceInfquirurgicoDxpost other = (UceInfquirurgicoDxpost) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -113,7 +113,7 @@ public class UrgInfquirurgicoCups implements Serializable {
 
     @Override
     public String toString() {
-        return "entidades_EJB.UrgInfquirurgicoCups[ id=" + id + " ]";
+        return "entidades_EJB.UceInfquirurgicoDxpost[ id=" + id + " ]";
     }
 
 }
