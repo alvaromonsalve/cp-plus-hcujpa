@@ -35,6 +35,11 @@ import javax.persistence.TemporalType;
     @NamedQuery(name = "HospInfquirurgico.findAll", query = "SELECT h FROM HospInfquirurgico h")})
 public class HospInfquirurgico implements Serializable {
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idquirurgico", fetch = FetchType.LAZY)
+    private List<HospInfquirurgicoSoat2> hospInfquirurgicoSoat2List;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idinforme", fetch = FetchType.LAZY)
+    private List<HospInfquirurgicoSoat1> hospInfquirurgicoSoat1List;
+
     @Basic(optional = false)
     @Column(name = "fechadigita")
     @Temporal(TemporalType.TIMESTAMP)
@@ -271,6 +276,22 @@ public class HospInfquirurgico implements Serializable {
 
     public void setFechadigita(Date fechadigita) {
         this.fechadigita = fechadigita;
+    }
+
+    public List<HospInfquirurgicoSoat2> getHospInfquirurgicoSoat2List() {
+        return hospInfquirurgicoSoat2List;
+    }
+
+    public void setHospInfquirurgicoSoat2List(List<HospInfquirurgicoSoat2> hospInfquirurgicoSoat2List) {
+        this.hospInfquirurgicoSoat2List = hospInfquirurgicoSoat2List;
+    }
+
+    public List<HospInfquirurgicoSoat1> getHospInfquirurgicoSoat1List() {
+        return hospInfquirurgicoSoat1List;
+    }
+
+    public void setHospInfquirurgicoSoat1List(List<HospInfquirurgicoSoat1> hospInfquirurgicoSoat1List) {
+        this.hospInfquirurgicoSoat1List = hospInfquirurgicoSoat1List;
     }
 
 }

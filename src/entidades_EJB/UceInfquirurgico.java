@@ -35,6 +35,11 @@ import javax.persistence.TemporalType;
     @NamedQuery(name = "UceInfquirurgico.findAll", query = "SELECT u FROM UceInfquirurgico u")})
 public class UceInfquirurgico implements Serializable {
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idquirurgico", fetch = FetchType.LAZY)
+    private List<UceInfquirurgicoSoat2> uceInfquirurgicoSoat2List;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idinforme", fetch = FetchType.LAZY)
+    private List<UceInfquirurgicoSoat1> uceInfquirurgicoSoat1List;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -271,6 +276,22 @@ public class UceInfquirurgico implements Serializable {
     @Override
     public String toString() {
         return "entidades_EJB.UceInfquirurgico[ id=" + id + " ]";
+    }
+
+    public List<UceInfquirurgicoSoat2> getUceInfquirurgicoSoat2List() {
+        return uceInfquirurgicoSoat2List;
+    }
+
+    public void setUceInfquirurgicoSoat2List(List<UceInfquirurgicoSoat2> uceInfquirurgicoSoat2List) {
+        this.uceInfquirurgicoSoat2List = uceInfquirurgicoSoat2List;
+    }
+
+    public List<UceInfquirurgicoSoat1> getUceInfquirurgicoSoat1List() {
+        return uceInfquirurgicoSoat1List;
+    }
+
+    public void setUceInfquirurgicoSoat1List(List<UceInfquirurgicoSoat1> uceInfquirurgicoSoat1List) {
+        this.uceInfquirurgicoSoat1List = uceInfquirurgicoSoat1List;
     }
 
 }

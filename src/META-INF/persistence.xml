@@ -334,5 +334,13 @@
     <class>entidades_EJB.UceInfquirurgicoDxpost</class>
     <class>entidades_EJB.UceInfquirurgicoDxpre</class>
     <class>entidades_EJB.UceInfquirurgico</class>
+    <class>entidades_EJB.UrgInfquirurgicoSoat2</class>
+    <class>entidades_EJB.UrgInfquirurgicoSoat1</class>
+    <class>entidades_EJB.UciInfquirurgicoSoat1</class>
+    <class>entidades_EJB.HospInfquirurgicoSoat2</class>
+    <class>entidades_EJB.UciInfquirurgicoSoat2</class>
+    <class>entidades_EJB.UceInfquirurgicoSoat2</class>
+    <class>entidades_EJB.HospInfquirurgicoSoat1</class>
+    <class>entidades_EJB.UceInfquirurgicoSoat1</class>
   </persistence-unit>
 </persistence>
