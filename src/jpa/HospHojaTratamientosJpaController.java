@@ -135,10 +135,11 @@ public class HospHojaTratamientosJpaController implements Serializable {
             em.close();
         }
     }
-     public List<HospHojaTratamientos>getAplicaciones(int hc, int sum, int tipo, int ident){
-        EntityManager em=getEntityManager();
-        Query q=null;
-        q=em.createQuery("SELECT a FROM HospHojaTratamientos a WHERE a.idHistoria.id=:h AND a.idSuministro.id=:s AND a.tipo=:t AND a.identificador=:i AND a.estado='1'");
+
+    public List<HospHojaTratamientos> getAplicaciones(int hc, int sum, int tipo, int ident) {
+        EntityManager em = getEntityManager();
+        Query q = null;
+        q = em.createQuery("SELECT a FROM HospHojaTratamientos a WHERE a.idHistoria.id=:h AND a.idSuministro.id=:s AND a.tipo=:t AND a.identificador=:i AND a.estado='1'");
         q.setHint("javax.persistence.cache.storeMode", "REFRESH");
         q.setParameter("h", hc);
         q.setParameter("s", sum);
@@ -146,10 +147,11 @@ public class HospHojaTratamientosJpaController implements Serializable {
         q.setParameter("i", ident);
         return q.getResultList();
     }
-    public List<HospHojaTratamientos>getAplicaciones2(int hc){
-        EntityManager em=getEntityManager();
-        Query q=null;
-        q=em.createQuery("SELECT a FROM HospHojaTratamientos a WHERE a.idHistoria=:h AND a.estado='1'");
+
+    public List<HospHojaTratamientos> getAplicaciones2(int hc) {
+        EntityManager em = getEntityManager();
+        Query q = null;
+        q = em.createQuery("SELECT a FROM HospHojaTratamientos a WHERE a.idHistoria.id=:h AND a.estado='1'");
         q.setHint("javax.persistence.cache.storeMode", "REFRESH");
         q.setParameter("h", hc);
         return q.getResultList();

@@ -168,7 +168,7 @@ public class UceLiquidosJpaController implements Serializable {
     public List<UceLiquidos> getLiquidos(int control) {
         EntityManager em = getEntityManager();
         Query Q = null;
-        Q = em.createQuery("SELECT l FROM UceLiquidos l WHERE l.idControlO.id=:idc AND l.estado='1'");
+        Q = em.createQuery("SELECT l FROM UceLiquidos l WHERE l.idControlO.id=:idc AND l.estado='1' ORDER BY l.fecha, l.hora ASC");
         Q.setParameter("idc", control);
         return Q.getResultList();
     }

@@ -161,7 +161,7 @@ public class UciHojaTratamientosJpaController implements Serializable {
     public List<UciHojaTratamientos> getAplicaciones2(int hc) {
         EntityManager em = getEntityManager();
         Query q = null;
-        q = em.createQuery("SELECT a FROM UciHojaTratamientos a WHERE a.idHistoria=:h AND a.estado='1'");
+        q = em.createQuery("SELECT a FROM UciHojaTratamientos a WHERE a.idHistoria.id=:h AND a.estado='1'");
         q.setHint("javax.persistence.cache.storeMode", "REFRESH");
         q.setParameter("h", hc);
         return q.getResultList();
