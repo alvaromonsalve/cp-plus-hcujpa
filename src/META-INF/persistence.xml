@@ -342,5 +342,21 @@
     <class>entidades_EJB.UceInfquirurgicoSoat2</class>
     <class>entidades_EJB.HospInfquirurgicoSoat1</class>
     <class>entidades_EJB.UceInfquirurgicoSoat1</class>
+    <class>entidades_EJB.UrgSangre</class>
+    <class>entidades_EJB.UrgSangreCie10</class>
+    <class>entidades_EJB.UrgSangreProcedimientos</class>
+    <class>entidades_EJB.EnfuTransfusiones</class>
+    <class>entidades_EJB.UceTransfusiones</class>
+    <class>entidades_EJB.UciSangreCie10</class>
+    <class>entidades_EJB.UciSangre</class>
+    <class>entidades_EJB.UceSangreCie10</class>
+    <class>entidades_EJB.HospSangre</class>
+    <class>entidades_EJB.HospTransfusiones</class>
+    <class>entidades_EJB.UciSangreProcedimientos</class>
+    <class>entidades_EJB.HospSangreProcedimientos</class>
+    <class>entidades_EJB.UceSangre</class>
+    <class>entidades_EJB.HospSangreCie10</class>
+    <class>entidades_EJB.UciTransfusiones</class>
+    <class>entidades_EJB.UceSangreProcedimientos</class>
   </persistence-unit>
 </persistence>

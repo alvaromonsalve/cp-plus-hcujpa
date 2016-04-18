@@ -496,7 +496,7 @@ public class UceEvolucionJpaController implements Serializable {
 
     public List<UceEvolucion> getEvolucionesUCE(int h) {
         EntityManager em = getEntityManager();
-        Query Q = em.createQuery("SELECT e FROM UceEvolucion e WHERE e.idInfoHistoriac=:ht AND (e.estado='2' OR e.estado='4' OR e.estado='8')")
+        Query Q = em.createQuery("SELECT e FROM UceEvolucion e WHERE e.idUceHistoriac.id=:ht AND (e.estado='2' OR e.estado='4' OR e.estado='8')")
                 .setParameter("ht", h)
                 .setHint("javax.persistence.cache.storeMode", "REFRESH");
         return Q.getResultList();
